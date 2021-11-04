@@ -1,4 +1,6 @@
 <?php
+include_once "usuarioClass.php";
+include_once "connect_data.php";
 class usuarioModel extends usuarioClass {
     private $link;
     public function OpenConnect(){
@@ -14,6 +16,29 @@ class usuarioModel extends usuarioClass {
     public function CloseConnect()
     {
         mysqli_close ($this->link);
+    }
+
+    public function findUser(){
+        $this->OpenConnect();
+
+        $email=$this->email;
+        $password=$this->contrasenia;
+
+        $sql= "CALL sp_buscar_usuario('$email', '$password')";
+        $result= $this->link->query($sql);
+
+        $exist=false;
+
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $exist=true;
+            $this->id=$row['id'];
+            $this->nombre=$row['nombre'];
+            $this->admin=$row['admin'];
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $exist;
+
     }
 
 }
