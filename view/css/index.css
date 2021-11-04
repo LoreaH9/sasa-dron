@@ -12,7 +12,3 @@
 .modal-footer{
     justify-content: space-between;
 }
-@font-face {
-    font-family: text;
-    src: url(../fonts/Champagne\ &\ Limousines.ttf);
-}

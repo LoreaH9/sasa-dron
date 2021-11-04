@@ -1,0 +1,12 @@
+.banca{
+    font-family: banca;
+}
+
+@font-face {
+    font-family: text;
+    src: url(../fonts/Champagne\ &\ Limousines.ttf);
+}
+@font-face {
+    font-family: banca;
+    src: url(../fonts/NEONLEDLight.ttf);
+}
