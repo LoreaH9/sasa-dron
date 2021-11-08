@@ -1,0 +1,28 @@
+.btn {
+  margin: 5px;
+  border: 0 none;
+  font-weight: 1;
+}
+
+.btn-primary {
+  background: #515152;
+  color: #ffffff;
+}
+
+.btn-primary.raised {
+  box-shadow: 0 3px 0 0 #515152;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.dropdown-toggle.btn-primary {
+  background: #202020;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background: #181818;
+  box-shadow: none;
+}

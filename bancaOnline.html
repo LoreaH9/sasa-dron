@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="view/css/bancaOnline.css">
+    <link rel="stylesheet" href="view/css/index.css">
+
+    <title>Banca Online</title>
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <div class="text-center">
+        <div class="container-fluid">
+            <h1 class="display-2 text text-dark banca">Banca online</h1>
+        </div>
+
+    </div>
+    <div class="container-fluid contenido d-flex">
+        <div class="w-25 d-flex flex-column">
+            <button id="pago" type="button" class="btn btn-primary btn-lg raised" onclick="cargar()">Pagos</button>
+            <button id="transferencia" type="button" class="btn btn-primary btn-lg raised"
+                onclick="cargar()">Transferencias</button>
+            <button id="leasing" type="button" class="btn btn-primary btn-lg raised" onclick="cargar()">Leasing</button>
+            <button id="prestamo" type="button" class="btn btn-primary btn-lg raised"
+                onclick="cargar()"> Prestamos</button>
+            <button id="ingreso" type="button" class="btn btn-primary btn-lg raised" onclick="cargar()">Ingreso</button>
+            <!-- <a href="index.html"><button id="ingreso" type="button" class="btn btn-primary btn-lg raised ">Volver <i
+                        class="fa fa-sign-out"></i> </button></a>-->
+        </div>
+        <div class="w-75"></div>
+    </div>
+
+    <!--SCRIPTS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/c4fc8a3024.js"></script>
+    <script src="view/js/bancaOnline.js"></script>
+    <script src="view/js/insert.js"></script>
+
+</body>
+
+</html>
