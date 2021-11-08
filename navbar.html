@@ -24,8 +24,9 @@
             <i class="fa fa-user-circle fa-lg" role="button" data-bs-toggle="dropdown"></i>
             <p id="nomUsu" data-bs-toggle="modal" data-bs-target="#login" class="m-1">Login</p>
             <ul class="dropdown-menu dropdown-menu-end ">
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#register">Registrarse</a></li>
+                <li><a id="ddLg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a></li>
+                <li><a id="ddReg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#register">Registrarse</a></li>
+                <li><a id="ddLo" class="dropdown-item" style="display: none;" onclick="logout()">Log Out</a></li>
             </ul>
         </form>
     </div>
