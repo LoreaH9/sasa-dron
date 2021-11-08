@@ -1,3 +1,23 @@
+document.addEventListener("DOMContentLoaded", function (event) {
+	
+	sessionVarsView();
+});
+
+function sessionVarsView(){
+    var url="controller/cSessionVarsView.php";
+    fetch (url,{
+        method: 'GET',
+        headers:{'Content-Type': 'application/json'}
+    }).then(res => res.json()).then(result =>{
+        console.log(result);
+        if (result.user.admin==1){
+            $("#btnBanca").css('display', 'block');
+          
+            $("#nomUsu").text(result.user.nombre);
+        }
+
+    })
+}
 
 function login() {
     var email = $("#email").val();
