@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -5,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="view/css/index.css">
-    <title>Sasa Dron</title>
+    <link rel="stylesheet" href="view/css/productos.css">
+    <title>Sasa dron | Productos</title>
 </head>
 
 <body>
@@ -20,10 +21,10 @@
             <div class="collapse navbar-collapse d-flex  justify-content-md-center" id="navbarTogglerDemo03">
                 <ul class="navbar-nav d-flex">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="productos.html">Productos</a>
+                        <a class="nav-link active" href="#">Productos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="bancaOnline.html">Banca online</a>
@@ -55,8 +56,7 @@
                     <form>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="email"
-                                aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">Tu email esta seguro con nosotros.</div>
                         </div>
                         <div class="mb-3">
@@ -114,53 +114,120 @@
         </div>
     </div>
 
-    <!--CAROUSEL-->
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="carousel-img"
-                    style="background-image: url(https://www.bbva.com/wp-content/uploads/2020/04/BBVA-Dron-Coronavirus-1504.jpg);">
+    <!-- Cards -->
+    <div id="cardGroup" class="row row-cols-2 g-4 p-3 align-content-center">
+
+        <div class="row row-cols-2 card-productos col-lg-8 col-md-11 col-sm-11 col-8">
+            <img src="https://picsum.photos/1920/1080" class="cardImg col-5">
+            <div class="card-body col-5">
+                <h4 class="card-title nombreProducto">Nombre dron</h4>
+                <p class="card-text descripcionProducto col-12">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus dolorum repellendus dolore unde
+                    provident reiciendis, minima voluptate impedit rerum rem. Architecto illum reiciendis consequuntur
+                    maiores debitis quisquam dolore nihil eligendi?
+                </p>
+                <div class="precioProducto col-5">
+                    Hagase cliente para ver los precios
                 </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="pd">Draganfly</h2>
-                    <p>Drones inteligentes para todos los niveles.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="carousel-img"
-                    style="background-image: url(https://tec.mx/sites/default/files/styles/header_full/public/2020-03/drones-futuro-por-expertos-del-tec-monterrey.jpg?h=920929c4&itok=fSc85wO1);">
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="pd">One Air</h2>
-                    <p>Drones inteligentes para todos los niveles.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="carousel-img"
-                    style="background-image: url(https://www.panoramaaudiovisual.com/wp-content/uploads/2021/04/DJI-Air-25-3.jpg);">
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                    <h2 class="pd">DJI Air 2S</h2>
-                    <p>Drones inteligentes para todos los niveles.</p>
-                </div>
+                <a class="cardButton col-6" href="#" data-bs-toggle="modal" data-bs-target="#modalProducto">Ver más ></a>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+
+        <div class="row row-cols-2 card-productos col-lg-8 col-md-11 col-sm-11 col-8">
+            <img src="https://picsum.photos/1920/1080" class="cardImg col-5">
+            <div class="card-body col-5">
+                <h4 class="card-title nombreProducto">Nombre dron</h4>
+                <p class="card-text descripcionProducto col-12">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus dolorum repellendus dolore unde
+                    provident reiciendis, minima voluptate impedit rerum rem. Architecto illum reiciendis consequuntur
+                    maiores debitis quisquam dolore nihil eligendi?
+                </p>
+                <div class="precioProducto col-5">
+                    Hagase cliente para ver los precios
+                </div>
+                <a class="cardButton col-6" href="#" data-bs-toggle="modal" data-bs-target="#modalProducto">Ver más ></a>
+            </div>
+        </div>
+
     </div>
-    <!--CAROUSEL-->
+    <!-- Fin cards -->
+
+    <!-- Modal productos -->
+    <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitulo">Nombre dron</h5>
+            </div>
+            <div class="modal-body">
+                <!-- <img src="https://picsum.photos/1920/1080" class="col-12"> -->
+
+                <!-- Carrusel -->
+                <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                  <!-- Fin carrusel -->
+
+                <div id="modalDescripcion">
+                    <h5>Descripción</h5>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius asperiores quae blanditiis vel nihil natus obcaecati illo aliquid nostrum quas?
+                </div>
+
+                <div id="modalCaracteristicas">
+                    <h5>Caracteristicas tecnicas</h5>
+                    <ul id="listaCaracteristicas">
+                        <!---->
+                        <li><h6>Caracteristica 1: </h6> Super buena</li>
+                        <li><h6>Caracteristica 2: </h6> Mas o menos</li>
+                        <li><h6>Caracteristica 3: </h6>
+                            <ul>
+                                <li>Pedazo de autonomia</li>
+                                <li>Alcance que flipas</li>
+                                <li>Certificaciones de expertos</li>
+                            </ul>
+                        </li>
+                        <!---->
+                    </ul>
+                </div>
+
+                <div id="modalNotasAdicionales">
+                    Solo los clientes pueden ver los precios. Si tiene interes en nuestros productos ponganse en contacto con nosotros
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button>
+                <div id="modalContacto">
+                    <img src="images/telephone-fill.svg" class="filter-blue"> 600-63-21-04
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin modal productos -->
 
 
     <!--SCRIPTS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/c4fc8a3024.js"></script>
-
+    <script src="view/js/productos.js"></script>
 </body>
 
 </html>
