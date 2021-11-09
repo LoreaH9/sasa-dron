@@ -5,6 +5,7 @@ class usuarioClass{
     public $email;
     public $contrasenia;
     public $admin;
+    public $eliminado;
 
     /**
      * Get the value of id
@@ -102,6 +103,25 @@ class usuarioClass{
     public function setAdmin($admin)
     {
         $this->admin = $admin;
+
+        return $this;
+    }
+        /**
+     * Get the value of admin
+     */ 
+    public function getEliminado()
+    {
+        return $this->eliminado;
+    }
+
+    /**
+     * Set the value of admin
+     *
+     * @return  self
+     */ 
+    public function setEliminado($eliminado)
+    {
+        $this->eliminado = $eliminado;
 
         return $this;
     }
