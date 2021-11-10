@@ -3,57 +3,73 @@ $(document).ready(init);
 
 function init() {
     option();
+    hideAllTables();
+    $("#movimientosCuentaCredito").show();
 }
 
 function option() {
 
-    $('#movimientos')
+    $('#movimientosCuentaCredito')
         .off('click')
-        .on('click', movimientos);
+        .on('click', movimientosCuentaCredito);
+    $('#movimientosCuentaCorriente')
+        .off('click')
+        .on('click', movimientosCuentaCorriente);
     $('#leasing')
         .off('click')
         .on('click', leasing);
     $('#prestamos')
         .off('click')
         .on('click', prestamos);
-    $('#ingreso')
+    $('#movimientos')
         .off('click')
-        .on('click', ingreso);
+        .on('click', movimientos);
 
 }
+
 function preventClick(event) {
     event.preventDefault();
     event.stopPropagation();
 }
 
-function movimientos(event) {
+//Oculta todas las tablas
+function hideAllTables() {
+    $("#tablePrestamos").hide();
+    $("#tableMovimientosCuentaCredito").hide();
+    $("#tableLeasing").hide();
+    $("#tableMovimientosCuentaCorriente").hide();
+
+}
+
+function movimientosCuentaCorriente(event) {
     preventClick(event);
-    $("#tableMovimientos").show();
-    console.log("m")
+    hideAllTables();
+    $("#tableMovimientosCuentaCorriente").show();
+
+}
+function movimientosCuentaCredito(event) {
+    preventClick(event);
+    hideAllTables();
+    $("#tableMovimientosCuentaCredito").show();
 }
 function leasing(event) {
     preventClick(event);
-    console.log("leasing")
+    hideAllTables();
+    $("#tableLeasing").show();
 
-    $("#tableMovimientos").hide();
 }
 function prestamos(event) {
     preventClick(event);
     console.log("prestamos")
+    hideAllTables();
+    $("#tablePrestamos").show();
 
-    $("#tableMovimientos").hide();
 }
-function tranferencias(event) {
-    preventClick(event);
-    console.log("tranferencias")
 
-    $("#tableMovimientos").hide();
-}
-function ingreso(event) {
+function movimientos(event) {
     preventClick(event);
-    console.log("ingreso")
+    hideAllTables();
 
-    $("#tableMovimientos").hide();
 }
 
 
