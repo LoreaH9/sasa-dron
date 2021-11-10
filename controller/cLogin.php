@@ -7,9 +7,9 @@ $email=$data['email'];
 $password=$data['password'];
 
 $response=array();
+$user=new usuarioModel();
 
 if ($email!=null && $password!=null){
-    $user=new usuarioModel();
     $user->email=$email;
     $user->contrasenia=$password;
 
@@ -22,6 +22,8 @@ if ($email!=null && $password!=null){
         $response['usuario']=$user;
         $response['error']="no error";
     }else{
+        $response['usuario']=$user;
+
         $response['error']="incorrect user";
     }
     echo json_encode($response);

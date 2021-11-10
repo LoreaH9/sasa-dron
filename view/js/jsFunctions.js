@@ -37,6 +37,8 @@ function login() {
         headers: { 'content-type': 'application/json' }
     }).then(res => res.json()).then(result => {
         if (result.usuario.admin == 1) {
+            $("#errorLogin").text("");
+
             $("#btnBanca").css('display', 'block');
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
@@ -45,6 +47,10 @@ function login() {
             $('#nomUsu').removeAttr('data-bs-target');
             $("#nomUsu").text(result.usuario.nombre);
         }
+        if(result.error=='incorrect user'){
+            $("#errorLogin").text("El correo o contraseña introducido es incorrecto");
+        }
+        console.log(result)
     })
 }
 function register() {
@@ -55,7 +61,8 @@ function register() {
     var contrasenia1 = $('#passwordRegister1').val();
     var contrasenia2 = $('#passwordRegister2').val();
     if (contrasenia1===contrasenia2){
-        var data = {'sda':nombre};
+        var data = {'nombre':nombre, 'contrasenia':contrasenia1, 'email':email};
+
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -64,9 +71,6 @@ function register() {
              console.log(result);
         })
     }
-
- 
-
 }
 
 function logout() {
@@ -77,6 +81,7 @@ function logout() {
     }).then(res => res.json()).then(result => {
         console.log(result);
         if (result.error == "no error") {
+            $("#errorLogin").text("");
             $("#btnBanca").css('display', 'none');
             $("#ddLg").css('display', 'block');
             $("#ddReg").css('display', 'block');
