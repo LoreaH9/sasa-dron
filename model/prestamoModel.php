@@ -24,7 +24,7 @@ class prestamoModel extends prestamoClass{
     {
         $this->OpenConnect();
 
-        $sql = "select * from prestamo";
+        $sql = "SELECT * from prestamo";
 
         $result = $this->link->query($sql);
 
@@ -40,7 +40,7 @@ class prestamoModel extends prestamoClass{
             $newPrestamo->capital=$row['capital'];
             $newPrestamo->deuda=$row['deuda'];
             
-            array_push($list, $newLeasing);
+            array_push($list, $newPrestamo);
         }
         mysqli_free_result($result);
         $this->CloseConnect();

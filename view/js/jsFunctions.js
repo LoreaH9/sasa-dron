@@ -47,9 +47,29 @@ function login() {
         }
     })
 }
+function register() {
+    var url = "controller/cRegister.php";
+
+    var nombre= $('#nameRegister').val();
+    var email = $('#emailRegister').val();
+    var contrasenia1 = $('#passwordRegister1').val();
+    var contrasenia2 = $('#passwordRegister2').val();
+    if (contrasenia1===contrasenia2){
+        var data = {'sda':nombre};
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Cotent-Type': 'application/json' }
+        }).then(res => res.json()).then(result =>{
+             console.log(result);
+        })
+    }
+
+ 
+
+}
 
 function logout() {
-
     var url = "controller/cLogout.php";
     fetch(url, {
         method: 'GET',

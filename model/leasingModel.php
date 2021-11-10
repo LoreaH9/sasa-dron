@@ -24,7 +24,7 @@ class leasingModel extends leasingClass{
     {
         $this->OpenConnect();
 
-        $sql = "select * from leasing";
+        $sql = "SELECT * from leasing";
 
         $result = $this->link->query($sql);
 
