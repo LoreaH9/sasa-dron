@@ -1,8 +1,5 @@
-document.addEventListener("DOMContentLoaded", function (event) {
 
-    sessionVarsView();
-
-});
+$(document).ready(sessionVarsView);
 
 function sessionVarsView() {
     var url = "controller/cSessionVarsView.php";
@@ -18,9 +15,7 @@ function sessionVarsView() {
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
-
         }
-
     })
 }
 
@@ -49,6 +44,8 @@ function login() {
         }
         if(result.error=='incorrect user'){
             $("#errorLogin").text("El correo o contraseña introducido es incorrecto");
+        }else if(result.error=='insert data'){
+            $("#errorLogin").text("Inserte datos en todos los campos por favor.");
         }
         console.log(result)
     })
@@ -60,7 +57,8 @@ function register() {
     var email = $('#emailRegister').val();
     var contrasenia1 = $('#passwordRegister1').val();
     var contrasenia2 = $('#passwordRegister2').val();
-    if (contrasenia1===contrasenia2){
+
+    if (checkPassword(contrasenia1,contrasenia2)){
         var data = {'nombre':nombre, 'contrasenia':contrasenia1, 'email':email};
 
         fetch(url, {
@@ -70,9 +68,20 @@ function register() {
         }).then(res => res.json()).then(result =>{
              console.log(result);
         })
+    }else{
+        $("#errorRegister").text("Las contraseñas introducidas no coinciden");
+
     }
 }
+function checkPassword(c1,c2) {
+    var regex = /[^a-z0-9\x20]/i;
+    alert(regex.test(strsym));
 
+    if(c1==c2 && c1){
+        return true;
+    }
+    return false;
+}
 function logout() {
     var url = "controller/cLogout.php";
     fetch(url, {
