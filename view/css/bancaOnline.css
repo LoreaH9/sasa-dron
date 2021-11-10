@@ -1,3 +1,11 @@
+#tableMovimientos{
+  display: none;
+  width: 100%;
+}
+#tablePrestamos{
+  display: none;
+  width: 100%;
+}
 .btn {
   margin: 5px;
   border: 0 none;

@@ -15,8 +15,9 @@ if ($email!=null && $password!=null){
 
     if ($user->findUser()){
         session_start();
-        $_SESSION['name']=$user->nombre;
-        $_SESSION['type']=$user->admin;
+        $_SESSION['user']=$user;
+
+        $_SESSION['nombre']=$user->nombre;
 
         $response['usuario']=$user;
         $response['error']="no error";

@@ -24,7 +24,7 @@ class usuarioModel extends usuarioClass {
         $email=$this->email;
         $password=$this->contrasenia;
 
-        $sql= "CALL sp_buscar_usuario('$email', '$password')";
+        $sql= "SELECT * FROM usuario WHERE email='$email' AND contrasenia='$password'";
         $result= $this->link->query($sql);
 
         $exist=false;

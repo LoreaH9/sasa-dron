@@ -1,17 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light2 p-2">
+<nav class="navbar navbar-expand-lg navbar-light bg-light2 p-2 ">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOptions"
+            aria-controls="navbarOptions" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Sasa Dron</a>
-        <div class="collapse navbar-collapse d-flex  justify-content-md-center" id="navbarTogglerDemo03">
+        
+        <!-- Logo -->
+        <a class="navbar-brand" href="index.html">Sasa Dron</a>
+
+        <!-- Menu opciones -->
+        <div class="collapse navbar-collapse justify-content-lg-center" id="navbarOptions">
             <ul class="navbar-nav d-flex">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Productos</a>
+                    <a class="nav-link" href="productos.html">Productos</a>
                 </li>
                 <li class="nav-item">
                     <a id="btnBanca" class="nav-link" href="bancaOnline.html">Banca online</a>
@@ -20,12 +24,14 @@
 
         </div>
 
-        <form class="d-flex m-0 align-content-center align-items-center justify-content-center ">
+         <!-- Login/registro -->
+        <form class="d-flex m-0 align-items-center">
             <i class="fa fa-user-circle fa-lg" role="button" data-bs-toggle="dropdown"></i>
             <p id="nomUsu" data-bs-toggle="modal" data-bs-target="#login" class="m-1">Login</p>
             <ul class="dropdown-menu dropdown-menu-end ">
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#register">Registrarse</a></li>
+                <li><a id="ddLg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a></li>
+                <li><a id="ddReg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#register">Registrarse</a></li>
+                <li><a id="ddLo" class="dropdown-item" style="display: none;" onclick="logout()">Log Out</a></li>
             </ul>
         </form>
     </div>
@@ -61,6 +67,8 @@
             </div>
         </div>
     </div>
+    <!-- FIN Modal Inicio sesion -->
+
 
     <!-- Modal Registro -->
     <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,3 +107,4 @@
             </div>
         </div>
     </div>
+    <!-- FIN Modal Registro -->
