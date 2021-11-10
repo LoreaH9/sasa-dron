@@ -16,9 +16,6 @@ function option() {
     $('#prestamos')
         .off('click')
         .on('click', prestamos);
-    $('#transferencias')
-        .off('click')
-        .on('click', tranferencias);
     $('#ingreso')
         .off('click')
         .on('click', ingreso);
