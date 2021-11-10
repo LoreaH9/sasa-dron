@@ -20,6 +20,32 @@ class prestamoModel extends prestamoClass{
         mysqli_close ($this->link);
     }
 
+    public function setList()
+    {
+        $this->OpenConnect();
+
+        $sql = "select * from prestamo";
+
+        $result = $this->link->query($sql);
+
+        $list=array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $newPrestamo=new prestamoModel();
+
+            $newPrestamo->id=$row['id'];
+            $newPrestamo->anual=$row['anual'];
+            $newPrestamo->interes=$row['interes'];
+            $newPrestamo->cuota=$row['cuota'];
+            $newPrestamo->capital=$row['capital'];
+            $newPrestamo->deuda=$row['deuda'];
+            
+            array_push($list, $newLeasing);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
     
 }
 ?>

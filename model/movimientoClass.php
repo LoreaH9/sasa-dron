@@ -8,7 +8,8 @@
         public $saldo;
         public $dias;
         public $idUsuario;
-        public $idCuenta;
+        public $idCredito;
+        public $idCorriente;
 
         
 
@@ -172,22 +173,44 @@
                 return $this;
         }
 
+       
+
         /**
-         * Get the value of idCuenta
+         * Get the value of idCredito
          */ 
-        public function getIdCuenta()
+        public function getIdCredito()
         {
-                return $this->idCuenta;
+                return $this->idCredito;
         }
 
         /**
-         * Set the value of idCuenta
+         * Set the value of idCredito
          *
          * @return  self
          */ 
-        public function setIdCuenta($idCuenta)
+        public function setIdCredito($idCredito)
         {
-                $this->idCuenta = $idCuenta;
+                $this->idCredito = $idCredito;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of idCorriente
+         */ 
+        public function getIdCorriente()
+        {
+                return $this->idCorriente;
+        }
+
+        /**
+         * Set the value of idCorriente
+         *
+         * @return  self
+         */ 
+        public function setIdCorriente($idCorriente)
+        {
+                $this->idCorriente = $idCorriente;
 
                 return $this;
         }

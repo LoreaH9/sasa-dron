@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2021 a las 11:10:22
+-- Tiempo de generación: 10-11-2021 a las 09:33:24
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sasa`
 --
-CREATE DATABASE IF NOT EXISTS `sasa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `sasa`;
 
 -- --------------------------------------------------------
 
@@ -104,7 +102,8 @@ CREATE TABLE `movimiento` (
   `saldo` decimal(10,3) NOT NULL,
   `dias` int(4) NOT NULL,
   `idUsuario` int(11) NOT NULL,
-  `idCuenta` int(11) NOT NULL
+  `idCredito` int(11) NOT NULL,
+  `idCorriente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -179,7 +178,8 @@ ALTER TABLE `leasing`
 ALTER TABLE `movimiento`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idUsuario` (`idUsuario`),
-  ADD KEY `idCuenta` (`idCuenta`);
+  ADD KEY `idCuenta` (`idCredito`),
+  ADD KEY `idCorriente` (`idCorriente`);
 
 --
 -- Indices de la tabla `prestamo`
@@ -243,7 +243,8 @@ ALTER TABLE `cuenta_credito`
 --
 ALTER TABLE `movimiento`
   ADD CONSTRAINT `movimiento_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `movimiento_ibfk_2` FOREIGN KEY (`idCuenta`) REFERENCES `cuenta_credito` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `movimiento_ibfk_2` FOREIGN KEY (`idCredito`) REFERENCES `cuenta_credito` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `movimiento_ibfk_3` FOREIGN KEY (`idCorriente`) REFERENCES `cuenta_corriente` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

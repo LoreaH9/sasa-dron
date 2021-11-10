@@ -20,6 +20,31 @@ class leasingModel extends leasingClass{
         mysqli_close ($this->link);
     }
 
-    
+    public function setList()
+    {
+        $this->OpenConnect();
+
+        $sql = "select * from leasing";
+
+        $result = $this->link->query($sql);
+
+        $list=array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $newLeasing=new leasingModel();
+
+            $newLeasing->id=$row['id'];
+            $newLeasing->cuota=$row['cuota'];
+            $newLeasing->iva=$row['iva'];
+            $newLeasing->limpia=$row['limpia'];
+            $newLeasing->interes=$row['interes'];
+            $newLeasing->amortizacion=$row['amortizacion'];
+            $newLeasing->deuda=$row['deuda'];
+            array_push($list, $newLeasing);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
 }
 ?>

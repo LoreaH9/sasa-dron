@@ -20,6 +20,29 @@ class cuenta_corrienteModel extends cuenta_corrienteClass{
         mysqli_close ($this->link);
     }
 
+    public function setList()
+    {
+        $this->OpenConnect();
+
+        $sql = "select * from cuenta_corriente";
+
+        $result = $this->link->query($sql);
+
+        $list=array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $newCuenta_corriente=new cuenta_corrienteModel();
+
+            $newCuenta_corriente->id=$row['id'];
+            $newCuenta_corriente->saldo=$row['saldo'];
+            $newCuenta_corriente->caduca=$row['caduca'];
+
+            array_push($list, $newCuenta_corriente);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
     
 }
 ?>

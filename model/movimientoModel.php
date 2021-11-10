@@ -19,7 +19,35 @@ class movimientoModel extends movimientoClass{
     {
         mysqli_close ($this->link);
     }
+    public function setList()
+    {
+        $this->OpenConnect();
 
-    
+        $sql = "select * from movimiento";
+
+        $result = $this->link->query($sql);
+
+        $list=array();
+
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $newMovimiento=new movimientoModel();
+
+            $newMovimiento->id=$row['id'];
+            $newMovimiento->fecha=$row['fecha'];
+            $newMovimiento->fechaValor=$row['fechaValor'];
+            $newMovimiento->concepto=$row['concepto'];
+            $newMovimiento->importe=$row['importe'];
+            $newMovimiento->saldo=$row['saldo'];
+            $newMovimiento->dias=$row['dias'];
+            $newMovimiento->idUsuario=$row['idUsuario'];
+            $newMovimiento->idCredito=$row['idCredito'];
+            $newMovimiento->idCorriente=$row['idCorriente'];
+            
+            array_push($list, $newLeasing);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        return $list;
+    }
 }
 ?>
