@@ -24,7 +24,7 @@ class cuenta_corrienteModel extends cuenta_corrienteClass{
     {
         $this->OpenConnect();
 
-        $sql = "select * from cuenta_corriente";
+        $sql = "SELECT * from cuenta_corriente";
 
         $result = $this->link->query($sql);
 

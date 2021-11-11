@@ -24,7 +24,7 @@ class cuenta_creditoModel extends cuenta_creditoClass{
     {
         $this->OpenConnect();
 
-        $sql = "select * from cuenta_credito";
+        $sql = "SELECT * from cuenta_credito";
 
         $result = $this->link->query($sql);
 

@@ -4,27 +4,13 @@ $(document).ready(init);
 function init() {
     option();
     hideAllTables();
-    $("#movimientosCuentaCredito").show();
+    $("#tableMovimientosCuentaCredito").show();
 }
 
 function option() {
-
-    $('#movimientosCuentaCredito')
-        .off('click')
-        .on('click', movimientosCuentaCredito);
-    $('#movimientosCuentaCorriente')
-        .off('click')
-        .on('click', movimientosCuentaCorriente);
-    $('#leasing')
-        .off('click')
-        .on('click', leasing);
-    $('#prestamos')
-        .off('click')
-        .on('click', prestamos);
-    $('#movimientos')
-        .off('click')
-        .on('click', movimientos);
-
+    $('.opcion')
+    .off('click')
+    .on('click', showOption);
 }
 
 function preventClick(event) {
@@ -38,39 +24,12 @@ function hideAllTables() {
     $("#tableMovimientosCuentaCredito").hide();
     $("#tableLeasing").hide();
     $("#tableMovimientosCuentaCorriente").hide();
-
 }
 
-function movimientosCuentaCorriente(event) {
+function showOption(event) {
     preventClick(event);
     hideAllTables();
-    $("#tableMovimientosCuentaCorriente").show();
-
+    $("#table"+event.currentTarget.id+"").show();
 }
-function movimientosCuentaCredito(event) {
-    preventClick(event);
-    hideAllTables();
-    $("#tableMovimientosCuentaCredito").show();
-}
-function leasing(event) {
-    preventClick(event);
-    hideAllTables();
-    $("#tableLeasing").show();
-
-}
-function prestamos(event) {
-    preventClick(event);
-    console.log("prestamos")
-    hideAllTables();
-    $("#tablePrestamos").show();
-
-}
-
-function movimientos(event) {
-    preventClick(event);
-    hideAllTables();
-
-}
-
 
 

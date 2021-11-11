@@ -19,12 +19,12 @@ class movimientoModel extends movimientoClass{
     {
         mysqli_close ($this->link);
     }
+
     public function setList()
     {
         $this->OpenConnect();
 
-        $sql = "select * from movimiento";
-
+        $sql = "SELECT * from movimiento";
         $result = $this->link->query($sql);
 
         $list=array();
@@ -43,7 +43,7 @@ class movimientoModel extends movimientoClass{
             $newMovimiento->idCredito=$row['idCredito'];
             $newMovimiento->idCorriente=$row['idCorriente'];
             
-            array_push($list, $newLeasing);
+            array_push($list, $newMovimiento);
         }
         mysqli_free_result($result);
         $this->CloseConnect();
