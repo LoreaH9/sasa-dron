@@ -1,7 +1,17 @@
+#btnBanca{
+    display: none;
+}
 .banca{
     font-family: banca;
 }
-
+input{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+input[type="number"]::placeholder {                    
+    text-align: center; 
+} 
 @font-face {
     font-family: text;
     src: url(../fonts/Champagne\ &\ Limousines.ttf);
