@@ -41,4 +41,20 @@ class usuarioModel extends usuarioClass {
 
     }
 
+    public function deleteUser(){
+        $this->OpenConnect();
+
+        $id=$this->id;
+        $delete=false;
+
+        $sql = "UPDATE usuario SET eliminado = 1 WHERE id=$id";
+        $result=$this->link->query($sql);
+
+        if($result){
+            $delete = true;
+        }
+        return $delete;
+        $this->CloseConnect();
+    }
+
 }
