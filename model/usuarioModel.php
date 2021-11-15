@@ -1,10 +1,10 @@
 <?php
 include_once "usuarioClass.php";
-include_once "connect_data.php";
+include_once "connectData.php";
 class usuarioModel extends usuarioClass {
     private $link;
     public function OpenConnect(){
-        $cd=new connect_data();
+        $cd=new connectData();
         try{
             $this->link=new mysqli($cd->host,$cd->userbbdd,$cd->passbbdd, $cd->ddbbname);    
         }catch(Exception $e){
