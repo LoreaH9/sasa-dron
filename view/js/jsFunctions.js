@@ -50,14 +50,17 @@ function login() {
         console.log(result)
     })
 }
+
+
 function register() {
+    console.log("hoola")
+    
     var url = "controller/cRegister.php";
 
     var nombre= $('#nameRegister').val();
     var email = $('#emailRegister').val();
     var contrasenia1 = $('#passwordRegister1').val();
     var contrasenia2 = $('#passwordRegister2').val();
-    console.log(nombre, email, contrasenia1, contrasenia2)
     if (checkPassword(contrasenia1,contrasenia2)){
         var data = {'nombre':nombre, 'contrasenia':contrasenia1, 'email':email};
 
@@ -70,7 +73,6 @@ function register() {
         })
     }else{
         $("#errorRegister").text("Las contraseñas introducidas no coinciden");
-
     }
 }
 function checkPassword(c1,c2) {
