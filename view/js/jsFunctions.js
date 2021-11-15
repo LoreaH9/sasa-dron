@@ -57,7 +57,7 @@ function register() {
     var email = $('#emailRegister').val();
     var contrasenia1 = $('#passwordRegister1').val();
     var contrasenia2 = $('#passwordRegister2').val();
-
+    console.log(nombre, email, contrasenia1, contrasenia2)
     if (checkPassword(contrasenia1,contrasenia2)){
         var data = {'nombre':nombre, 'contrasenia':contrasenia1, 'email':email};
 
