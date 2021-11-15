@@ -1,0 +1,127 @@
+.pd{
+    font-family: text;
+    background-color: rgba(255, 255, 255, 0.247);
+}
+.modal-footer{
+    justify-content: space-between;
+}
+@font-face {
+    font-family: text;
+    src: url(../fonts/Champagne\ &\ Limousines.ttf);
+}
+
+/*Cards*/
+#cardGroup{
+    justify-content: center;
+    padding-right: unset !important; 
+    padding-left: unset !important;
+    margin-right: unset !important;
+    margin-left: unset !important;
+}
+.card-productos{
+    background-image: unset;
+    margin: 30px;
+    padding-left: unset !important;
+    padding-right: unset !important;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+}
+.cardButton{
+    right: 10%;
+    bottom: 5%;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid white 1px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    transition-duration: 200ms;
+}
+.cardTop{
+    position: relative;
+}
+.cardButton:hover{
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.cardImg{
+    object-fit: cover;
+    width: 300px;
+    height: 200px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 575px){
+    .cardImg{
+        margin-top: 20px;
+    }
+}
+.nombreProducto{
+    color: #4a4c76;
+    font-weight: 300;
+}
+.precioProducto{
+    padding: 5px;
+    color: rgb(194, 0, 0);
+    font-weight: 700;
+    position: relative;
+    right: auto;
+    left: auto;
+}
+.descripcionProducto{
+    font-size: 15px;
+    padding-bottom: 8px;
+}
+
+
+/*Modal*/
+#modalTitulo{
+    color: #4a4c76;
+    font-weight: 300;
+}
+#modalDescripcion{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+    #modalDescripcion h5{
+        color: #4a4c76;
+    }
+#modalCaracteristicas {
+    color: #4e4e4e;
+}
+    #listaCaracteristicas{
+        padding-left: inherit !important;
+    }
+    #modalCaracteristicas h5{
+        color: #4a4c76;
+    }
+    #modalCaracteristicas h6{
+        color: black;
+        margin-bottom: inherit;
+        display: inline; /*Evita un salto de linea*/
+    }
+    #modalCaracteristicas li{
+        list-style-type: none;
+    }
+#modalBotonCerrar:hover{
+    background-color: black;
+    color: white;
+}
+#modalContacto{
+    right: 10%;
+    position: absolute;
+}
+#modalNotasAdicionales{
+    font-size: 10px;
+    color: black;
+}
+
+
+.filter-blue{
+    filter: invert(31%) sepia(10%) saturate(1835%) hue-rotate(199deg) brightness(93%) contrast(93%);
+}
