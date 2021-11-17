@@ -1,5 +1,5 @@
 //global variables
-var cards, card;
+var cards, card="";
 
 //DOMContentLoaded
 $(document).ready(function(){
@@ -31,7 +31,6 @@ function loadCards(){
 		                '<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' EUR</div>' +
 		            '</div>' +
 		        '</div>';
-        
     }
 	$("#cardGroup").html($("#cardGroup").html() + card);
 }

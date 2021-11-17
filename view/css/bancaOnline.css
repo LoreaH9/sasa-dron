@@ -6,6 +6,11 @@
   display: none;
   width: 100%;
 }
+.calcularLeasing{
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+}
 .btn {
   margin: 5px;
   border: 0 none;
