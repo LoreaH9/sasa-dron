@@ -8,23 +8,25 @@ function sessionVarsView() {
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
         console.log(result);
-        if (result.user.admin == 1) {
-            $("#btnBanca").css('display', 'block');
+        if(result.error=="no error"){
             $('#nomUsu').removeAttr('data-bs-target');
             $("#nomUsu").text(result.user.nombre);
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
+            if (result.user.admin == 1) {
+                $("#btnBanca").css('display', 'block');
+            }
         }
     })
 }
 
 function login() {
     var email = $("#email").val();
-    var password = $("#password").val();
+    var contrasenia = $("#contrasenia").val();
 
     var url = "controller/cLogin.php";
-    var data = { 'email': email, 'password': password }
+    var data = { 'email': email, 'contrasenia': contrasenia }
 
     fetch(url, {
         method: 'POST',
@@ -42,44 +44,49 @@ function login() {
             $('#nomUsu').removeAttr('data-bs-target');
             $("#nomUsu").text(result.usuario.nombre);
         }
-        if(result.error=='incorrect user'){
-            $("#errorLogin").text("El correo o contraseña introducido es incorrecto");
-        }else if(result.error=='insert data'){
+        if (result.error == 'incorrect user') {
+            $("#errorLogin").html("El correo o contraseña introducido es incorrecto.</br> <a onclick='forgotPassword()'>He olvidado la contraseña.</a>");
+
+        } else if (result.error == 'insert data') {
             $("#errorLogin").text("Inserte datos en todos los campos por favor.");
         }
         console.log(result)
     })
 }
-
-
-function register() {
-    console.log("hoola")
+function forgotPassword() {
+    alert("Por favor relajese, dese un paseo e intente recordar su contraseña :)");
     
+}
+function register() {
     var url = "controller/cRegister.php";
 
-    var nombre= $('#nameRegister').val();
+    var nombre = $('#nameRegister').val();
     var email = $('#emailRegister').val();
     var contrasenia1 = $('#passwordRegister1').val();
     var contrasenia2 = $('#passwordRegister2').val();
-    if (checkPassword(contrasenia1,contrasenia2)){
-        var data = {'nombre':nombre, 'contrasenia':contrasenia1, 'email':email};
+
+    if (checkPassword(contrasenia1, contrasenia2)) {
+        var data = { 'nombre': nombre, 'contrasenia': contrasenia1, 'email': email };
 
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Cotent-Type': 'application/json' }
-        }).then(res => res.json()).then(result =>{
-             console.log(result);
+        }).then(res => res.json()).then(result => {
+            console.log(result);
+            if(result.error){
+                $("#errorRegister").text("Este usuario ya ha sido registrado, inicie sesion.")
+            }
         })
-    }else{
+    } else {
         $("#errorRegister").text("Las contraseñas introducidas no coinciden");
     }
 }
-function checkPassword(c1,c2) {
-    var regex = /[^a-z0-9\x20]/i;
-    alert(regex.test(strsym));
 
-    if(c1==c2 && c1){
+function checkPassword(c1, c2) {
+    var regex = /[^a-z0-9\x20]/i;
+
+    if (c1 == c2 && c1 != "") {
         return true;
     }
     return false;

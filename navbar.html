@@ -53,15 +53,15 @@
                             <div id="email" class="form-text">Tu email esta seguro con nosotros.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password">
+                            <label for="contrasenia" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contrasenia">
                         </div>
                         <p id="errorLogin"  class="text-danger"></p>
                     </form>
                     <div class="modal-footer d-flex">
                         <p>No tienes cuenta todavía? <a style="text-decoration: underline;"  type="button" data-bs-toggle="modal"
                                 data-bs-target="#register" data-bs-dismiss="modal">registrate aquí</a></p>
-                        <button onclick="login()" class="btn btn-warning float-end">Submit</button>
+                        <button onclick="login()" class="btn btn-warning float-end">Iniciar sesion</button>
                     </div>
                 </div>
             </div>
@@ -101,8 +101,8 @@
                         </div>
                         <p id="errorRegister" class="text-danger"></p>
 
-                        <p>Ya tienes cuenta? <a style="text-decoration: underline;" data-bs-toggle="modal" data-bs-target="#login"  data-bs-dismiss="modal">Inicia sesión.</a></p>
-                        <button onclick="register()" class="btn btn-primary">Registrarse</button>
+                        <p>Ya tienes cuenta? <a style="text-decoration: underline;" data-bs-toggle="modal" data-bs-target="#login" data-bs-dismiss="modal">Inicia sesión.</a></p>
+                        <button type='button' onclick="register()" class="btn btn-primary">Registrarse</button>
                     </form>
                 </div>
             </div>
