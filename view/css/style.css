@@ -4,6 +4,7 @@
 .banca{
     font-family: banca;
 }
+
 input{
     justify-content: center;
     align-items: center;
@@ -12,6 +13,7 @@ input{
 input[type="number"]::placeholder {                    
     text-align: center; 
 } 
+
 @font-face {
     font-family: text;
     src: url(../fonts/Champagne\ &\ Limousines.ttf);

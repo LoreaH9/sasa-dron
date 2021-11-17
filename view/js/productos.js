@@ -28,7 +28,6 @@ function loadCards(){
 		                '<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' EUR</div>' +
 		            '</div>' +
 		        '</div>';
-        
     }
 	$("#cardGroup").html($("#cardGroup").html() + card);
 }

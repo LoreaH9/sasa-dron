@@ -18,27 +18,37 @@ class usuarioModel extends usuarioClass {
         mysqli_close ($this->link);
     }
 
-    public function findUser(){
+    public function findUserByEmail(){
         $this->OpenConnect();
 
         $email=$this->email;
-        $password=$this->contrasenia;
 
-        $sql= "SELECT * FROM usuario WHERE email='$email' AND contrasenia='$password'";
+        $sql= "SELECT * FROM usuario WHERE email='$email'";
         $result= $this->link->query($sql);
-
-        $exist=false;
-
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $exist=true;
             $this->id=$row['id'];
             $this->nombre=$row['nombre'];
             $this->admin=$row['admin'];
-        }
+            $passwordEncripted=$row['contrasenia'];
+            
+            $exist = password_verify($this->contrasenia, $passwordEncripted)?true:false;
+            return $exist;
+        } 
+        mysqli_free_result($result);
+        $this->CloseConnect();     
+    }
+
+    public function createUser(){
+        $this->OpenConnect();
+
+        $email=$this->email;
+        $contrasenia=$this->contrasenia;
+        $nombre=$this->nombre;
+
+        $sql="insert into usuario (email, contrasenia, nombre) values ('$email','$contrasenia','$nombre')";
+        $result= $this->link->query($sql);
         mysqli_free_result($result);
         $this->CloseConnect();
-        return $exist;
-
     }
 
     public function deleteUser(){
