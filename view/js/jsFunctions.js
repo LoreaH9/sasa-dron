@@ -8,13 +8,15 @@ function sessionVarsView() {
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
         console.log(result);
-        if(result.error=="no error"){
-            $('#nomUsu').removeAttr('data-bs-target');
-            $("#nomUsu").text(result.user.nombre);
+        if (result.error == "no error") {
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
-            if (result.user.admin == 1) {
+            $('#nomUsu').removeAttr('data-bs-target');
+            $("#nomUsu").text(result.usuario.nombre);
+            $("#btnBanca").css('display', 'none');
+
+            if(result.usuario.admin==1){
                 $("#btnBanca").css('display', 'block');
             }
         }
@@ -33,16 +35,21 @@ function login() {
         body: JSON.stringify(data),
         headers: { 'content-type': 'application/json' }
     }).then(res => res.json()).then(result => {
-        if (result.usuario.admin == 1) {
+        console.log(result);
+        if (result.error == "no error") {
             $("#errorLogin").text("");
 
-            $("#btnBanca").css('display', 'block');
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
             $('#login').modal('toggle');
             $('#nomUsu').removeAttr('data-bs-target');
             $("#nomUsu").text(result.usuario.nombre);
+
+            if(result.usuario.admin==1){
+                $("#btnBanca").css('display', 'block');
+
+            }
         }
         if (result.error == 'incorrect user') {
             $("#errorLogin").html("El correo o contraseña introducido es incorrecto.</br> <a onclick='forgotPassword()'>He olvidado la contraseña.</a>");
@@ -78,8 +85,11 @@ function register() {
                 $("#errorRegister").text("Este usuario ya ha sido registrado, inicie sesion.")
             }
         })
-    } else {
-        $("#errorRegister").text("Las contraseñas introducidas no coinciden");
+    } else if(nombre==NULL || email==NULL || contrasenia1==NULL) {
+        $("#errorRegister").text("Rellene todos los campos por favor.");
+    } else{
+        $("#errorRegister").text("Las contraseñas introducidas no coinciden.");
+
     }
 }
 

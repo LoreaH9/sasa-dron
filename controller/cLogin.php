@@ -7,16 +7,16 @@ $email=$data['email'];
 $contrasenia=$data['contrasenia'];
 
 $response=array();
-$user=new usuarioModel();
+$usuario=new usuarioModel();
 
 if ($email!=null){
-    $user->email=$email;
-    $user->contrasenia=$contrasenia;
+    $usuario->email=$email;
+    $usuario->contrasenia=$contrasenia;
 
-    if ($user->findUserByEmail()){
+    if ($usuario->findUserByEmail()){
         session_start();
-        $_SESSION['user']=$user;
-        $_SESSION['nombre']=$user->nombre;
+        $_SESSION['usuario']=$usuario;
+        $_SESSION['nombre']=$usuario->nombre;
         $response['error']="no error";
     }else{
         $response['error']="incorrect user";
@@ -24,7 +24,7 @@ if ($email!=null){
 }else{
     $response['error']="insert data";
 }
-    $response['usuario']=$user;
+    $response['usuario']=$usuario;
 
     echo json_encode($response);
     unset($response);

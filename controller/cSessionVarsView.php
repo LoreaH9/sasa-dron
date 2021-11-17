@@ -2,20 +2,20 @@
 require_once '../model/usuarioModel.php';
 
 $response=array();
-$user= new usuarioModel();
+$usuario= new usuarioModel();
 
 session_start();
 
-if (isset($_SESSION['user'])){
-    $user=$_SESSION['user'];
+if (isset($_SESSION['usuario'])){
+    $usuario=$_SESSION['usuario'];
     $response['error']="no error";
     
 } else{  
-    $response['user']= $user;
+    $response['usuario']= $usuario;
     $response['error']="You are not logged";
 }
 
-$response['user']= $user;
+$response['usuario']= $usuario;
 
 echo json_encode($response);
 

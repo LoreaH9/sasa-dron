@@ -4,20 +4,20 @@ $data=json_decode(file_get_contents("php://input"),true);
 
 $response=array();
 
-$user = new usuarioModel();
+$usuario = new usuarioModel();
 
-$user->nombre=$data['nombre'];
-$user->email=$data['email'];
-$user->findUserByEmail();
-$exist = $user->findUserByEmail();
+$usuario->nombre=$data['nombre'];
+$usuario->email=$data['email'];
+$usuario->findUserByEmail();
+$exist = $usuario->findUserByEmail();
 
 if ($exist){
     $response['error']=true;
 }else{
-    $user->contrasenia=password_hash($data['contrasenia'], PASSWORD_DEFAULT);
-    $user->createUser();
+    $usuario->contrasenia=password_hash($data['contrasenia'], PASSWORD_DEFAULT);
+    $usuario->createUser();
 }
 
-$response['user']=$user;
+$response['usuario']=$usuario;
 
 echo json_encode($response);
