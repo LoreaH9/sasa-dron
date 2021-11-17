@@ -125,3 +125,12 @@
 .filter-blue{
     filter: invert(31%) sepia(10%) saturate(1835%) hue-rotate(199deg) brightness(93%) contrast(93%);
 }
+
+.select{
+    transition: 0.5s;
+}
+
+.select:hover{
+    transform:scale(1.08);
+    -ms-transform:scale(1.08);
+}

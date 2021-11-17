@@ -1,28 +1,25 @@
 //global variables
-var cards, card;
+var cards, card="";
 
 //DOMContentLoaded
 $(document).ready(function(){
-    $.ajax({
-        url: "controller/controllerProductos.php",
-        dataType: "json",
-        type: "get",
-        contentType: "aplication/json",
-        success: function(result) {
-			console.log(result);
-			console.log(result.list);
-            cards = result.list;
 
-            loadCards();
-        }
-    });
+	fetch("controller/controllerProductos.php",{
+		method: 'GET',
+		})
+		.then(res => res.json()).then(result => {
+			console.log(result.list)
+			cards = result.list;
+
+			loadCards();
+		})			
 });
 
 //functions
 function loadCards(){
     for (var i = 0; i < cards.length; i ++) {
-		card += '<div class="row row-cols-2 card-productos col-lg-8 col-md-11 col-sm-11 col-8">' +
-		            '<img src="' + cards[i].img + '" class="cardImg col-5">' +
+		card += '<div class="row row-cols-2 card-productos col-lg-8 col-md-11 col-sm-11 col-8 select" onclick="loadData('+i+')" data-bs-toogle="modal" data-bs-target="#modalProducto">' +
+		            '<img src="' + cards[i].img + '" class="cardImg col-5" > ' +
 		            '<div class="card-body col-5">' +
 		                '<h4 class="card-title nombreProducto">' + cards[i].nombre + '</h4>' +
 		                '<p class="card-text descripcionProducto col-12">' +
@@ -34,4 +31,9 @@ function loadCards(){
         
     }
 	$("#cardGroup").html($("#cardGroup").html() + card);
+}
+
+function loadData(i){
+	$("#modalTitulo").html(cards[i].nombre);
+	$("#")
 }
