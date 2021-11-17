@@ -1,32 +1,205 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="view/css/bancaOnline.css">
-    <link rel="stylesheet" href="view/css/index.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="view/css/bancaOnline.css">
+  <link rel="stylesheet" href="view/css/style.css">
 
-    <title>Banca Online</title>
+  <title>Banca Online</title>
 </head>
 
 <body>
+  <!--NAVBAR-->
+  <div id="navbar"></div>
+  <!--FIN NAVBAR-->
 
-    <div class="p-2 text-center bg-dark">
-        <h1 class="display-2 text text-light">Banca online</h1>
-        <button id="pago" type="button" class="btn btn-primary btn-lg raised">Pagos</button>
-        <button id="transferencia" type="button" class="btn btn-primary btn-lg raised">Transferencias</button>
-        <button id="leasing" type="button" class="btn btn-primary btn-lg raised">Leasing</button>
-        <button id="prestamo" type="button" class="btn btn-primary btn-lg raised">Prestamos</button>
-        <button id="ingreso" type="button" class="btn btn-primary btn-lg raised">Ingreso</button>
+
+  <div class="text-center">
+    <div class="container-fluid">
+      <h1 class="display-2 text text-dark banca">Banca online</h1>
     </div>
-    <div class="container contenido"></div>
+  </div>
 
-    <!--SCRIPTS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+  <div class="container-fluid contenido d-flex">
+    <div class="w-25 d-flex flex-column">
+      <button id="MovimientosCuentaCredito" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos
+        cuenta
+        credito</button>
+      <button id="MovimientosCuentaCorriente" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos
+        cuenta
+        corriente</button>
+
+      <button id="Leasing" type="button" class="btn btn-primary btn-lg raised opcion">Leasing</button>
+      <button id="Prestamos" type="button" class="btn btn-primary btn-lg raised opcion"> Prestamos</button>
+      <button id="Movimientos" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos</button>
+      <!-- <a href="index.html"><button id="ingreso" type="button" class="btn btn-primary btn-lg raised ">Volver <i
+                        class="fa fa-sign-out"></i> </button></a>-->
+    </div>
+    <div class="w-75 ">
+
+      <!--Tabla movimientos cuenta corriente-->
+
+      <table id="tableMovimientosCuentaCorriente" class="table ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Balore data</th>
+            <th scope="col">Kontzeptua</th>
+            <th scope="col">Zorduna</th>
+            <th scope="col">Hartzekoduna</th>
+            <th scope="col">Saldo</th>
+            <th scope="col">Egun kop</th>
+            <th scope="col">Zorduna</th>
+            <th scope="col">Hartzekoduna</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-danger">
+            <th scope="row">1</th>
+            <td>01/10</td>
+            <td>Sarrera</td>
+            <td>200</td>
+            <td>0</td>
+            <td>2220 H</td>
+            <td>14</td>
+            <td>41</td>
+            <td>41</td>
+            <td>41</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <!--Tabla movimientos cuenta credito-->
+      <table id="tableMovimientosCuentaCredito" class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Balore data</th>
+            <th scope="col">Kontzeptua</th>
+            <th scope="col">Zorduna</th>
+            <th scope="col">Hartzekoduna</th>
+            <th scope="col">Saldo</th>
+            <th scope="col">Egun kop</th>
+            <th scope="col">Zorduna</th>
+            <th scope="col">Hartzekoduna </th>
+            <th scope="col">Gaineratikoa</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-danger">
+            <th scope="row">1</th>
+            <td>01/10</td>
+            <td>Sarrera</td>
+            <td>200</td>
+            <td>0</td>
+            <td>2220 H</td>
+            <td>14</td>
+            <td>41</td>
+            <td>41</td>
+            <td>41</td>
+            <td>41</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <!--Tabla prestamos-->
+      <table id="tablePrestamos" class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Urtekoa</th>
+            <th scope="col">Interes Kuota</th>
+            <th scope="col">Amortizazio kuota</th>
+            <th scope="col">Amortizazio kapitala</th>
+            <th scope="col">Zorra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-danger">
+            <th scope="row">1</th>
+            <td>01/10</td>
+            <td>Sarrera</td>
+            <td>200</td>
+            <td>0</td>
+            <td>2220 H</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!--Tabla leasing-->
+      <div id="tableLeasing">
+        <div class="calcularLeasing">
+          <h6 class="display-6">Simulador de leasing</h6>
+          <hr>
+          <form action="">
+            <div class="form-group d-flex align-content-center">
+              <label for="leasingImporte"><b> Importe a financiar: </b> </label>
+              <input class="mx-2" id="leasingImporte" placeholder="0,00">
+              <p class="m-0 p-0"> EUR</p>
+            </div>
+            <div class="form-group d-flex align-content-center my-2">
+              <label for="leasingImporte"><b> Tipo de interés: </b></label>
+              <input class="mx-2" id="leasingImporte">
+              <p class="m-0 p-0"> %</p>
+            </div>
+            <div class="form-group d-flex align-content-center">
+              <label for="leasingImporte"><b> Plazo: </b> </label>
+              <input class=" mx-2" id="leasingImporte">
+              <p class="m-0 p-0"> meses</p>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">CALCULAR</button>
+            </div>
+          </form>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Kuota</th>
+              <th scope="col">BEZ-a</th>
+              <th scope="col">Kuota garbia</th>
+              <th scope="col">Interesak</th>
+              <th scope="col">Amortizazioa</th>
+              <th scope="col">Zorra</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-danger">
+              <th scope="row">1</th>
+              <td>01/10</td>
+              <td>Sarrera</td>
+              <td>200</td>
+              <td>0</td>
+              <td>2220 H</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Movimientos que se pueden hacer por cualquiera de las cuentas-->
+      <form action="" method="post">
+
+      </form>
+    </div>
+  </div>
+
+  <!--SCRIPTS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/c4fc8a3024.js"></script>
+  <script src="view/js/bancaOnline.js"></script>
+  <script src="view/js/insert.js"></script>
+  <script src="view/js/jsFunctions.js"></script>
+
 </body>
 
 </html>

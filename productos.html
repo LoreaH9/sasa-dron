@@ -7,227 +7,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="view/css/productos.css">
+    <link rel="stylesheet" href="view/css/style.css">
+
     <title>Sasa dron | Productos</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">Sasa Dron</a>
-            <div class="collapse navbar-collapse d-flex  justify-content-md-center" id="navbarTogglerDemo03">
-                <ul class="navbar-nav d-flex">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="bancaOnline.html">Banca online</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <form class="d-flex m-0">
-                <i class="fa fa-user-circle fa-lg" role="button" data-bs-toggle="dropdown"></i>
-                <ul class="dropdown-menu dropdown-menu-end ">
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a></li>
-                    <!--<li><hr class="dropdown-divider"></li>-->
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#register">Registrarse</a></li>
-                </ul>
-            </form>
-        </div>
-    </nav>
-
-    <!-- Modal Inicio sesion -->
-    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Iniciar sesion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">Tu email esta seguro con nosotros.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password">
-                        </div>
-
-                    </form>
-                    <div class="modal-footer d-flex">
-                        <p>No tienes cuenta todavía? <a style="text-decoration: underline;" data-bs-toggle="modal"
-                                data-bs-target="#register">registrate aquí</a></p>
-                        <button type="submit" class="btn btn-warning float-end">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Registro -->
-    <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Registrarse</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                            <div id="passwordHelpBlock" class="form-text">
-                                Utiliza 8 caracteres como mínimo con una combinación de letras, números y símbolos.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Repite la contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-
-                        <!--<p>Ya tienes cuenta? <a style="text-decoration: underline;" data-bs-toggle="modal" data-bs-target="#login">Inicia sesión.</a></p>-->
-                        <button type="submit" class="btn btn-primary">Registrarse</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div id="navbar"></div>
 
     <!-- Cards -->
-    <div id="cardGroup" class="row row-cols-2 g-4 p-3 align-content-center">
-
-        <div class="row row-cols-2 card-productos col-lg-8 col-md-11 col-sm-11 col-8">
-            <img src="https://picsum.photos/1920/1080" class="cardImg col-5">
-            <div class="card-body col-5">
-                <h4 class="card-title nombreProducto">Nombre dron</h4>
-                <p class="card-text descripcionProducto col-12">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus dolorum repellendus dolore unde
-                    provident reiciendis, minima voluptate impedit rerum rem. Architecto illum reiciendis consequuntur
-                    maiores debitis quisquam dolore nihil eligendi?
-                </p>
-                <div class="precioProducto col-5">
-                    Hagase cliente para ver los precios
-                </div>
-                <a class="cardButton col-6" href="#" data-bs-toggle="modal" data-bs-target="#modalProducto">Ver más ></a>
-            </div>
-        </div>
-
-        <div class="row row-cols-2 card-productos col-lg-8 col-md-11 col-sm-11 col-8">
-            <img src="https://picsum.photos/1920/1080" class="cardImg col-5">
-            <div class="card-body col-5">
-                <h4 class="card-title nombreProducto">Nombre dron</h4>
-                <p class="card-text descripcionProducto col-12">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus dolorum repellendus dolore unde
-                    provident reiciendis, minima voluptate impedit rerum rem. Architecto illum reiciendis consequuntur
-                    maiores debitis quisquam dolore nihil eligendi?
-                </p>
-                <div class="precioProducto col-5">
-                    Hagase cliente para ver los precios
-                </div>
-                <a class="cardButton col-6" href="#" data-bs-toggle="modal" data-bs-target="#modalProducto">Ver más ></a>
-            </div>
-        </div>
-
-    </div>
-    <!-- Fin cards -->
+    <div id="cardGroup" class="row row-cols-2 g-4 p-3 align-content-center"></div>
 
     <!-- Modal productos -->
-    <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalTitulo">Nombre dron</h5>
-            </div>
-            <div class="modal-body">
-                <!-- <img src="https://picsum.photos/1920/1080" class="col-12"> -->
+<!--     <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true"> -->
+<!--         <div class="modal-dialog"> -->
+<!--             <div class="modal-content"> -->
+<!--                 <div class="modal-header"> -->
+<!--                     <h5 class="modal-title" id="modalTitulo">Nombre dron</h5> -->
+<!--                 </div> -->
+<!--                 <div class="modal-body"> -->
+<!--                     <img src="https://picsum.photos/1920/1080" class="col-12"> -->
 
-                <!-- Carrusel -->
-                <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                  <!-- Fin carrusel -->
+<!--                     Carrusel -->
+<!--                     <div id="carouselControls" class="carousel slide" data-bs-ride="carousel"> -->
+<!--                         <div class="carousel-inner"> -->
+<!--                             <div class="carousel-item active"> -->
+<!--                                 <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="..."> -->
+<!--                             </div> -->
+<!--                             <div class="carousel-item"> -->
+<!--                                 <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="..."> -->
+<!--                             </div> -->
+<!--                             <div class="carousel-item"> -->
+<!--                                 <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="..."> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" -->
+<!--                             data-bs-slide="prev"> -->
+<!--                             <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+<!--                             <span class="visually-hidden">Previous</span> -->
+<!--                         </button> -->
+<!--                         <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" -->
+<!--                             data-bs-slide="next"> -->
+<!--                             <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+<!--                             <span class="visually-hidden">Next</span> -->
+<!--                         </button> -->
+<!--                     </div> -->
+<!--                     Fin carrusel -->
 
-                <div id="modalDescripcion">
-                    <h5>Descripción</h5>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius asperiores quae blanditiis vel nihil natus obcaecati illo aliquid nostrum quas?
-                </div>
+<!--                     <div id="modalDescripcion"> -->
+<!--                         <h5>Descripción</h5> -->
+<!--                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius asperiores quae blanditiis vel -->
+<!--                         nihil natus obcaecati illo aliquid nostrum quas? -->
+<!--                     </div> -->
 
-                <div id="modalCaracteristicas">
-                    <h5>Caracteristicas tecnicas</h5>
-                    <ul id="listaCaracteristicas">
-                        <!---->
-                        <li><h6>Caracteristica 1: </h6> Super buena</li>
-                        <li><h6>Caracteristica 2: </h6> Mas o menos</li>
-                        <li><h6>Caracteristica 3: </h6>
-                            <ul>
-                                <li>Pedazo de autonomia</li>
-                                <li>Alcance que flipas</li>
-                                <li>Certificaciones de expertos</li>
-                            </ul>
-                        </li>
-                        <!---->
-                    </ul>
-                </div>
+<!--                     <div id="modalCaracteristicas"> -->
+<!--                         <h5>Caracteristicas tecnicas</h5> -->
+<!--                         <ul id="listaCaracteristicas"> -->
+<!--                             -->
+<!--                             <li> -->
+<!--                                 <h6>Caracteristica 1: </h6> Super buena -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <h6>Caracteristica 2: </h6> Mas o menos -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <h6>Caracteristica 3: </h6> -->
+<!--                                 <ul> -->
+<!--                                     <li>Pedazo de autonomia</li> -->
+<!--                                     <li>Alcance que flipas</li> -->
+<!--                                     <li>Certificaciones de expertos</li> -->
+<!--                                 </ul> -->
+<!--                             </li> -->
+<!--                             -->
+<!--                         </ul> -->
+<!--                     </div> -->
 
-                <div id="modalNotasAdicionales">
-                    Solo los clientes pueden ver los precios. Si tiene interes en nuestros productos ponganse en contacto con nosotros
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button>
-                <div id="modalContacto">
-                    <img src="images/telephone-fill.svg" class="filter-blue"> 600-63-21-04
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Fin modal productos -->
+<!--                     <div id="modalNotasAdicionales"> -->
+<!--                         Solo los clientes pueden ver los precios. Si tiene interes en nuestros productos ponganse en -->
+<!--                         contacto con nosotros -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="modal-footer"> -->
+<!--                     <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button> -->
+<!--                     <div id="modalContacto"> -->
+<!--                         <img src="images/telephone-fill.svg" class="filter-blue"> 600-63-21-04 -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+    <!-- Fin modal productos -->
 
 
-    <!--SCRIPTS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/c4fc8a3024.js"></script>
     <script src="view/js/productos.js"></script>
+    <script src="view/js/insert.js"></script>
+    <script src="view/js/jsFunctions.js"></script>
+
 </body>
 
 </html>
