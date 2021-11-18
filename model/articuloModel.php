@@ -39,10 +39,13 @@ class articuloModel extends articuloClass {
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $new = new articuloClass();
             
-            $new -> setId($row['id']);
-            $new -> setNombre($row['nombre']);
-            $new -> setPrecio($row['precio']);
-            $new -> setImg($row['img']);
+            $new->id=$row['id'];
+            $new->nombre=$row['nombre'];
+            $new->precio=$row['precio'];
+            $new->img1=$row['img1'];
+            $new->img2=$row['img2'];
+            $new->img3=$row['img3'];
+            $new->description=$row['descripcion'];
             
             array_push($list, $new);   
         }
@@ -138,12 +141,12 @@ class articuloModel extends articuloClass {
         
         //$sql = "CALL spDelete( $id)";
         
-        $sql = "delete from peliculas where idPelicula = $id";
+        $sql = "delete from articulo where id = $id";
         
         $this -> link -> query($sql);
         
         if($this -> link -> affected_rows == 1) {
-            return "La pelicula se ha borrado con exito.Num borrados: ".$this -> link -> affected_rows;
+            return "El articulo ha sido eliminado";
         }
         else {
             return "Falla el borrado de la pelicula: (" . $this -> link -> errno . ") " . $this -> link -> error;

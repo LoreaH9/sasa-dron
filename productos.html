@@ -16,10 +16,10 @@
   <div id="navbar"></div>
 
     <!-- Cards -->
-    <div id="cardGroup" class="row row-cols-2 g-4 p-3 align-content-center"></div>
+    <div id="cardGroup" class="row row-cols-2 g-4 p-3 align-content-center" ></div>
 
     <!-- Modal productos -->
-  <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true"> 
+  <div class="modal fade" id="modalProducto" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalProductoLabel" aria-hidden="true"> 
       <div class="modal-dialog"> 
           <div class="modal-content"> 
               <div class="modal-header"> 
@@ -27,7 +27,7 @@
               </div> 
               <div class="modal-body"> 
                   <img src="https://picsum.photos/1920/1080" class="col-12">
-                  Carrusel 
+                  <!--Carrusel -->
                   <div id="carouselControls" class="carousel slide" data-bs-ride="carousel"> 
                       <div class="carousel-inner"> 
                           <div class="carousel-item active"> 
@@ -51,37 +51,7 @@
                           <span class="visually-hidden">Next</span> 
                       </button> 
                   </div> 
-                  Fin carrusel
-                  <div id="modalDescripcion"> 
-                      <h5>Descripción</h5> 
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius asperiores quae blanditiis vel 
-                      nihil natus obcaecati illo aliquid nostrum quas? 
-                  </div> 
-                  <div id="modalCaracteristicas"> 
-                      <h5>Caracteristicas tecnicas</h5> 
-                      <ul id="listaCaracteristicas"> 
-                          
-                          <li> 
-                              <h6>Caracteristica 1: </h6> Super buena 
-                          </li> 
-                          <li> 
-                              <h6>Caracteristica 2: </h6> Mas o menos 
-                          </li> 
-                          <li> 
-                              <h6>Caracteristica 3: </h6> 
-                              <ul> 
-                                  <li>Pedazo de autonomia</li> 
-                                  <li>Alcance que flipas</li> 
-                                  <li>Certificaciones de expertos</li> 
-                              </ul> 
-                          </li> 
-                          
-                      </ul> 
-                  </div> 
-                  <div id="modalNotasAdicionales"> 
-                      Solo los clientes pueden ver los precios. Si tiene interes en nuestros productos ponganse en 
-                      contacto con nosotros 
-                  </div> 
+                 <!-- Fin carrusel --> 
               </div> 
               <div class="modal-footer"> 
                   <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button> 
