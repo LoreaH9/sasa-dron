@@ -8,20 +8,38 @@ function sessionVarsView() {
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
         console.log(result);
+        $("#btnBanca").css('display', 'none');
+
         if (result.error == "no error") {
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
             $('#nomUsu').removeAttr('data-bs-target');
             $("#nomUsu").text(result.usuario.nombre);
-            $("#btnBanca").css('display', 'none');
 
-            if(result.usuario.admin==1){
+            if (result.usuario.admin == 1) {
                 $("#btnBanca").css('display', 'block');
             }
         }
     })
 }
+
+jQuery.extend(jQuery.expr[':'], {
+    focusable: function (el, index, selector) {
+        return $(el).is('a, button, :input, [tabindex]');
+    }
+});
+
+$(document).on('keydown', ':focusable', function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        // Get all focusable elements on the page
+        var $canfocus = $(':focusable');
+        var index = $canfocus.index(this) + 1;
+        if (index >= $canfocus.length) index = 0;
+        $canfocus.eq(index).focus();
+    }
+});
 
 function login() {
     var email = $("#email").val();
@@ -46,7 +64,7 @@ function login() {
             $('#nomUsu').removeAttr('data-bs-target');
             $("#nomUsu").text(result.usuario.nombre);
 
-            if(result.usuario.admin==1){
+            if (result.usuario.admin == 1) {
                 $("#btnBanca").css('display', 'block');
 
             }
@@ -62,7 +80,7 @@ function login() {
 }
 function forgotPassword() {
     alert("Por favor relajese, dese un paseo e intente recordar su contraseña :)");
-    
+
 }
 function register() {
     var url = "controller/cRegister.php";
@@ -81,13 +99,13 @@ function register() {
             headers: { 'Cotent-Type': 'application/json' }
         }).then(res => res.json()).then(result => {
             console.log(result);
-            if(result.error){
+            if (result.error) {
                 $("#errorRegister").text("Este usuario ya ha sido registrado, inicie sesion.")
             }
         })
-    } else if(nombre==NULL || email==NULL || contrasenia1==NULL) {
+    } else if (nombre == NULL || email == NULL || contrasenia1 == NULL) {
         $("#errorRegister").text("Rellene todos los campos por favor.");
-    } else{
+    } else {
         $("#errorRegister").text("Las contraseñas introducidas no coinciden.");
 
     }
