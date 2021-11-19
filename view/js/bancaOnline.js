@@ -70,7 +70,7 @@ function tableMovimientosList(){
 							+"<td>"+movimientos[k].fechaValor+"</td>"
 							+"<td>"+movimientos[k].concepto+"</td>"
 							+"<td>"+movimientos[k].importe+"</td>"
-							+"<td>"+movimientos[k].acreedor+"</td>"//añadir artzekoduna
+							+"<td>"+movimientos[k].acreedor+"</td>"//aï¿½adir artzekoduna
 							+"<td>"+movimientos[k].saldo+"</td>"
 							+"<td>"+movimientos[k].dias+"</td>"
 							+"<td>"+movimientos[k].importe+"</td>"//zorduna
