@@ -4,7 +4,7 @@ $(document).ready(init);
 function init() {
     option();
     hideAllTables();
-    $("#tableMovimientosCuentaCredito").show();
+    $("#tableMovimientosCuenta").show();
 }
 
 function option() {
@@ -21,9 +21,8 @@ function preventClick(event) {
 //Oculta todas las tablas
 function hideAllTables() {
     $("#tablePrestamos").hide();
-    $("#tableMovimientosCuentaCredito").hide();
+    $("#tableMovimientosCuenta").hide();
     $("#tableLeasing").hide();
-    $("#tableMovimientosCuentaCorriente").hide();
 }
 
 function showOption(event) {
