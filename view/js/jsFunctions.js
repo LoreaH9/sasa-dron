@@ -8,13 +8,14 @@ function sessionVarsView() {
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
         console.log(result);
+        $("#btnBanca").css('display', 'none');
+
         if (result.error == "no error") {
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
             $('#nomUsu').removeAttr('data-bs-target');
             $("#nomUsu").text(result.usuario.nombre);
-            $("#btnBanca").css('display', 'none');
 
             if (result.usuario.admin == 1) {
                 $("#btnBanca").css('display', 'block');
