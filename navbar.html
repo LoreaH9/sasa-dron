@@ -4,7 +4,7 @@
             aria-controls="navbarOptions" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <!-- Logo -->
         <a class="navbar-brand" href="index.html">Sasa Dron</a>
 
@@ -24,89 +24,103 @@
 
         </div>
 
-         <!-- Login/registro -->
+        <!-- Login/registro -->
         <form class="d-flex m-0 align-items-center">
             <i class="fa fa-user-circle fa-lg" role="button" data-bs-toggle="dropdown"></i>
             <p id="nomUsu" data-bs-toggle="modal" data-bs-target="#login" class="m-1">Login</p>
             <ul class="dropdown-menu dropdown-menu-end ">
-                <li><a id="ddLg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a></li>
-                <li><a id="ddReg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#register">Registrarse</a></li>
+                <li><a id="ddLg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a>
+                </li>
+                <li><a id="ddReg" class="dropdown-item" data-bs-toggle="modal"
+                        data-bs-target="#register">Registrarse</a></li>
                 <li><a id="ddLo" class="dropdown-item" style="display: none;" onclick="logout()">Log Out</a></li>
             </ul>
         </form>
     </div>
 </nav>
 
-    <!-- Modal Inicio sesion -->
-    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Iniciar sesion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                            <div id="email" class="form-text">Tu email esta seguro con nosotros.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contrasenia" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contrasenia">
-                        </div>
-                        <p id="errorLogin"  class="text-danger"></p>
-                    </form>
-                    <div class="modal-footer d-flex">
-                        <p>No tienes cuenta todavía? <a style="text-decoration: underline;"  type="button" data-bs-toggle="modal"
-                                data-bs-target="#register" data-bs-dismiss="modal">registrate aquí</a></p>
-                        <button onclick="login()" class="btn btn-warning float-end">Iniciar sesion</button>
+<!-- Modal Inicio sesion -->
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Iniciar sesion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email </label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <div id="email" class="form-text">Tu email esta seguro con nosotros.</div>
                     </div>
+                    <div class="mb-3">
+                        <label for="contrasenia" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasenia">
+                    </div>
+                    <p id="errorLogin" class="text-danger"></p>
+                </form>
+                <div class="modal-footer d-flex">
+                    <p>No tienes cuenta todavía? <a style="text-decoration: underline;" type="button"
+                            data-bs-toggle="modal" data-bs-target="#register" data-bs-dismiss="modal">registrate
+                            aquí</a></p>
+                    <button onkeyup="login()" onclick="login()" class="btn btn-warning float-end">Iniciar
+                        sesion</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- FIN Modal Inicio sesion -->
+</div>
+<!-- FIN Modal Inicio sesion -->
 
 
-    <!-- Modal Registro -->
-    <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Registrarse</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-             
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nameRegister">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="passwordRegister1">
-                            <div id="passwordHelpBlock" class="form-text">
-                                Utiliza 8 caracteres como mínimo con una combinación de letras, números y símbolos.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Repite la contraseña</label>
-                            <input type="password" class="form-control" id="passwordRegister2">
-                        </div>
-                        <p id="errorRegister" class="text-danger"></p>
+<!-- Modal Registro -->
+<div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrarse</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-                        <p>Ya tienes cuenta? <a style="text-decoration: underline;" data-bs-toggle="modal" data-bs-target="#login" data-bs-dismiss="modal">Inicia sesión.</a></p>
-                        <button type='button' onclick="register()" class="btn btn-primary">Registrarse</button>
-                    </form>
-                </div>
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" onkeyup="validateName(this)" id="nameRegister">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email </label>
+                        <input type="email" class="form-control" onkeyup="validateEmail(this)" id="emailRegister"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                        <input type="password" onfocus="show()" onblur="hide()" onkeyup="validatePassword(this)"
+                            class="form-control" id="passwordRegister1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Repite la contraseña</label>
+                        <input type="password" class="form-control" id="passwordRegister2"
+                            onkeyup="validatePassword2(this)">
+                        <div id="passwordHelpBlock" class="form-text">
+                            <h6 class="m-0">La contraseña debe contener:</h6>
+                            <p id="letter" class=" invalid m-0">Una <b>minuscula</b></p>
+                            <p id="capital" class=" invalid m-0">Una <b>MAYUSCULA</b></p>
+                            <p id="number" class=" invalid m-0">Un <b>numero</b></p>
+                            <p id="length1" class=" invalid m-0">Minimo <b>8 caracteres</b></p>
+                        </div>
+                    </div>
+                    <p id="errorRegister" class="text-danger"></p>
+
+                    <p>Ya tienes cuenta? <a style="text-decoration: underline;" data-bs-toggle="modal"
+                            data-bs-target="#login" data-bs-dismiss="modal">Inicia sesión.</a></p>
+                    <button type='button' onkeyup="register()" onclick="register()"
+                        class="btn btn-primary">Registrarse</button>
+
+                </form>
             </div>
         </div>
     </div>
-    <!-- FIN Modal Registro -->
+</div>
+<!-- FIN Modal Registro -->

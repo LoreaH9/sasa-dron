@@ -10,6 +10,7 @@ $usuario->nombre=$data['nombre'];
 $usuario->email=$data['email'];
 $usuario->findUserByEmail();
 $exist = $usuario->findUserByEmail();
+$response['exist']=$exist;
 
 if ($exist){
     $response['error']=true;
