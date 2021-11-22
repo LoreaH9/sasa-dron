@@ -62,7 +62,7 @@ function calcularPrestamo() {
         b = b + (a-(importe*interes));
 
         table += "<tbody>" +
-        "<tr class='table-danger'>" +
+        "<tr class='table'>" +
         "<th scope='row'>" + i + "</th>" +
         "<td>" + a.toFixed(3) + "</td>" +
         "<td>" + (importe*interes).toFixed(3) + "</td>" +
@@ -105,7 +105,7 @@ function calcularLeasing() {
 
     for(let i = 1; i <= plazo; i++) {
         table += "<tbody>" +
-        "<tr class='table-danger'>" +
+        "<tr class='table'>" +
         "<th scope='row'>" + i + "</th>" +
         "<td>" + a.toFixed(3) + "</td>" +
         "<td>" + (a*iva).toFixed(3) + "</td>" +

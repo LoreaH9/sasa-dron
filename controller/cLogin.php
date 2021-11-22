@@ -13,7 +13,7 @@ if ($email!=null){
     $usuario->email=$email;
     $usuario->contrasenia=$contrasenia;
 
-    if ($usuario->findUserByEmail()){
+    if ($usuario->findUser()){
         session_start();
         $_SESSION['usuario']=$usuario;
         $_SESSION['nombre']=$usuario->nombre;
