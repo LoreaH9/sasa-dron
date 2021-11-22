@@ -1,4 +1,3 @@
-
 $(document).ready(init);
 
 function init() {
@@ -24,6 +23,7 @@ function hideAllTables() {
     $("#tableMovimientosCuentaCredito").hide();
     $("#tableLeasing").hide();
     $("#tableMovimientosCuentaCorriente").hide();
+    $("#tableIngreso").hide();
 }
 
 function showOption(event) {
@@ -32,6 +32,32 @@ function showOption(event) {
     $("#table"+event.currentTarget.id+"").show();
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
+    showCuentas();
+}
+
+function showCuentas() {
+    var url = "controller/cIngreso.php";
+
+	fetch(url, {
+	  method: 'GET', 
+	})
+	.then(res => res.json()).then(result => {
+		console.log(result.list);
+		
+		var cuentasCorrientes = result.list1;
+        var cuentasCredito = result.list2;
+		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+   		
+   		for(let i = 0; i < cuentasCorrientes.length; i++) {
+			newRow += "<option value='" + cuentasCorrientes[i].id + "'>" + cuentasCorrientes[i].id + "Cuenta corriente</option>";
+		}
+        for(let i = 0; i < cuentasCredito.length; i++) {
+			newRow += "<option value='" + cuentasCredito[i].id + "'>" + cuentasCredito[i].id + "Cuenta credito</option>";
+		}
+		 
+		document.getElementById("cmbCuentas").innerHTML = newRow;  	
+	})
+	.catch(error => console.error('Error status:', error));	
 }
 
 function calcularPrestamo() {

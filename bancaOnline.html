@@ -34,14 +34,14 @@
 
       <button id="Leasing" type="button" class="btn btn-primary btn-lg raised opcion">Leasing</button>
       <button id="Prestamos" type="button" class="btn btn-primary btn-lg raised opcion"> Prestamos</button>
-      <button id="Movimientos" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos</button>
+      <button id="Ingreso" type="button" class="btn btn-primary btn-lg raised opcion">Ingreso</button>
+      <button id="Transferencia" type="button" class="btn btn-primary btn-lg raised opcion">Transferencia</button>
       <!-- <a href="index.html"><button id="ingreso" type="button" class="btn btn-primary btn-lg raised ">Volver <i
                         class="fa fa-sign-out"></i> </button></a>-->
     </div>
     <div class="w-75 ">
 
       <!--Tabla movimientos cuenta corriente-->
-
       <table id="tableMovimientosCuentaCorriente" class="table ">
         <thead>
           <tr>
@@ -169,6 +169,34 @@
           </form>
         </div>
         <table id="leasingTable" class="table">
+          
+        </table>
+      </div>
+
+      <!--Tabla ingreso-->
+      <div id="tableIngreso">
+        <div class="calcularIngreso">
+          <form action="">
+            <div class="form-group d-flex align-content-center">
+              <label for="ingresoImporte"><b> Importe: </b> </label>
+              <input class="mx-2" id="ingresoImporte" placeholder="0,00" required>
+              <p class="m-0 p-0"> EUR</p>
+            </div>
+            <div class="form-group d-flex align-content-center my-2">
+              <label for="ingresoCuenta"><b> Cuenta: </b> </label>
+              <select id='cmbCuentas'></select>
+            </div>
+            <div class="form-group d-flex align-content-center">
+              <label for="ingresoPlazo"><b> Plazo: </b> </label>
+              <input class=" mx-2" id="ingresoPlazo" required>
+              <p class="m-0 p-0"> meses</p>
+            </div>
+            <div class="text-end">
+              <button id="botonIngreso" type="button" class="btn btn-primary">INGRESAR</button>
+            </div>
+          </form>
+        </div>
+        <table id="ingresoTable" class="table">
           
         </table>
       </div>
