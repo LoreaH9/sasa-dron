@@ -112,28 +112,35 @@
       </table>
 
       <!--Tabla prestamos-->
-      <table id="tablePrestamos" class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Urtekoa</th>
-            <th scope="col">Interes Kuota</th>
-            <th scope="col">Amortizazio kuota</th>
-            <th scope="col">Amortizazio kapitala</th>
-            <th scope="col">Zorra</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table-danger">
-            <th scope="row">1</th>
-            <td>01/10</td>
-            <td>Sarrera</td>
-            <td>200</td>
-            <td>0</td>
-            <td>2220 H</td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="tablePrestamos">
+        <div class="calcularPrestamos">
+          <h6 class="display-6">Simulador de prestamo</h6>
+          <hr>
+          <form action="">
+            <div class="form-group d-flex align-content-center">
+              <label for="prestamoImporte"><b> Importe a financiar: </b> </label>
+              <input class="mx-2" id="prestamoImporte" placeholder="0,00" required>
+              <p class="m-0 p-0"> EUR</p>
+            </div>
+            <div class="form-group d-flex align-content-center my-2">
+              <label for="prestamoInteres"><b> Tipo de interés: </b></label>
+              <input class="mx-2" id="prestamoInteres" required>
+              <p class="m-0 p-0"> %</p>
+            </div>
+            <div class="form-group d-flex align-content-center">
+              <label for="prestamoPlazo"><b> Plazo: </b> </label>
+              <input class=" mx-2" id="prestamoPlazo" required>
+              <p class="m-0 p-0"> meses</p>
+            </div>
+            <div class="text-end">
+              <button id="botonPrestamo" type="button" class="btn btn-primary">CALCULAR</button>
+            </div>
+          </form>
+        </div>
+
+        <table id="prestamosTable" class="table">
+        </table>
+      </div>
 
       <!--Tabla leasing-->
       <div id="tableLeasing">
@@ -143,48 +150,29 @@
           <form action="">
             <div class="form-group d-flex align-content-center">
               <label for="leasingImporte"><b> Importe a financiar: </b> </label>
-              <input class="mx-2" id="leasingImporte" placeholder="0,00">
+              <input class="mx-2" id="leasingImporte" placeholder="0,00" required>
               <p class="m-0 p-0"> EUR</p>
             </div>
             <div class="form-group d-flex align-content-center my-2">
-              <label for="leasingImporte"><b> Tipo de interés: </b></label>
-              <input class="mx-2" id="leasingImporte">
+              <label for="leasingInteres"><b> Tipo de interés: </b></label>
+              <input class="mx-2" id="leasingInteres" required>
               <p class="m-0 p-0"> %</p>
             </div>
             <div class="form-group d-flex align-content-center">
-              <label for="leasingImporte"><b> Plazo: </b> </label>
-              <input class=" mx-2" id="leasingImporte">
+              <label for="leasingPlazo"><b> Plazo: </b> </label>
+              <input class=" mx-2" id="leasingPlazo" required>
               <p class="m-0 p-0"> meses</p>
             </div>
             <div class="text-end">
-              <button type="submit" class="btn btn-primary">CALCULAR</button>
+              <button id="botonLeasing" type="button" class="btn btn-primary">CALCULAR</button>
             </div>
           </form>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Kuota</th>
-              <th scope="col">BEZ-a</th>
-              <th scope="col">Kuota garbia</th>
-              <th scope="col">Interesak</th>
-              <th scope="col">Amortizazioa</th>
-              <th scope="col">Zorra</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="table-danger">
-              <th scope="row">1</th>
-              <td>01/10</td>
-              <td>Sarrera</td>
-              <td>200</td>
-              <td>0</td>
-              <td>2220 H</td>
-            </tr>
-          </tbody>
+        <table id="leasingTable" class="table">
+          
         </table>
       </div>
+
       <!--Movimientos que se pueden hacer por cualquiera de las cuentas-->
       <form action="" method="post">
 
