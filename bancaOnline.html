@@ -25,9 +25,13 @@
 
   <div class="container-fluid contenido d-flex">
     <div class="w-25 d-flex flex-column">
-      <button id="MovimientosCuenta" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos
-        cuentas</button>
-   
+      <button id="MovimientosCuentaCredito" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos
+        cuenta
+        credito</button>
+<!--       <button id="MovimientosCuentaCorriente" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos -->
+<!--         cuenta -->
+<!--         corriente</button> -->
+
       <button id="Leasing" type="button" class="btn btn-primary btn-lg raised opcion">Leasing</button>
       <button id="Prestamos" type="button" class="btn btn-primary btn-lg raised opcion"> Prestamos</button>
       <button id="Movimientos" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos</button>
@@ -38,7 +42,41 @@
 
       <!--Tabla movimientos cuenta corriente-->
 
-      <table id="tableMovimientosCuenta" class="table ">
+<!--       <table id="tableMovimientosCuentaCorriente" class="table "> -->
+<!--         <thead> -->
+<!--           <tr> -->
+<!--             <th scope="col">#</th> -->
+<!--             <th scope="col">Data</th> -->
+<!--             <th scope="col">Balore data</th> -->
+<!--             <th scope="col">Kontzeptua</th> -->
+<!--             <th scope="col">Zorduna</th> -->
+<!--             <th scope="col">Hartzekoduna</th> -->
+<!--             <th scope="col">Saldo</th> -->
+<!--             <th scope="col">Egun kop</th> -->
+<!--             <th scope="col">Zorduna</th> -->
+<!--             <th scope="col">Hartzekoduna</th> -->
+
+<!--           </tr> -->
+<!--         </thead> -->
+<!--         <tbody> -->
+<!--           <tr class="table-danger"> -->
+<!--             <th scope="row">1</th> -->
+<!--             <td>01/10</td> -->
+<!--             <td>Sarrera</td> -->
+<!--             <td>200</td> -->
+<!--             <td>0</td> -->
+<!--             <td>2220 H</td> -->
+<!--             <td>14</td> -->
+<!--             <td>41</td> -->
+<!--             <td>41</td> -->
+<!--             <td>41</td> -->
+
+<!--           </tr> -->
+<!--         </tbody> -->
+<!--       </table> -->
+
+      <!--Tabla movimientos cuenta credito-->
+      <table id="tableMovimientosCuentaCredito" class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -50,11 +88,12 @@
             <th scope="col">Saldo</th>
             <th scope="col">Egun kop</th>
             <th scope="col">Zorduna</th>
-            <th scope="col">Hartzekoduna</th>
+            <th scope="col">Hartzekoduna </th>
+            <th scope="col">Gaineratikoa</th>
 
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tableMovCreBody">
           <tr class="table-danger">
             <th scope="row">1</th>
             <td>01/10</td>
@@ -63,6 +102,7 @@
             <td>0</td>
             <td>2220 H</td>
             <td>14</td>
+            <td>41</td>
             <td>41</td>
             <td>41</td>
             <td>41</td>
@@ -162,19 +202,8 @@
       			<th scope="COL">Kontu Korrontea</th>
       		</tr>
       	</thead>
-      	<tbody id="tableMovBody">
-      		<tr class="table-danger">
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      			<td>test</td>
-      		</tr>
+      	<tbody>
+
       	</tbody>
       </table>
       
