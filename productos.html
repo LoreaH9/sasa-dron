@@ -13,55 +13,69 @@
 </head>
 
 <body>
-  <div id="navbar"></div>
+    <div id="navbar"></div>
+
+     <!--BUSQUEDA-->
+     <div class="busqueda">
+        <h4 class="tituloBusqueda">Buscar Productos</h4>
+        <div class="barraBusqueda">
+          <div class="form-outline">
+            <input type="search" id="input" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <!--FIN BUSQUEDA-->
 
     <!-- Cards -->
-    <div id="cardGroup" class="row row-cols-2 g-4 p-3 align-content-center" ></div>
+    <div id="cardGroup" class="row align-content-center"></div>
 
     <!-- Modal productos -->
-  <div class="modal fade" id="modalProducto" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalProductoLabel" aria-hidden="true"> 
-      <div class="modal-dialog"> 
-          <div class="modal-content"> 
-              <div class="modal-header"> 
-                  <h5 class="modal-title" id="modalTitulo">Nombre dron</h5> 
-              </div> 
-              <div class="modal-body"> 
-                  <img src="https://picsum.photos/1920/1080" class="col-12">
-                  <!--Carrusel -->
-                  <div id="carouselControls" class="carousel slide" data-bs-ride="carousel"> 
-                      <div class="carousel-inner"> 
-                          <div class="carousel-item active"> 
-                              <img id="modalImg1" class="d-block w-100" > 
-                          </div> 
-                          <div class="carousel-item"> 
-                              <img id="modalImg2" class="d-block w-100"> 
-                          </div> 
-                          <div class="carousel-item"> 
-                              <img id="modalImg3" class="d-block w-100"> 
-                          </div> 
-                      </div> 
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" 
-                          data-bs-slide="prev"> 
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
-                          <span class="visually-hidden">Previous</span> 
-                      </button> 
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" 
-                          data-bs-slide="next"> 
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span> 
-                          <span class="visually-hidden">Next</span> 
-                      </button> 
-                  </div> 
-                 <!-- Fin carrusel --> 
-              </div> 
-              <div class="modal-footer"> 
-                  <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button> 
-                  <div id="modalContacto"> 
-                      <img src="images/telephone-fill.svg" class="filter-blue"> 600-63-21-04 
-                  </div> 
-              </div> 
-          </div> 
-      </div> 
-  </div> 
+    <div class="modal fade" id="modalProducto" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        aria-labelledby="modalProductoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitulo">Nombre dron</h5>
+                </div>
+                <div class="modal-body">
+                    <!--Carrusel -->
+                    <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img id="modalImg1" class="d-block w-100 carrouselImg">
+                            </div>
+                            <div class="carousel-item">
+                                <img id="modalImg2" class="d-block w-100 carrouselImg">
+                            </div>
+                            <div class="carousel-item">
+                                <img id="modalImg3" class="d-block w-100 carrouselImg">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- Fin carrusel -->
+                    <h5>Precio</h5>
+                    <div id="modalPrecio" class="text-danger"></div>
+                    <br>
+                    <h5>Descripción</h5>
+                    <div id="modalDescripcion"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Fin modal productos -->
 
 
@@ -70,7 +84,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/c4fc8a3024.js"></script>
     <script src="view/js/productos.js"></script>
-    <script src="view/js/insert.js"></script>
+    <script src="view/js/ins ert.js"></script>
     <script src="view/js/jsFunctions.js"></script>
 
 </body>
