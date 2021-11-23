@@ -20,6 +20,7 @@ function sessionVarsView() {
                 $("#btnBanca").css('display', 'block');
             }
         }
+      
     })
 }
 
@@ -193,6 +194,9 @@ function logout() {
             $('#nomUsu').attr('data-bs-target', '#login');
             $("#email").val("");
             $("#contrasenia").val("");
+        }
+        if(!window.location.href.includes("index.html")){
+            window.location.href = "index.html";
         }
     })
 }
