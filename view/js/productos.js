@@ -73,52 +73,52 @@ $('#modalDescripcion').on('dblclick', function(){
 
  
   window.onload = function () {
-	document.getElementById("input").value = ""
+	$("#input").value = "";
   }
   
-  document.getElementById("input").addEventListener("keyup", function () { buscar() })
+  $("#input").on("keyup", function () { buscar() })
   
   function invertirOrden(){
 	if (ordenInvertido==false) {
 	  ordenInvertido=true;
-	  document.getElementById("botonInvertir").innerHTML="Invertir orden ▼"
+	  $("#botonInvertir").innerHTML="Invertir orden ▼"
 	} else{
 	  ordenInvertido=false;
-	  document.getElementById("botonInvertir").innerHTML="Invertir orden ▲"
+	  $("#botonInvertir").innerHTML="Invertir orden ▲"
 	}
 	ordenar();
   }
   
   function buscar() {
+	var descripcion = "";
 	var notFound = false;
-	var respuesta = document.getElementById("input").value;
-	document.getElementById("cardGroup").innerHTML = "";
-	for (let i = 0; i < hoteles.length; i++) {
-	  if (hoteles[i][0].toLowerCase().includes(respuesta.toLowerCase())) {
-		notFound = true
-		document.getElementById("cardGroup").innerHTML += `
-				  <div class="card card-alojamiento col-lg-3 col-md-5 col-sm-8 col-8">
-					<a href="" class="cardTop ">
-					  <img src="`+ (hoteles[i][4]) + `" class="card-img-top">
-					  <p class="cardButton">Boton</p>
-					</a>
-					<div class="card-body">
-					  <h4 class="card-title nombreHotel">`+ (hoteles[i][0]) + `</h4>
-					  <p class="card-text descripcionHotel">
-						`+ (hoteles[i][1]) + `
-					  </p>
-					  <p class="ubicacionHotel">
-						`+ (hoteles[i][2]) + `
-					  </p>
-					  <p class="precioHotel">
-						`+ (hoteles[i][3]) + `
-					  </p>
-					</div>
-				  </div>`;
-	  }
-	}
-	if (notFound == false) {
-		document.getElementById("cardGroup").innerHTML += "<div id='notFound'> No se han encontrado hoteles! ＞﹏＜ </div>";
+	var respuesta = $("#input").value;
+	$("#cardGroup").innerHTML = "";
+	for (var i = 0; i < cards.length; i ++) {
+		if (cards[i].nombre.toLowerCase().includes(respuesta.toLowerCase())) {
+			if(cards[i].descripcion.length>300){
+				descripcion = cards[i].descripcion.substring(0,200) + "<b> ...</b>";
+			}else{
+				descripcion = cards[i].descripcion;
+			}
+			card += '<div class="row row-cols-2 card-productos col-lg-5 col-md-11 col-sm-11 col-8 select" onclick="loadData('+i+')">' +
+						'<a><img src="' + cards[i].img1 + '" class="cardImg col-3" > </a>' +
+						'<div class="card-body col-5">' +
+							'<h4 class="card-title nombreProducto">' + cards[i].nombre + '</h4>' +
+							'<p class="card-text descripcionProducto col-12">' +
+								descripcion +
+							'</p>' +
+							'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
+							'<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
+						'Saber mas' +
+						'</button>' +
+						'</div>' +
+					'</div>';
+		} 
+		
+    }
+	if(notFound == false) {
+		$("#cardGroup").innerHTML += "<div id='notFound'> No se han encontrado hoteles! ＞﹏＜ </div>";
 	  }
   }
   

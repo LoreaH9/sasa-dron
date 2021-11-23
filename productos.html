@@ -14,8 +14,8 @@
 
 <body>
     <div id="navbar"></div>
-
-     <!--BUSQUEDA-->
+    <div class="row">
+        <!--BUSQUEDA-->
      <div class="busqueda">
         <h4 class="tituloBusqueda">Buscar Productos</h4>
         <div class="barraBusqueda">
@@ -25,6 +25,26 @@
         </div>
       </div>
       <!--FIN BUSQUEDA-->
+
+        <!--ORDEN-->
+    <div class="orden row align-content-end">
+      
+        <div id="ordenField" class="dropdown col-lg-6 col-md-12 col-12">
+          <fieldset>
+            <!-- <label for="">Ordenar por</label> -->
+            <select class=" ordenMenu " onchange="ordenar()" autocomplete="off">
+              <option class="ordenItem" id="ordenDeshabilitado" href="#" disabled selected>Ordenar por</option>
+              <option class="ordenItem" id="ordenNombre" href="#">Nombre</option>
+              <option class="ordenItem" id="ordenPrecio" href="#">Precio</option>
+            </select>
+          </fieldset>
+        </div>
+        <a id="botonInvertir" href="#!" onclick="invertirOrden()" class="col-lg-6 col-md-12 col-12">Invertir orden ▲</a>
+        <!--El ! en href sirve para que no haga scroll hacia arriba al pulsar el enlace-->
+  
+      </div>
+      <!--FIN ORDEN-->
+    </div>
 
     <!-- Cards -->
     <div id="cardGroup" class="row align-content-center"></div>
