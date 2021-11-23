@@ -25,7 +25,7 @@ class usuarioModel extends usuarioClass {
         $email=$this->email;
         $password=$this->contrasenia;
 
-        $sql= "SELECT * FROM usuario WHERE email='$email' AND contrasenia='$password'";
+        $sql= "SELECT * FROM usuario WHERE email='$email'";
         $result= $this->link->query($sql);
 
         $exist=false;
@@ -36,7 +36,7 @@ class usuarioModel extends usuarioClass {
             $this->admin=$row['admin'];
             $passwordEncripted=$row['contrasenia'];
             
-            $exist = password_verify($this->contrasenia, $passwordEncripted)?true:false;
+            $exist = password_verify($this->contrasenia, $passwordEncripted);
             return $exist;
         }
         mysqli_free_result($result);
