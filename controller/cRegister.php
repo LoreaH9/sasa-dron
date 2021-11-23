@@ -15,6 +15,7 @@ $response['exist']=$exist;
 if ($exist){
     $response['error']=true;
 }else{
+    $response['error']=false;
     $usuario->contrasenia=password_hash($data['contrasenia'], PASSWORD_DEFAULT);
     $usuario->createUser();
 }

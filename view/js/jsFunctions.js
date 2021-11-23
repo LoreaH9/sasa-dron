@@ -6,7 +6,7 @@ function sessionVarsView() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
-        console.log(result);
+        
         $("#btnBanca").css('display', 'none');
 
         if (result.error == "no error") {
@@ -86,7 +86,9 @@ function register() {
     var contrasenia1 = $('#passwordRegister1').val();
     var contrasenia2 = $('#passwordRegister2').val();
 
-    if (checkPassword(contrasenia1, contrasenia2)) {
+    console.log(nombre, email, contrasenia1, contrasenia2, validatePassword(contrasenia1))
+
+    if (validatePassword(contrasenia1)) {
         var data = { 'nombre': nombre, 'contrasenia': contrasenia1, 'email': email };
         console.log(data);
         fetch(url, {
@@ -94,16 +96,15 @@ function register() {
             body: JSON.stringify(data),
             headers: { 'Cotent-Type': 'application/json' }
         }).then(res => res.json()).then(result => {
-            console.log(result);
-            if (result.error) {
-                $("#errorRegister").text("Este usuario ya ha sido registrado, inicie sesion.")
+            if (!result.error) {
+                $("#successRegister").text("MUY BIEEEN!! Este usuario ya ha sido registrado, inicie sesion.")
+                $('#nomUsu').removeAttr('data-bs-target');
             }
         })
-    } else if (nombre == NULL || email == NULL || contrasenia1 == NULL) {
+    } else if (nombre == NULL || email == NULL || contrasenia1 == NULL|| contrasenia2 == NULL) {
         $("#errorRegister").text("Rellene todos los campos por favor.");
-    } else {
+    } else{
         $("#errorRegister").text("Las contraseñas introducidas no coinciden.");
-
     }
 }
 
@@ -129,33 +130,33 @@ function invalid(className) {
     className.classList.add("invalid");
 }
 
-
 //Valida la primera contraseña
 var passwd = "";
 var complete = false;
 function validatePassword(p) {
     $("#passwordHelpBlock").css("display", "block")
-    console.log(p.value.length);
     var lowerCaseLetters = /[a-z]/g;
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
-    passwd = p.value;
+    passwd = p;
 
-    p.value.match(lowerCaseLetters) ? valid(letter) : invalid(letter);
-    p.value.match(upperCaseLetters) ? valid(capital) : invalid(capital);
-    p.value.match(numbers) ? valid(number) : invalid(number);
-    p.value.length > 7 ? valid(length1) : invalid(length1);
-    if (p.value.match(lowerCaseLetters) && p.value.match(upperCaseLetters) && p.value.match(numbers) && p.value.length > 7) {
+    p.match(lowerCaseLetters) ? valid(letter) : invalid(letter);
+    p.match(upperCaseLetters) ? valid(capital) : invalid(capital);
+    p.match(numbers) ? valid(number) : invalid(number);
+    p.length > 7 ? valid(length1) : invalid(length1);
+    if (p.match(lowerCaseLetters) && p.match(upperCaseLetters) && p.match(numbers) && p.length > 7) {
         $('#passwordRegister1').css('background-color', 'rgba(102, 204, 97, 0.796)')
-        complete = true
+        return true
     } else {
         $('#passwordRegister1').css('background-color', 'rgba(245, 105, 105, 0.493)')
+        return false
+
     }
 }
 
 //Valida la segunda contraseña
 function validatePassword2(p2) {
-    (passwd == p2.value && passwd != "" && complete) ? $('#passwordRegister2').css('background-color', 'rgba(102, 204, 97, 0.796)') : $('#passwordRegister2').css('background-color', 'rgba(245, 105, 105, 0.493)')
+    (passwd == p2 && passwd != "" ) ? $('#passwordRegister2').css('background-color', 'rgba(102, 204, 97, 0.796)') : $('#passwordRegister2').css('background-color', 'rgba(245, 105, 105, 0.493)')
 }
 
 //Valida el nombre
@@ -191,7 +192,7 @@ function logout() {
             $("#nomUsu").text("Login");
             $('#nomUsu').attr('data-bs-target', '#login');
             $("#email").val("");
-            $("#password").val("");
+            $("#contrasenia").val("");
         }
     })
 }

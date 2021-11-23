@@ -96,13 +96,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" onfocus="show()" onblur="hide()" onkeyup="validatePassword(this)"
+                        <input type="password" onfocus="show()" onblur="hide()" onkeyup="validatePassword(this.value)"
                             class="form-control" id="passwordRegister1">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Repite la contraseña</label>
                         <input type="password" class="form-control" id="passwordRegister2"
-                            onkeyup="validatePassword2(this)">
+                            onkeyup="validatePassword2(this.value)">
                         <div id="passwordHelpBlock" class="form-text">
                             <h6 class="m-0">La contraseña debe contener:</h6>
                             <p id="letter" class=" invalid m-0">Una <b>minuscula</b></p>
@@ -112,6 +112,7 @@
                         </div>
                     </div>
                     <p id="errorRegister" class="text-danger"></p>
+                    <p id="successRegister" class="text-dark"></p>
 
                     <p>Ya tienes cuenta? <a style="text-decoration: underline;" data-bs-toggle="modal"
                             data-bs-target="#login" data-bs-dismiss="modal">Inicia sesión.</a></p>
