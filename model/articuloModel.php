@@ -39,63 +39,41 @@ class articuloModel extends articuloClass {
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $new = new articuloClass();
             
-            $new -> setId($row['id']);
-            $new -> setNombre($row['nombre']);
-            $new -> setPrecio($row['precio']);
-            $new -> setImg($row['img']);
+            $new->id=$row['id'];
+            $new->nombre=$row['nombre'];
+            $new->precio=$row['precio'];
+            $new->img1=$row['img1'];
+            $new->img2=$row['img2'];
+            $new->img3=$row['img3'];
+            $new->descripcion=$row['descripcion'];
             
             array_push($list, $new);   
         }
        mysqli_free_result($result); 
        $this -> CloseConnect();
        return $list;
-    }
-    
-    public function showUpdate() {
-        $this -> OpenConnect();  // konexio zabaldu  - abrir conexión
-        
-        $id = $this -> id;
-        
-        //$sql = "CALL spShowUpdate($id)"; // SQL sententzia - sentencia SQL
-        
-        $sql = "select * from peliculas where idPelicula = $id";
-        
-        $result = $this -> link -> query($sql);
-        
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $this -> titulo = $row['TituloPelicula'];
-            $this -> anio = $row['Anio'];
-            $this -> director = $row['Director'];
-            $this -> cartel = $row['cartel'];
-            return true;
-        }
-        else {
-            return false;
-        }
-        mysqli_free_result($result);
-        $this -> CloseConnect();
-        
-    }
+    }  
     
     public function insert() {
         $this -> OpenConnect();
         
-        $titulo = $this -> titulo;
-        $anio = $this -> anio;
-        $director = $this -> director;
-        $cartel = $this -> cartel;
-        
-        //$sql = "CALL spInsert('$titulo', '$autor', $numPag)";
-        
-        $sql ="insert into peliculas(TituloPelicula, Anio, Director, cartel) values ('$titulo', '$anio', '$director', '$cartel')";
+        $nombre = $this -> nombre;
+        $precio = $this -> precio;
+        $img1 = $this -> img1;
+        $img2 = $this -> img2;
+        $img3 = $this -> img3;
+        $descripcion = $this -> decripcion;
+
+        $sql ="INSERT INTO articulo(nombre, precio, img1, img2, img3, descripcion) 
+        VALUES ('$nombre', '$precio', '$img1', '$img2', '$img3', '$descripcion')";
         
         $this -> link -> query($sql);
         
         if ($this -> link -> affected_rows == 1){
-            return "La pelicula se ha insertado con exito. Num de inserts: ".$this->link->affected_rows;
+            return "El articulo se ha insertado con EXITO.";
         }
         else {
-            return "Fallo al insertar una pelicula nueva: (" . $this -> link -> errno . ") " . $this -> link -> error;
+            return "FALLO al insertar un nuevo articulo.";
         }
         
         $this -> CloseConnect();
@@ -104,28 +82,24 @@ class articuloModel extends articuloClass {
     public function update() {
         $this->OpenConnect();
         
-        $id = $this -> getId();
-        $titulo = $this -> titulo;
-        $anio = $this -> anio;
-        $director = $this -> director;
-        $cartel = $this -> cartel;
-        
-        //$sql = "CALL spUpdate($id,'$titulo', '$autor', $numPag)";
-        
-        $sql ="update peliculas
-             set peliculas.TituloPelicula = '$titulo',
-             peliculas.Anio = $anio,
-             peliculas.Director = $director,
-             peliculas.cartel = '$cartel'
-             where peliculas.idPelicula = $id";
+        $id = $this -> id;
+        $nombre = $this -> nombre;
+        $precio = $this -> precio;
+        $img1 = $this -> img1;
+        $img2 = $this -> img2;
+        $img3 = $this -> img3;
+        $descripcion = $this -> decripcion;
+                
+        $sql ="UPDATE articulo SET nombre = '$nombre', precio = $precio, img1 = '$img1',
+            img2 = '$img2' img3 = '$img3' WHERE id = $id";
         
         $this -> link -> query($sql);
         
         if($this->link->affected_rows == 1) {
-            return $sql."La pelicula se ha modificado con exito.Num modificados: ".$this->link->affected_rows;
+            return $sql."El articulo se ha editado con EXITO.";
         }
         else {
-            return $sql."Falla la modificacion de la pelicula: (" . $this -> link -> errno . ") " . $this -> link -> error;
+            return $sql."Falla la modificacion de la pelicula";
         }
         
         $this -> CloseConnect();
@@ -138,12 +112,12 @@ class articuloModel extends articuloClass {
         
         //$sql = "CALL spDelete( $id)";
         
-        $sql = "delete from peliculas where idPelicula = $id";
+        $sql = "delete from articulo where id = $id";
         
         $this -> link -> query($sql);
         
         if($this -> link -> affected_rows == 1) {
-            return "La pelicula se ha borrado con exito.Num borrados: ".$this -> link -> affected_rows;
+            return "El articulo ha sido eliminado";
         }
         else {
             return "Falla el borrado de la pelicula: (" . $this -> link -> errno . ") " . $this -> link -> error;

@@ -125,3 +125,47 @@
 .filter-blue{
     filter: invert(31%) sepia(10%) saturate(1835%) hue-rotate(199deg) brightness(93%) contrast(93%);
 }
+
+.select{
+    transition: 0.5s;
+}
+
+.select:hover{
+    transform:scale(1.08);
+    -ms-transform:scale(1.08);
+}
+
+/*Dentro del carrousel*/
+.carrouselImg{
+    height: 300px;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+   
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.modal-dialog{
+    min-width: 60%;
+}
+
+/*Barra de busqueda*/
+.busqueda{
+    position: absolute;
+    left: 0px;
+    transform: translateX(50%);
+}
+.barraBusqueda{
+    display: flex;
+}
+.tituloBusqueda{
+    color: #4a4c76;
+    font-weight: 700;
+}
+#input{
+    max-width: 400px;
+    min-width: 200px;
+}
