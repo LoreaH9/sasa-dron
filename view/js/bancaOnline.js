@@ -54,9 +54,21 @@ function tableMovimientosList(){
 		movimientos[0]["movAcreedor"];//segunda columna hartzekoduna
 		movimientos[0]["movDeudor"];//segunda columna zorduna
 		movimientos[0]["resto"];//gaineratikoa
+		
+		const fechaFormateada = new Array();
+		const fechaValorFormateada = new Array();
+		mes = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
 		console.log(movimientos);
 		var newRow = "";
 		for(let k=0; k<movimientos.length; k++){
+			//Sustituye el numero del mes por su nombre
+			fechaFormateada[k] = movimientos[k].fecha.split("-");
+			fechaFormateada[k][1] = mes[(fechaFormateada[k][1])-1];
+			
+			fechaValorFormateada[k] = movimientos[k].fechaValor.split("-");
+			fechaValorFormateada[k][1] = mes[(fechaValorFormateada[k][1])-1]
+			
 //		if(k>0 && parseInt(movimientos[k].saldo) > parseInt(movimientos[(k-1)].saldo)){
 //			console.log(movimientos[k].id + ": Se suma saldo");
 //			movimientos[k].acreedor = (parseInt(movimientos[k].saldo) - parseInt(movimientos[(k-1)].saldo))+".000";
@@ -93,9 +105,11 @@ function tableMovimientosList(){
 		}
 		
 		if (parseInt(movimientos[k].saldo) < -40000){
+			colorSaldo="style='color: red;'"
 			movimientos[k].resto = parseInt(movimientos[k].saldo) - (-40000);
 			movimientos[k].resto *= -1; //Convierte numeros negativos en positivos
 		} else {
+			colorSaldo="style='color: black;'"
 			movimientos[k].resto = "";
 		}
 		
@@ -107,18 +121,19 @@ function tableMovimientosList(){
 			newRow +="<tr class='table'>"+"<th scope='row'>"+movimientos[k].id+"</td>"
 		}
 			newRow +=
-							 "<td>"+movimientos[k].fecha+"</td>"
-							+"<td>"+movimientos[k].fechaValor+"</td>"
+							 "<td>"+fechaFormateada[k].join("-")+"</td>"
+							+"<td>"+fechaValorFormateada[k].join("-")+"</td>"
 							+"<td>"+movimientos[k].concepto+"</td>"
 							+"<td>"+movimientos[k].deudor+"</td>"//zorduna
 							+"<td>"+movimientos[k].acreedor+"</td>"//artzekoduna
-							+"<td>"+movimientos[k].saldo+"</td>"
+							+"<td "+colorSaldo+">"+movimientos[k].saldo+"</td>"
 							+"<td>"+movimientos[k].dias+"</td>"
-							+"<td>"+movimientos[k].movDeudor+"</td>"//zorduna, saldo y dias
+							+"<td "+colorSaldo+">"+movimientos[k].movDeudor+"</td>"//zorduna, saldo y dias
 							+"<td>"+movimientos[k].movAcreedor+"</td>"//artzekoduna, saldo y dias
-							+"<td>"+movimientos[k].resto+"</td>"//gaineratikoa, si el saldo es negativo, por cuanto
+							+"<td "+colorSaldo+">"+movimientos[k].resto+"</td>"//gaineratikoa, si el saldo es negativo, por cuanto
 						+"</tr>"
 		}
+			console.log(fechaFormateada);
 		$("#tableMovCreBody").html(newRow);
 	}).catch(error => console.error('Error status:', error));	   
 }
