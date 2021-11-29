@@ -1,5 +1,5 @@
 <?php
-    class cuenta_creditoClass{
+    class cuentaCreditoClass{
         public $id;
         public $saldo;
         public $caduca;

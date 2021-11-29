@@ -49,5 +49,20 @@ class movimientoModel extends movimientoClass{
         $this->CloseConnect();
         return $list;
     }
+
+    public function insert() {
+        $this -> OpenConnect();
+        
+        $idCorriente = $this -> idCorriente;
+        $importe = $this -> importe;
+        $concepto = $this -> concepto;
+        $usu = $_SESSION['id'];
+        
+        $sql ="INSERT INTO movimiento(fecha, fechaValor, concepto, importe, saldo, idCorriente, idUsuario)VALUES(CURDATE(), CURDATE(), '$concepto', $importe, (SELECT saldo FROM cuenta_corriente WHERE id = $idCorriente), $idCorriente, $usu)";
+        
+        $this -> link -> query($sql);
+        
+        $this -> CloseConnect();
+    }
 }
 ?>
