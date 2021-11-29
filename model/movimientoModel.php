@@ -56,7 +56,8 @@ class movimientoModel extends movimientoClass{
         $idCorriente = $this -> idCorriente;
         $importe = $this -> importe;
         $concepto = $this -> concepto;
-        $usu = $_SESSION['id'];
+        //$usu = $_SESSION['id'];
+        $usu = 1;
         
         $sql ="INSERT INTO movimiento(fecha, fechaValor, concepto, importe, saldo, idCorriente, idUsuario)VALUES(CURDATE(), CURDATE(), '$concepto', $importe, (SELECT saldo FROM cuenta_corriente WHERE id = $idCorriente), $idCorriente, $usu)";
         

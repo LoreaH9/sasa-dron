@@ -54,7 +54,7 @@ function showOption(event) {
     $("#botonPrestamo").on('click', calcularPrestamo);
 	//console.log("Boton clicado: " + event.currentTarget.id);
 	$("#botonIngreso").on('click', ingreso);
-    $("#botonTranferencia").on('click', transferencia);
+    //$("#botonTranferencia").on('click', transferencia);
     showCuentasCorrientes();
     showCuentasCredito();
     $("#radioCorriente").prop("checked", false);
@@ -158,7 +158,8 @@ function tableMovimientosList(){
 		}
 			console.log(fechaFormateada);
 		$("#tableMovCreBody").html(newRow);
-	}).catch(error => console.error('Error status:', error));	  } 
+	}).catch(error => console.error('Error status:', error));
+} 
 function ingreso() {
     var importe = $("#ingresoImporte").val();
 	var cuenta = $("#cmbCuentas").val();
@@ -191,7 +192,7 @@ function showCuentasCredito() {
 		console.log(result.list);
 		
 		var cuentasCredito = result.list;
-		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+		var newRow = "<option>Seleccione una cuenta...</option>";
    		
    		for(let i = 0; i < cuentasCredito.length; i++) {
 			newRow += "<option value='" + cuentasCredito[i].id + "'>" + cuentasCredito[i].id + "</option>";
@@ -212,7 +213,7 @@ function showCuentasCorrientes() {
 		console.log(result.list);
 		
 		var cuentasCorrientes = result.list;
-		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+		var newRow = "<option>Seleccione una cuenta...</option>";
    		
    		for(let i = 0; i < cuentasCorrientes.length; i++) {
 			newRow += "<option value='" + cuentasCorrientes[i].id + "'>" + cuentasCorrientes[i].id + "</option>";
