@@ -4,6 +4,20 @@ function init() {
     option();
     hideAllTables();
     $("#tableMovimientosCuentaCredito").show();
+    document.getElementById("ingresoImporte").addEventListener("keypress", function(event){
+        if(event.charCode < 48 || event.charCode > 57){
+           event.preventDefault();
+        }
+    });
+
+    $('#radioCorriente').click(function() {
+        $("#cmbCuentasCorriente").show();
+        $("#cmbCuentasCredito").hide();
+    });
+    $('#radioCredito').click(function() {
+        $("#cmbCuentasCredito").show();
+        $("#cmbCuentasCorriente").hide();
+    });
 }
 
 function option() {
@@ -24,6 +38,9 @@ function hideAllTables() {
     $("#tableLeasing").hide();
     $("#tableMovimientosCuentaCorriente").hide();
     $("#tableIngreso").hide();
+    $("#tableTransferencia").hide();
+    $("#cmbCuentasCorriente").hide();
+    $("#cmbCuentasCredito").hide();
 }
 
 function showOption(event) {
@@ -32,11 +49,40 @@ function showOption(event) {
     $("#table"+event.currentTarget.id+"").show();
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
-    showCuentas();
+    $("#botonIngreso").on('click', ingreso);
+    $("#botonTranferencia").on('click', transferencia);
+    showCuentasCorrientes();
+    showCuentasCredito();
+    $("#radioCorriente").prop("checked", false);
+    $("#radioCredito").prop("checked", false);
 }
 
-function showCuentas() {
-    var url = "controller/cIngreso.php";
+
+
+function ingreso() {
+    var importe = $("#ingresoImporte").val();
+	var cuenta = $("#cmbCuentas").val();
+	var concepto = $("#ingresoConcepto").val();
+
+	var url = "controller/cIngreso.php";
+	
+	var data = {'importe': importe, 'cuenta': cuenta, 'concepto': concepto};
+
+	fetch(url, {
+	  method: 'POST', 
+	  body: JSON.stringify(data),
+	  headers:{'Content-Type': 'application/json'}
+	  })
+	  
+	.then(res => res.json()).then(result => {
+			console.log(result.error);
+			alert(result.error);
+	})
+	.catch(error => console.error('Error status:', error));
+}
+
+function showCuentasCredito() {
+    var url = "controller/cCredito.php";
 
 	fetch(url, {
 	  method: 'GET', 
@@ -44,18 +90,36 @@ function showCuentas() {
 	.then(res => res.json()).then(result => {
 		console.log(result.list);
 		
-		var cuentasCorrientes = result.list1;
-        var cuentasCredito = result.list2;
+		var cuentasCredito = result.list;
+		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+   		
+   		for(let i = 0; i < cuentasCredito.length; i++) {
+			newRow += "<option value='" + cuentasCredito[i].id + "'>" + cuentasCredito[i].id + "</option>";
+		}
+		 
+		document.getElementById("cmbCuentasCredito").innerHTML = newRow;  
+	})
+	.catch(error => console.error('Error status:', error));	
+}
+
+function showCuentasCorrientes() {
+    var url = "controller/cCorriente.php";
+
+	fetch(url, {
+	  method: 'GET', 
+	})
+	.then(res => res.json()).then(result => {
+		console.log(result.list);
+		
+		var cuentasCorrientes = result.list;
 		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
    		
    		for(let i = 0; i < cuentasCorrientes.length; i++) {
-			newRow += "<option value='" + cuentasCorrientes[i].id + "'>" + cuentasCorrientes[i].id + "Cuenta corriente</option>";
-		}
-        for(let i = 0; i < cuentasCredito.length; i++) {
-			newRow += "<option value='" + cuentasCredito[i].id + "'>" + cuentasCredito[i].id + "Cuenta credito</option>";
+			newRow += "<option value='" + cuentasCorrientes[i].id + "'>" + cuentasCorrientes[i].id + "</option>";
 		}
 		 
-		document.getElementById("cmbCuentas").innerHTML = newRow;  	
+		document.getElementById("cmbCuentas").innerHTML = newRow;
+        document.getElementById("cmbCuentasCorriente").innerHTML = newRow;  
 	})
 	.catch(error => console.error('Error status:', error));	
 }
@@ -76,7 +140,7 @@ function calcularPrestamo() {
     var importe = $("#prestamoImporte").val();
     var interes = ($("#prestamoInteres").val()/100)/12;
     console.log(interes);
-    var plazo = parseFloat($("#prestamoPlazo").val());
+    var plazo = $("#prestamoPlazo").val();
 
     var a = Math.pow((1+interes), -(plazo));
         a = 1 - a;

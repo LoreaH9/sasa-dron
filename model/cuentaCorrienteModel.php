@@ -43,6 +43,27 @@ class cuentaCorrienteModel extends cuentaCorrienteClass{
         $this->CloseConnect();
         return $list;
     }
-    
+
+    public function update() {
+        $this->OpenConnect();
+        
+        $id = $this -> id;
+        $saldo = $this -> saldo;
+        
+        $sql ="update cuenta_corriente
+             set saldo = saldo + $saldo
+             where id = $id";
+        
+        $this -> link -> query($sql);
+        
+        if($this->link->affected_rows == 1) {
+            return "Ingreso realizado";
+        }
+        else {
+            return "Ingreso no realizado, compruebe los datos";
+        }
+        
+        $this -> CloseConnect();
+    }
 }
 ?>

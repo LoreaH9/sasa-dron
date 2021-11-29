@@ -36,7 +36,7 @@ class cuentaCreditoModel extends cuentaCreditoClass{
             $newCuenta_credito->id=$row['id'];
             $newCuenta_credito->saldo=$row['saldo'];
             $newCuenta_credito->caduca=$row['caduca'];
-            $newCuenta_credito->descu_pacta=$row['descu_pacta'];
+            //$newCuenta_credito->descu_pacta=$row['descu_pacta'];
             $newCuenta_credito->interes=$row['interes'];
             $newCuenta_credito->idCuenta=$row['idCuenta'];
 

@@ -1,24 +1,35 @@
 <?php
-include_once '../model/cuentaCorrienteModel.php';
-include_once '../model/cuentaCreditoModel.php';
+include_once ("../model/cuentaCorrienteModel.php");
+include_once ("../model/movimientoModel.php");
 
-$cuentaCorriente = new cuentaCorrienteModel();
-$cuentaCredito = new cuentaCreditoModel();
+$data = json_decode(file_get_contents("php://input"), true);
 
-$list1 = array();
-$list2 = array();
-$list1 = $cuentaCorriente -> setList();
-$list2 = $cuentaCredito -> setList();
+$importe = $data['importe'];
+$cuenta = $data['cuenta'];
+$concepto = $data['concepto'];
 
 $response = array();
-$response['list1'] = $list1;
-$response['list2'] = $list2;
-$response['error'] = "not error";
 
+$cuentaCorriente = new cuentaCorrienteModel();
+$movimiento = new movimientoModel();
+ 
+if(isset($importe)) {
+    $cuentaCorriente->id = $cuenta;
+    $movimiento->idCorriente = $cuenta;
+
+    if(isset($cuenta)) {
+        $cuentaCorriente->saldo = $importe;
+        $movimiento->importe = $importe;
+    }
+    if(isset($concepto)) {
+        $movimiento->concepto = $concepto;
+    }
+     
+    $response['error'] = $cuentaCorriente -> update();
+    $movimiento -> insert();
+}
+else {
+    $response['error'] = "No se realizo el ingreso, compruebe los datos";
+}
 echo json_encode($response);
-
-unset($cuentaCorriente);
-unset($cuentaCredito);
-unset($list1);
-unset($list2);
 ?>
