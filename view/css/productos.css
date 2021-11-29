@@ -143,6 +143,8 @@
 /*Barra de busqueda*/
 .busqueda{
     width: 60%;
+    margin-left: 3%;
+    margin-top: 1%;
 }
 .barraBusqueda{
     display: flex;

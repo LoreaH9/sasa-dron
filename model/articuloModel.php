@@ -109,9 +109,7 @@ class articuloModel extends articuloClass {
         $this -> OpenConnect();
         
         $id = $this -> id;
-        
-        //$sql = "CALL spDelete( $id)";
-        
+                
         $sql = "delete from articulo where id = $id";
         
         $this -> link -> query($sql);
@@ -120,7 +118,7 @@ class articuloModel extends articuloClass {
             return "El articulo ha sido eliminado";
         }
         else {
-            return "Falla el borrado de la pelicula: (" . $this -> link -> errno . ") " . $this -> link -> error;
+            return "No se ha podido borrar el articulo";
         }
         
         $this -> CloseConnect();

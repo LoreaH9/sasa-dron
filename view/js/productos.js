@@ -3,20 +3,15 @@ var cards, card="";
 
 //DOMContentLoaded
 $(document).ready(function(){
-
-	ordenNombre=document.getElementById("ordenNombre");
-	ordenPrecio=document.getElementById("ordenPrecio");
-	ordenUbicacion=document.getElementById("ordenUbicacion");
 	ordenInvertido=false;
 
 	fetch("controller/cProductos.php",{
 		method: 'GET',
 		})
 		.then(res => res.json()).then(result => {
-			console.log(result.list)
 			cards = result.list;
 
-			loadCards();
+			buscar();
 		})			
 });
 
@@ -73,29 +68,30 @@ $('#modalDescripcion').on('dblclick', function(){
 
  
   window.onload = function () {
-	$("#input").value = "";
+	$("#input").val("");
   }
   
   $("#input").on("keyup", function () { buscar() })
   
   function invertirOrden(){
-	if (ordenInvertido==false) {
+	if ($("#botonInvertir").html() == "Invertir orden ▲") {
 	  ordenInvertido=true;
-	  $("#botonInvertir").innerHTML="Invertir orden ▼"
+	  $("#botonInvertir").html("Invertir orden ▼");
+	  ordenar();
 	} else{
-	  ordenInvertido=false;
-	  $("#botonInvertir").innerHTML="Invertir orden ▲"
+	  $("#botonInvertir").html("Invertir orden ▲");
+	  ordenar();
 	}
-	ordenar();
   }
   
   function buscar() {
 	var descripcion = "";
-	var notFound = false;
-	var respuesta = $("#input").value;
-	$("#cardGroup").innerHTML = "";
+	var found = false;
+	var respuesta = $("#input").val();
+	card = "";
 	for (var i = 0; i < cards.length; i ++) {
 		if (cards[i].nombre.toLowerCase().includes(respuesta.toLowerCase())) {
+			found = true;
 			if(cards[i].descripcion.length>300){
 				descripcion = cards[i].descripcion.substring(0,200) + "<b> ...</b>";
 			}else{
@@ -117,45 +113,29 @@ $('#modalDescripcion').on('dblclick', function(){
 		} 
 		
     }
-	if(notFound == false) {
-		$("#cardGroup").innerHTML += "<div id='notFound'> No se han encontrado hoteles! ＞﹏＜ </div>";
-	  }
+	if(found == false) {
+		$("#cardGroup").html("<div id='notFound'> No se han encontrado drones! ＞﹏＜ </div>");
+	}else{
+		$("#cardGroup").html(card);
+	}
   }
   
-  function ordenar(){
-	  console.log("Ordenar")
-  
-	if (ordenNombre.selected == true) {
-		console.log("nombre seleccionado")
+  function ordenar(){ 
+	if ($("#orden").val() == "nombre") {
 	  if (ordenInvertido==false) {
-		hoteles.sort();
+		cards.sort();
+		buscar();
 	  } else {
-		hoteles.sort().reverse();
+		cards.sort().reverse();
+		buscar();
 	  }
-	  buscar();
-	} else if(ordenPrecio.selected == true){
-  
-	  console.log("precio seleccionado")
-	  hoteles.sort(function(a, b){
+	} else if($("#orden").val() == "precio"){
 		if (ordenInvertido==false) {
-		  return parseInt(a[3]) - parseInt(b[3])
-		} else {
-		  return parseInt(a[3]) < parseInt(b[3])
-		}
-	  })
-		console.log(hoteles)
-	  buscar();
-	  
-	} else if (ordenUbicacion.selected == true){
-		console.log("ubicacion seleccionado")
-  
-	  hoteles.sort(function(a, b){
-		if (ordenInvertido==false) {
-		  return a[2] > b[2]
-		} else {
-		  return a[2] < b[2]
-		}
-	  })
-	  buscar();
+			cards.sort((a, b) => (a.precio < b.precio ? 1: -1));
+			buscar();
+		  } else {
+			cards.sort().reverse();
+			buscar();
+		  }
 	}
   }

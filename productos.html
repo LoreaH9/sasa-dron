@@ -32,10 +32,10 @@
         <div id="ordenField" class="dropdown col-lg-6 col-md-12 col-12">
           <fieldset>
             <!-- <label for="">Ordenar por</label> -->
-            <select class=" ordenMenu " onchange="ordenar()" autocomplete="off">
-              <option class="ordenItem" id="ordenDeshabilitado" href="#" disabled selected>Ordenar por</option>
-              <option class="ordenItem" id="ordenNombre" href="#">Nombre</option>
-              <option class="ordenItem" id="ordenPrecio" href="#">Precio</option>
+            <select id="orden" class=" ordenMenu " onchange="ordenar()" autocomplete="off">
+              <option class="ordenItem" href="#" disabled selected>Ordenar por</option>
+              <option class="ordenItem" value="nombre" href="#">Nombre</option>
+              <option class="ordenItem" value="precio" href="#">Precio</option>
             </select>
           </fieldset>
         </div>
