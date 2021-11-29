@@ -3,7 +3,7 @@ $(document).ready(init);
 function init() {
     option();
     hideAllTables();
-	//tableMovimientosList();
+	tableMovimientosList();
     $("#tableMovimientosCuentaCredito").show();
     document.getElementById("ingresoImporte").addEventListener("keypress", function(event){
         if(event.charCode < 48 || event.charCode > 57){
@@ -37,8 +37,9 @@ function hideAllTables() {
     $("#tablePrestamos").hide();
     $("#tableMovimientosCuenta").hide();
     $("#tableLeasing").hide();
-	//$("#tableMovimientos").hide();
-    $("#tableMovimientosCuentaCorriente").hide();
+	$("#tableMovimientos").hide();
+    $("#tableMovimientosCuentaCredito").hide();
+	$("#tableMovimientosCuentaCorriente").hide();
     $("#tableIngreso").hide();
     $("#tableTransferencia").hide();
     $("#cmbCuentasCorriente").hide();

@@ -47,7 +47,6 @@ function login() {
 
     var url = "controller/cLogin.php";
     var data = { 'email': email, 'contrasenia': contrasenia }
-
     fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
