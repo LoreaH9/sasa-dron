@@ -3,6 +3,7 @@ $(document).ready(init);
 function init() {
     option();
     hideAllTables();
+	tableMovimientosList();
     $("#tableMovimientosCuentaCredito").show();
     document.getElementById("ingresoImporte").addEventListener("keypress", function(event){
         if(event.charCode < 48 || event.charCode > 57){
@@ -36,7 +37,9 @@ function hideAllTables() {
     $("#tablePrestamos").hide();
     $("#tableMovimientosCuenta").hide();
     $("#tableLeasing").hide();
-    $("#tableMovimientosCuentaCorriente").hide();
+	$("#tableMovimientos").hide();
+    $("#tableMovimientosCuentaCredito").hide();
+	$("#tableMovimientosCuentaCorriente").hide();
     $("#tableIngreso").hide();
     $("#tableTransferencia").hide();
     $("#cmbCuentasCorriente").hide();
@@ -49,16 +52,114 @@ function showOption(event) {
     $("#table"+event.currentTarget.id+"").show();
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
-    $("#botonIngreso").on('click', ingreso);
-    $("#botonTranferencia").on('click', transferencia);
+	//console.log("Boton clicado: " + event.currentTarget.id);
+	$("#botonIngreso").on('click', ingreso);
+    //$("#botonTranferencia").on('click', transferencia);
     showCuentasCorrientes();
     showCuentasCredito();
     $("#radioCorriente").prop("checked", false);
     $("#radioCredito").prop("checked", false);
 }
 
+function tableMovimientosList(){
+	console.log("Llega a movList");
+	var url ="controller/cMovimientos.php";
+	fetch(url, {
+	  method: 'POST', // or 'POST'
+	  //body: JSON.stringify(data), // data can be `string` or {object}!
+	  //headers:{'Content-Type': 'application/json'}  //input data	  
+	}).then(res => res.json()).then(result => {
+		console.log(result);
+		
+		var movimientos = result.list;
+		movimientos[0]["acreedor"];//hartzekoduna
+		movimientos[0]["deudor"];//zorduna
+		movimientos[0]["movAcreedor"];//segunda columna hartzekoduna
+		movimientos[0]["movDeudor"];//segunda columna zorduna
+		movimientos[0]["resto"];//gaineratikoa
+		
+		const fechaFormateada = new Array();
+		const fechaValorFormateada = new Array();
+		mes = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
+		console.log(movimientos);
+		var newRow = "";
+		for(let k=0; k<movimientos.length; k++){
+			//Sustituye el numero del mes por su nombre
+			fechaFormateada[k] = movimientos[k].fecha.split("-");
+			fechaFormateada[k][1] = mes[(fechaFormateada[k][1])-1];
+			
+			fechaValorFormateada[k] = movimientos[k].fechaValor.split("-");
+			fechaValorFormateada[k][1] = mes[(fechaValorFormateada[k][1])-1]
+			
+//		if(k>0 && parseInt(movimientos[k].saldo) > parseInt(movimientos[(k-1)].saldo)){
+//			console.log(movimientos[k].id + ": Se suma saldo");
+//			movimientos[k].acreedor = (parseInt(movimientos[k].saldo) - parseInt(movimientos[(k-1)].saldo))+".000";
+//			movimientos[k].deudor = "";
+//		} else if (k>0 && parseInt(movimientos[k].saldo) < parseInt(movimientos[(k-1)].saldo)){
+//			console.log(movimientos[k].id + ": Se resta saldo");
+//			movimientos[k].deudor = (parseInt(movimientos[(k-1)].saldo) - parseInt(movimientos[k].saldo))+".000";
+//			movimientos[k].acreedor = "";
+//		} else {
+//			console.log(movimientos[k].id + ": Se mantiene el saldo")
+//			movimientos[k].deudor = "";
+//			movimientos[k].acreedor = "";
+//		}
 
+		if(movimientos[k].importe.includes("-")){ 			//Se resta saldo
+			console.log(movimientos[k].id + ": Se resta saldo");
+		
+			movimientos[k].deudor = movimientos[k].importe;
+			movimientos[k].acreedor = "";
+			movimientos[k].movDeudor = movimientos[k].saldo+"x"+movimientos[k].dias
+			movimientos[k].movAcreedor = "";
+		} else if (!movimientos[k].importe.includes("-")){	//Se suma saldo
+			console.log(movimientos[k].id + ": Se suma saldo");
+		
+			movimientos[k].acreedor = movimientos[k].importe;
+			movimientos[k].deudor = "";
+			movimientos[k].movAcreedor = movimientos[k].saldo+"x"+movimientos[k].dias
+			movimientos[k].movDeudor = "";
+		} else { 											//Se mantiene saldo
+			console.log(movimientos[k].id + ": Se mantiene saldo");
+		
+			movimientos[k].acreedor = "";
+			movimientos[k].deudor = "";
+		}
+		
+		if (parseInt(movimientos[k].saldo) < -40000){
+			colorSaldo="style='color: red;'"
+			movimientos[k].resto = parseInt(movimientos[k].saldo) - (-40000);
+			movimientos[k].resto *= -1; //Convierte numeros negativos en positivos
+		} else {
+			colorSaldo="style='color: black;'"
+			movimientos[k].resto = "";
+		}
+		
+		if (parseInt(movimientos[k].saldo) < 0){
+			movimientos[k].saldo += " Z"
+			newRow +="<tr class='table-danger'>"+"<th scope='row'>"+movimientos[k].id+"</th>"	
+		} else {
+			movimientos[k].saldo += " H"
+			newRow +="<tr class='table'>"+"<th scope='row'>"+movimientos[k].id+"</td>"
+		}
+			newRow +=
+							 "<td>"+fechaFormateada[k].join("-")+"</td>"
+							+"<td>"+fechaValorFormateada[k].join("-")+"</td>"
+							+"<td>"+movimientos[k].concepto+"</td>"
+							+"<td>"+movimientos[k].deudor+"</td>"//zorduna
+							+"<td>"+movimientos[k].acreedor+"</td>"//artzekoduna
+							+"<td "+colorSaldo+">"+movimientos[k].saldo+"</td>"
+							+"<td>"+movimientos[k].dias+"</td>"
+							+"<td "+colorSaldo+">"+movimientos[k].movDeudor+"</td>"//zorduna, saldo y dias
+							+"<td>"+movimientos[k].movAcreedor+"</td>"//artzekoduna, saldo y dias
+							+"<td "+colorSaldo+">"+movimientos[k].resto+"</td>"//gaineratikoa, si el saldo es negativo, por cuanto
+						+"</tr>"
+		}
+			console.log(fechaFormateada);
+		$("#tableMovCreBody").html(newRow);
+	}).catch(error => console.error('Error status:', error));
+} 
 function ingreso() {
     var importe = $("#ingresoImporte").val();
 	var cuenta = $("#cmbCuentas").val();
@@ -91,7 +192,7 @@ function showCuentasCredito() {
 		console.log(result.list);
 		
 		var cuentasCredito = result.list;
-		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+		var newRow = "<option>Seleccione una cuenta...</option>";
    		
    		for(let i = 0; i < cuentasCredito.length; i++) {
 			newRow += "<option value='" + cuentasCredito[i].id + "'>" + cuentasCredito[i].id + "</option>";
@@ -112,7 +213,7 @@ function showCuentasCorrientes() {
 		console.log(result.list);
 		
 		var cuentasCorrientes = result.list;
-		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+		var newRow = "<option>Seleccione una cuenta...</option>";
    		
    		for(let i = 0; i < cuentasCorrientes.length; i++) {
 			newRow += "<option value='" + cuentasCorrientes[i].id + "'>" + cuentasCorrientes[i].id + "</option>";
