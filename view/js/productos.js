@@ -114,7 +114,7 @@ $('#modalDescripcion').on('dblclick', function(){
 		
     }
 	if(found == false) {
-		$("#cardGroup").html("<div id='notFound'> No se han encontrado drones! ＞﹏＜ </div>");
+		$("#cardGroup").html("<div id='notFound' class='container display-1 text-center m-5 text-secondary'> No se han encontrado drones! ＞﹏＜ </div>");
 	}else{
 		$("#cardGroup").html(card);
 	}
