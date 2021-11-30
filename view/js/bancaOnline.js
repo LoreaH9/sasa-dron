@@ -5,6 +5,8 @@ function init() {
     hideAllTables();
 	tableMovimientosList();
     $("#tableMovimientosCuentaCredito").show();
+	$("#BotonRecargar").show();
+	$("#BotonRecargar").on('click', reloadPage);
     document.getElementById("ingresoImporte").addEventListener("keypress", function(event){
         if(event.charCode < 48 || event.charCode > 57){
            event.preventDefault();
@@ -44,15 +46,20 @@ function hideAllTables() {
     $("#tableTransferencia").hide();
     $("#cmbCuentasCorriente").hide();
     $("#cmbCuentasCredito").hide();
+	$("#BotonRecargar").hide();
 }
 
 function showOption(event) {
     preventClick(event);
     hideAllTables();
     $("#table"+event.currentTarget.id+"").show();
+	if(event.currentTarget.id == "MovimientosCuentaCredito"){
+		$("#BotonRecargar").show();
+	}
+
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
-	//console.log("Boton clicado: " + event.currentTarget.id);
+	console.log("Boton clicado: " + event.currentTarget.id);
 	$("#botonIngreso").on('click', ingreso);
     //$("#botonTranferencia").on('click', transferencia);
     showCuentasCorrientes();
@@ -60,7 +67,10 @@ function showOption(event) {
     $("#radioCorriente").prop("checked", false);
     $("#radioCredito").prop("checked", false);
 }
-
+function reloadPage(){
+	console.log("RECARGAR");
+	window.location.reload();
+}
 function tableMovimientosList(){
 	console.log("Llega a movList");
 	var url ="controller/cMovimientos.php";
