@@ -1,8 +1,8 @@
 <?php
 include_once "connectData.php";
-include_once "cuenta_corrienteClass.php";
+include_once "cuentaCreditoClass.php";
 
-class cuenta_corrienteModel extends cuenta_corrienteClass{
+class cuentaCreditoModel extends cuentaCreditoClass{
 
     private $link;
     public function OpenConnect(){
@@ -24,25 +24,27 @@ class cuenta_corrienteModel extends cuenta_corrienteClass{
     {
         $this->OpenConnect();
 
-        $sql = "SELECT * from cuenta_corriente";
+        $sql = "SELECT * from cuenta_credito";
 
         $result = $this->link->query($sql);
 
         $list=array();
 
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $newCuenta_corriente=new cuenta_corrienteModel();
+            $newCuenta_credito=new cuentaCreditoModel();
 
-            $newCuenta_corriente->id=$row['id'];
-            $newCuenta_corriente->saldo=$row['saldo'];
-            $newCuenta_corriente->caduca=$row['caduca'];
+            $newCuenta_credito->id=$row['id'];
+            $newCuenta_credito->saldo=$row['saldo'];
+            $newCuenta_credito->caduca=$row['caduca'];
+            //$newCuenta_credito->descu_pacta=$row['descu_pacta'];
+            $newCuenta_credito->interes=$row['interes'];
+            $newCuenta_credito->idCuenta=$row['idCuenta'];
 
-            array_push($list, $newCuenta_corriente);
+            array_push($list, $newCuenta_credito);
         }
         mysqli_free_result($result);
         $this->CloseConnect();
         return $list;
     }
-    
 }
 ?>

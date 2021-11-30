@@ -30,15 +30,15 @@
    
       <button id="Leasing" type="button" class="btn btn-primary btn-lg raised opcion">Leasing</button>
       <button id="Prestamos" type="button" class="btn btn-primary btn-lg raised opcion"> Prestamos</button>
-      <button id="Movimientos" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos</button>
+      <button id="Ingreso" type="button" class="btn btn-primary btn-lg raised opcion">Ingreso</button>
+      <button id="Transferencia" type="button" class="btn btn-primary btn-lg raised opcion">Transferencia</button>
       <!-- <a href="index.html"><button id="ingreso" type="button" class="btn btn-primary btn-lg raised ">Volver <i
                         class="fa fa-sign-out"></i> </button></a>-->
     </div>
     <div class="w-75 ">
 
       <!--Tabla movimientos cuenta corriente-->
-
-      <table id="tableMovimientosCuenta" class="table ">
+      <table id="tableMovimientosCuentaCorriente" class="table ">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -133,10 +133,80 @@
         </table>
       </div>
 
-      <!--Movimientos que se pueden hacer por cualquiera de las cuentas-->
-      <form action="" method="post">
+      <!--Tabla ingreso-->
+      <div id="tableIngreso">
+        <div class="calcularIngreso">
+          <form action="">
+            <div class="form-group d-flex align-content-center">
+              <label for="ingresoImporte"><b> Importe: </b> </label>
+              <input class="mx-2" id="ingresoImporte" placeholder="0,00" required>
+              <p class="m-0 p-0"> EUR</p>
+            </div>
+            <div class="form-group d-flex align-content-center my-2">
+              <label for="ingresoCuenta"><b> Cuenta: </b> </label>
+              <select id='cmbCuentas'></select>
+            </div>
+            <div class="form-group d-flex align-content-center">
+              <label for="ingresoConcepto"><b> Concepto: </b> </label>
+              <textarea class="mx-2" id="ingresoConcepto" name="comment" form="usrform"></textarea>
+            </div>
+            <div class="text-end">
+              <button id="botonIngreso" type="button" class="btn btn-primary">INGRESAR</button>
+            </div>
+          </form>
+        </div>
+        <table id="ingresoTable" class="table">
+          
+        </table>
+      </div>
 
-      </form>
+      <!--Movimientos que se pueden hacer por cualquiera de las cuentas-->
+      <div id="tableTransferencia">
+        <div class="calcularTransferencia">
+          <form action="">
+            <div class="form-group d-flex align-content-center">
+              <label for="tranferenciaImporte"><b> Importe: </b> </label>
+              <input class="mx-2" id="tranferenciaImporte" placeholder="0,00" required>
+              <p class="m-0 p-0"> EUR</p>
+            </div>
+            <div class="form-group align-content-center my-2">
+              <h6>Cuenta origen:</h6>
+              
+              <input type="radio" id="radioCorriente" name="tipo">
+              <label for="radioCorriente"> Corriente </label>
+              
+              <input type="radio" id="radioCredito" name="tipo">
+              <label for="radioCredito"> Credito </label>
+              <br>
+              <select id='cmbCuentasCorriente'></select>
+              <select id='cmbCuentasCredito'></select>
+            </div>
+            <div class="form-group d-flex align-content-center">
+              <label for="tranferenciaConcepto"><b> Concepto: </b> </label>
+              <textarea class="mx-2" id="tranferenciaConcepto" name="comment" form="usrform"></textarea>
+            </div>
+            <div class="form-group align-content-center my-2">
+              <h6>Para quien:</h6>
+              
+              <input type="radio" id="radioMiCuenta" name="tipo">
+              <label for="radioMiCuenta"> Una de mis cuentas </label>
+              
+              <input type="radio" id="radioOtraCuenta" name="tipo">
+              <label for="radioOtraCuenta"> Otra cuenta internacional </label>
+              <br>
+              <select id='cmbCuentasCorriente'></select>
+              <select id='cmbCuentasCredito'></select>
+            </div>
+            <div class="text-end">
+              <button id="botonTranferencia" type="button" class="btn btn-primary">TRANSFERIR</button>
+            </div>
+          </form>
+        </div>
+        <table id="tranferenciaTable" class="table">
+          
+        </table>
+      </div>
+
     </div>
   </div>
 

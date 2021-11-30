@@ -1,5 +1,5 @@
 <?php
-    class cuenta_corrienteClass{
+    class cuentaCorrienteClass{
         public $id;
         public $saldo;
         public $caduca;
