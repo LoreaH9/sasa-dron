@@ -9,6 +9,12 @@
     font-family: text;
     src: url(../fonts/Champagne\ &\ Limousines.ttf);
 }
+nav{
+    background-image: url(../images/bg.jpg);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 /*Cards*/
 #cardGroup{
