@@ -65,5 +65,20 @@ class cuentaCorrienteModel extends cuentaCorrienteClass{
         
         $this -> CloseConnect();
     }
+
+    public function retirada() {
+        $this->OpenConnect();
+        
+        $id = $this -> id;
+        $saldo = $this -> saldo;
+        
+        $sql ="update cuenta_corriente
+             set saldo = saldo - $saldo
+             where id = $id";
+        
+        $this -> link -> query($sql);
+        
+        $this -> CloseConnect();
+    }
 }
 ?>

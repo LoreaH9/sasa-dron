@@ -56,11 +56,63 @@ class movimientoModel extends movimientoClass{
         $idCorriente = $this -> idCorriente;
         $importe = $this -> importe;
         $concepto = $this -> concepto;
-        //$usu = $_SESSION['id'];
         $usu = 1;
         
         $sql ="INSERT INTO movimiento(fecha, fechaValor, concepto, importe, saldo, idCorriente, idUsuario)VALUES(CURDATE(), CURDATE(), '$concepto', $importe, (SELECT saldo FROM cuenta_corriente WHERE id = $idCorriente), $idCorriente, $usu)";
+        $dias = "UPDATE movimiento SET dias = (SELECT DATEDIFF(NOW(), (SELECT fechaValor FROM movimiento ORDER BY id DESC LIMIT 1))) WHERE id = (SELECT id FROM movimiento ORDER BY id DESC LIMIT 1)";
         
+        $this -> link -> query($dias);
+        $this -> link -> query($sql);
+        
+        $this -> CloseConnect();
+    }
+
+    public function insertCredito() {
+        $this -> OpenConnect();
+        
+        $idCredito = $this -> idCredito;
+        $importe = $this -> importe;
+        $concepto = $this -> concepto;
+        $usu = 1;
+        
+        $dias = "UPDATE movimiento SET dias = (SELECT DATEDIFF(NOW(), (SELECT fechaValor FROM movimiento ORDER BY id DESC LIMIT 1))) WHERE id = (SELECT id FROM movimiento ORDER BY id DESC LIMIT 1)";
+        $sql ="INSERT INTO movimiento(fecha, fechaValor, concepto, importe, saldo, idCredito, idUsuario)VALUES(CURDATE(), CURDATE(), '$concepto', $importe, (SELECT saldo FROM cuenta_credito WHERE id = $idCredito), $idCredito, $usu)";
+        
+        $this -> link -> query($dias);
+        $this -> link -> query($sql);
+        
+        $this -> CloseConnect();
+    }
+
+    public function retiradaCorriente() {
+        $this -> OpenConnect();
+        
+        $idCorriente = $this -> idCorriente;
+        $importe = $this -> importe;
+        $concepto = $this -> concepto;
+        $usu = 1;
+        
+        $dias = "UPDATE movimiento SET dias = (SELECT DATEDIFF(NOW(), (SELECT fechaValor FROM movimiento ORDER BY id DESC LIMIT 1))) WHERE id = (SELECT id FROM movimiento ORDER BY id DESC LIMIT 1)";
+        $sql ="INSERT INTO movimiento(fecha, fechaValor, concepto, importe, saldo, idCorriente, idUsuario)VALUES(CURDATE(), CURDATE(), '$concepto', -$importe, (SELECT saldo FROM cuenta_corriente WHERE id = $idCorriente), $idCorriente, $usu)";
+        
+        $this -> link -> query($dias);
+        $this -> link -> query($sql);
+        
+        $this -> CloseConnect();
+    }
+
+    public function retiradaCredito() {
+        $this -> OpenConnect();
+        
+        $idCredito = $this -> idCredito;
+        $importe = $this -> importe;
+        $concepto = $this -> concepto;
+        $usu = 1;
+        
+        $dias = "UPDATE movimiento SET dias = (SELECT DATEDIFF(NOW(), (SELECT fechaValor FROM movimiento ORDER BY id DESC LIMIT 1))) WHERE id = (SELECT id FROM movimiento ORDER BY id DESC LIMIT 1)";
+        $sql ="INSERT INTO movimiento(fecha, fechaValor, concepto, importe, saldo, idCredito, idUsuario)VALUES(CURDATE(), CURDATE(), '$concepto', -$importe, (SELECT saldo FROM cuenta_credito WHERE id = $idCredito), $idCredito, $usu)";
+        
+        $this -> link -> query($dias);
         $this -> link -> query($sql);
         
         $this -> CloseConnect();
