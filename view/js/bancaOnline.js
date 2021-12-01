@@ -11,7 +11,6 @@ function init() {
 	$("#BotonRecargar").on('click', reloadPage);
 	$("#BotonCuentaCorriente").show();
 	$("#BotonCuentaCorriente").on('click', cambioCuenta)
-    document.getElementById("ingresoImporte").addEventListener("keypress", function(event){
     $(".num").keypress(function(event) {
         if(event.charCode < 48 || event.charCode > 57){
             event.preventDefault();
