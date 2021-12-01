@@ -186,3 +186,12 @@
     #botonInvertir{
         text-align: center;
     }
+
+.botonInsertar{
+    right: 5%;
+    margin-top: 40px;
+    top: 300px;
+    width: 30%;
+    min-width: 130px;
+    margin-left: 50px;
+}
