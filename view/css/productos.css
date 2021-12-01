@@ -132,6 +132,7 @@ nav{
 /*Dentro del carrousel*/
 .carrouselImg{
     height: 300px;
+    width: auto;
 }
 
 .carousel-control-prev-icon {
@@ -143,7 +144,7 @@ nav{
 }
 
 .modal-dialog{
-    min-width: 50%;
+    max-width: 50%;
 }
 
 /*Barra de busqueda*/
