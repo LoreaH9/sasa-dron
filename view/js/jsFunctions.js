@@ -13,8 +13,11 @@ function sessionVarsView() {
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
-            $('#nomUsu').removeAttr('data-bs-target');
+            $('#nomUsu').attr('data-bs-target', '#userModal');
             $("#nomUsu").text(result.usuario.nombre);
+            
+            $('#nameUser').val(result.usuario.nombre);
+            $('#emailUser').val(result.usuario.email)
 
             if (result.usuario.admin == 1) {
                 $("#btnBanca").css('display', 'block');
@@ -61,8 +64,11 @@ function login() {
                 $("#ddReg").css('display', 'none');
                 $("#ddLo").css('display', 'block');
                 $('#login').modal('toggle');
-                $('#nomUsu').removeAttr('data-bs-target');
+                $('#nomUsu').attr('data-bs-target', '#userModal');
                 $("#nomUsu").text(result.usuario.nombre);
+
+                $('#nameUser').val(result.usuario.nombre);
+                $('#emailUser').val(result.usuario.email)
 
                 if (result.usuario.admin == 1) {
                     $("#btnBanca").css('display', 'block');
@@ -108,6 +114,22 @@ function register() {
     }
 }
 
+
+function delUser() {
+    var url = "controller/cUsuarioDelete.php";
+    if(confirm("¿Estás seguro de que quieres eliminar esta cuenta?")) {
+    
+    fetch(url, {
+        method: 'POST',
+        headers: { 'Cotent-Type': 'application/json' }
+    }).then(res => res.json()).then(result => {
+        console.log(result)
+        if(result.error==true){
+            $('#userModal').modal('toggle');
+            loginModal();
+        }
+    })}
+}
 //Muestra las caracteristicas que tiene que tener la contraseña
 function show() {
     $('#passwordHelpBlock').css('display', 'block')
@@ -174,9 +196,34 @@ function validateEmail(e) {
 function forgotPassword() {
     alert("Por favor relajese, dese un paseo e intente recordar su contraseña :)");
 }
+function loginModal(){
+      var url = "controller/cLogout.php";
+    fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json()).then(result => {
+        console.log(result);
+        if (result.error == "no error") {
+            $("#errorLogin").text("");
+            $("#btnBanca").css('display', 'none');
+            $("#ddLg").css('display', 'block');
+            $("#ddReg").css('display', 'block');
+            $("#ddLo").css('display', 'none');
+            $("#nomUsu").text("Login");
+            $('#nomUsu').attr('data-bs-target', '#login');
+            $("#email").val("");
+            $("#contrasenia").val("");
+            $('#userModal').modal('toggle');
 
+        }
+        if(!window.location.href.includes("index.html")){
+            window.location.href = "index.html";
+        }
+    })
+}
 //LOGOUT
 function logout() {
+    
     var url = "controller/cLogout.php";
     fetch(url, {
         method: 'GET',
@@ -198,4 +245,32 @@ function logout() {
             window.location.href = "index.html";
         }
     })
+}
+
+function updateUsername(){
+    var nombre = $("#nameUser").val();
+    console.log(nombre)
+    if (nombre!=""){
+    var data = {'nombre': nombre}
+
+    var url = "controller/cUsuarioUpdate.php";
+    fetch(url, {
+        method: 'POST',
+        body:JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json()).then(result => {
+        console.log(result.usuario.nombre);
+        if(result.usuario!=null){
+            $("#nomUsu").text(result.usuario.nombre);
+            $("#nameUser").attr('disabled', true);
+        }
+    })}else{
+        $("#userError").text("Escribe un nombre por favor")
+    }
+}
+
+function changeUsername(){
+    console.log("aaaa");
+    $("#nameUser").removeAttr('disabled');
+
 }

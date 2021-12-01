@@ -16,6 +16,7 @@ if ($email!=null){
     if ($usuario->findUser()){
         session_start();
         $_SESSION['usuario']=$usuario;
+        $_SESSION['id']=$usuario->id;
         $_SESSION['nombre']=$usuario->nombre;
         $response['error']="no error";
     }else{

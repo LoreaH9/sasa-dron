@@ -25,7 +25,7 @@ class usuarioModel extends usuarioClass {
         $email=$this->email;
         $password=$this->contrasenia;
 
-        $sql= "SELECT * FROM usuario WHERE email='$email'";
+        $sql= "SELECT * FROM usuario WHERE email='$email' and eliminado=0";
         $result= $this->link->query($sql);
 
         $exist=false;
@@ -51,7 +51,7 @@ class usuarioModel extends usuarioClass {
         $id=$this->id;
         $delete=false;
 
-        $sql = "UPDATE usuario SET eliminado = 1 WHERE id=$id";
+        $sql = "UPDATE usuario SET eliminado = 1 WHERE id=$id and eliminado=0";
         $result=$this->link->query($sql);
 
         if($result){
@@ -86,5 +86,16 @@ class usuarioModel extends usuarioClass {
         $this->CloseConnect();
     }
 
+    public function updateUsername(){
+        $this->OpenConnect();
+
+        $id=$this->id;
+        $nombre=$this->nombre;
+
+        $sql="update usuario set nombre='$nombre' WHERE id=$id";
+        $this->link->query($sql);
+        
+        $this->CloseConnect();
+    }
  
 }
