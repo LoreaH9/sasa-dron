@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="view/css/style.css">
     <link rel="stylesheet" href="view/css/productos.css">
 
     <link rel="icon" href="view/images/icon.png">
@@ -18,55 +17,40 @@
 <body>
     <div id="navbar"></div>
 
-    <div class="row" style="height: 100px;">
-        <div class="col col-lg-2 col-md-12 col-sm-12 g-info bg-white">
-            <div class="row">
-
-                <!--BUSQUEDA-->
-                <div class="col col-12 busqueda m-4 ">
-                    <div class="barraBusqueda w-100">
-                        <div class="form-outline">
-                            <input type="text" id="input" class="form-control" placeholder="Buscar un producto..."/>
-                        </div>
-                    </div>
-                </div>
-                <!--FIN BUSQUEDA-->
-
-                <!--ORDEN-->
-                <div class="orden col col-12  w-100">
-                    <div class="row">
-                    <div id="ordenField" class="dropdown col-12 ">
-                        <fieldset>
-                            <!-- <label for="">Ordenar por</label> -->
-                            <select id="orden" class=" ordenMenu form-select" onchange="ordenar()" autocomplete="off">
-                                <option class="ordenItem" href="#" disabled selected>Ordenar por</option>
-                                <option class="ordenItem" value="nombre" href="#">Nombre</option>
-                                <option class="ordenItem" value="precio" href="#">Precio</option>
-                            </select>
-                        </fieldset>
-                    </div>
-                    <a id="botonInvertir" href="#!" onclick="invertirOrden()" class="col-12 mx-1">Invertir orden 
-                        ▲</a>
-                    </div>
-                    <!--El ! en href sirve para que no haga scroll hacia arriba al pulsar el enlace-->
-
-                </div>
-                <!--FIN ORDEN-->
+    <div class="row  align-items-center">
+        <!--ORDEN-->
+        <div class="col orden d-flex p-0 m-2 p-3">
+            <div id="ordenField col" class="dropdown w-50">
+                <fieldset>
+                    <!-- <label for="">Ordenar por</label> -->
+                    <select id="orden" class=" ordenMenu form-select" onchange="ordenar()" autocomplete="off">
+                        <option class="ordenItem" href="#" disabled selected>Ordenar por</option>
+                        <option class="ordenItem" value="nombre" href="#">Nombre</option>
+                        <option class="ordenItem" value="precio" href="#">Precio</option>
+                    </select>
+                </fieldset>
 
             </div>
-            <div class="botonInsertar text-center m-4">
-                <button id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#modalInsert">Añadir
-                    producto +</button>
+            <button id="botonInvertir" href="#!" onclick="invertirOrden()" class="mx-1 col btn">Invertir orden
+                ▲</button>
+            <!--El ! en href sirve para que no haga scroll hacia arriba al pulsar el enlace-->
+
+        </div>
+        <!--FIN ORDEN-->
+        <div class="col  input-group m-4 bg-white w-25">
+            <div class="form-outline">
+                <input type="text" id="input" type="search" id="form1" class="form-control" placeholder="Buscar..." />
             </div>
         </div>
-
-    
-        <!-- Cards -->
-        <div class="col col-lg-10 col-md-12 col-sm-12 m-0 p-0">
-            <div id="cardGroup" class="row align-items-center align-content-center justify-content-center bg-light "></div>
+        <div class="botonInsertar text-center m-4 col">
+            <button id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInsert">Añadir
+                producto +</button>
         </div>
     </div>
+
+    <!-- Cards -->
+    <div id="cardGroup" class="row"></div>
+
 
 
 
