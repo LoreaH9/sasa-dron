@@ -10,7 +10,8 @@ function sessionVarsView() {
 
         if (result.error == "no error") {
             $("#btnProductos").css('display', 'block');
-
+            $("#btnEditar").css('display', 'none');
+            $("#btnInsertar").css('display', 'none');
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
