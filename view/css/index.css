@@ -1,13 +1,14 @@
-#btnBanca{
-    display: none;
-}
-#passwordHelpBlock{
+#btnBanca {
     display: none;
 }
 
-nav{
+#passwordHelpBlock {
+    display: none;
+}
+
+nav {
     background-image: url(../images/bg.jpg);
-    background-position:center;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -15,13 +16,43 @@ nav{
 .valid {
     color: green;
 }
+
 .valid:before {
     position: relative;
     content: "✔";
 }
+
 .invalid {
     color: red;
 }
+
+.nuevosModelos span {
+    color: #262626;
+    overflow: hidden;   
+    border-right: .10em solid #FF8D8D;
+    white-space: nowrap;   
+    margin: 0 auto;   
+    letter-spacing: .4rem;   
+    font-size: 20px;
+    animation: demo-typewriter 3s steps(30, end), demo-cursor 1s step-end infinite;
+  }
+  @keyframes demo-typewriter {
+    from { 
+      width: 0;
+    }
+    to { 
+      width: 100%;
+    }
+  }
+  
+  @keyframes demo-cursor {
+    from, to { 
+      border-color: transparent; 
+  }
+    50% { 
+  border-color: #FF8D8D; 
+    }
+  }
 .parallax {
     height: 50%;
     background-attachment: fixed;
@@ -37,35 +68,52 @@ nav{
     align-items: center;
     background-image: url("https://www.oneair.es/wp-content/uploads/2019/11/nueva-ley-de-drones-usa-faa.jpg");
 }
-.parallax h1, h4{
+
+.paraCont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+    height: 20rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
     font-family: text;
-    padding: 5px;
-    background-color: rgba(255, 255, 255, 0.599);
+    font-family: text;
 }
-.parallax a:hover{
-   color: white;
+
+.parallax a:hover {
+    display: block;
+    color: white;
 }
+
 .invalid:before {
     position: relative;
     content: "✖";
 }
+
 .card-img-top {
     height: 15vw;
-    object-fit:cover;
+    object-fit: cover;
 }
-.carousel-img{
-    height:650px;
-    background-position: center; 
-    background-size: cover; 
+
+.carousel-img {
+    height: 650px;
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
 }
-.bg-light2{
+
+.bg-light2 {
     background-color: rgba(238, 238, 238, 0.493);
 }
-.pd{
+
+.pd {
     font-family: text;
     background-color: rgba(255, 255, 255, 0.247);
 }
-.modal-footer{
+
+.modal-footer {
     justify-content: space-between;
 }

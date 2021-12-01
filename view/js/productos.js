@@ -5,7 +5,19 @@ var cards, card = "";
 $(document).ready(getArticulos)
 
 //functions
-
+var swiper = new Swiper('.blog-slider', {
+      spaceBetween: 30,
+      effect: 'fade',
+      loop: true,
+      mousewheel: {
+        invert: false,
+      },
+      // autoHeight: true,
+      pagination: {
+        el: '.blog-slider__pagination',
+        clickable: true,
+      }
+    });
 function getArticulos(){
 	ordenInvertido = false;
 
@@ -21,6 +33,7 @@ function getArticulos(){
 function loadData(i) {
 	$("#modalProducto .modalTitulo").html(cards[i].nombre);
 	$("#modalProducto .modalImg1").attr('src', cards[i].img1);
+
 	if (cards[i].img2 != null) {
 		$("#modalProducto .modalImg2").attr('src', cards[i].img2);
 	}
@@ -70,11 +83,12 @@ function buscar() {
 			} else {
 				descripcion = cards[i].descripcion;
 			}
-			card += '<div id="' + cards[i].id + '" class="row row-cols-2 card-productos col-lg-5 col-md-11 col-sm-11 col-8 select" onclick="loadData(' + i + ')">' +
-				'<a><img src="' + cards[i].img1 + '" class="cardImg col-3" > </a>' +
-				'<div class="card-body col-5">' +
-				'<h4 class="card-title nombreProducto">' + cards[i].nombre + '</h4>' +
-				'<p class="card-text descripcionProducto col-12">' +
+			card += '<div id="' + cards[i].id + '" class="my-5 margina card-productos select" onclick="loadData(' + i + ')">' +
+				'<div class="card-content">'+
+				'<img src="' + cards[i].img1 + '" class="card-img">'+
+				'<div class="card-cont">' +
+				'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
+				'<p class="descripcionProducto">' +
 				descripcion +
 				'</p>' +
 				'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
@@ -88,6 +102,9 @@ function buscar() {
 				'Borrar' +
 				'</button>' +
 				'</div>' +
+				'</div>' +
+				'</div>' +
+
 				'</div>';
 		}
 
