@@ -3,10 +3,12 @@ $(document).ready(init);
 function init() {
     option();
     hideAllTables();
-	tableMovimientosList();
+	tableMovimientosList(1);
     $("#tableMovimientosCuentaCredito").show();
 	$("#BotonRecargar").show();
 	$("#BotonRecargar").on('click', reloadPage);
+	$("#BotonCuentaCorriente").show();
+	$("#BotonCuentaCorriente").on('click', cambioCuenta)
     document.getElementById("ingresoImporte").addEventListener("keypress", function(event){
         if(event.charCode < 48 || event.charCode > 57){
            event.preventDefault();
@@ -47,6 +49,8 @@ function hideAllTables() {
     $("#cmbCuentasCorriente").hide();
     $("#cmbCuentasCredito").hide();
 	$("#BotonRecargar").hide();
+	$("#BotonCuentaCredito").hide();
+	$("#BotonCuentaCorriente").hide();
 }
 
 function showOption(event) {
@@ -55,11 +59,11 @@ function showOption(event) {
     $("#table"+event.currentTarget.id+"").show();
 	if(event.currentTarget.id == "MovimientosCuentaCredito"){
 		$("#BotonRecargar").show();
+		$("#BotonCuentaCorriente").show();
 	}
 
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
-	console.log("Boton clicado: " + event.currentTarget.id);
 	$("#botonIngreso").on('click', ingreso);
     //$("#botonTranferencia").on('click', transferencia);
     showCuentasCorrientes();
@@ -68,11 +72,25 @@ function showOption(event) {
     $("#radioCredito").prop("checked", false);
 }
 function reloadPage(){
-	console.log("RECARGAR");
 	window.location.reload();
 }
-function tableMovimientosList(){
-	console.log("Llega a movList");
+function cambioCuenta(event){
+	if(event.currentTarget.id == "BotonCuentaCorriente"){
+		$("#BotonCuentaCredito").show();
+		$("#BotonCuentaCredito").on('click', cambioCuenta)
+		$("#tableMovimientosCuentaCredito").hide();
+		$("#tableMovimientosCuentaCorriente").show();
+		tableMovimientosList(2);
+	} else {
+		$("#BotonCuentaCorriente").show();
+		$("#tableMovimientosCuentaCorriente").hide();
+		$("#tableMovimientosCuentaCredito").show();
+	}
+	$("#"+event.currentTarget.id).hide();
+}
+
+function tableMovimientosList(cuenta){
+	//1 = Cuenta credito, 2 = Cuenta corriente
 	var url ="controller/cMovimientos.php";
 	fetch(url, {
 	  method: 'POST', // or 'POST'
@@ -92,9 +110,17 @@ function tableMovimientosList(){
 		const fechaValorFormateada = new Array();
 		mes = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
-		console.log(movimientos);
 		var newRow = "";
+		idCuentas=[];
+		
 		for(let k=0; k<movimientos.length; k++){
+			if(cuenta == 1){
+				idCuentas[k] = movimientos[k].idCredito;
+			}else{
+				idCuentas[k] = movimientos[k].idCorriente;
+			}
+			if(idCuentas[k] == null){continue}
+
 			//Sustituye el numero del mes por su nombre
 			fechaFormateada[k] = movimientos[k].fecha.split("-");
 			fechaFormateada[k][1] = mes[(fechaFormateada[k][1])-1];
@@ -117,24 +143,15 @@ function tableMovimientosList(){
 //		}
 
 		if(movimientos[k].importe.includes("-")){ 			//Se resta saldo
-			console.log(movimientos[k].id + ": Se resta saldo");
-		
 			movimientos[k].deudor = movimientos[k].importe;
 			movimientos[k].acreedor = "";
 			movimientos[k].movDeudor = movimientos[k].saldo+"x"+movimientos[k].dias
 			movimientos[k].movAcreedor = "";
 		} else if (!movimientos[k].importe.includes("-")){	//Se suma saldo
-			console.log(movimientos[k].id + ": Se suma saldo");
-		
 			movimientos[k].acreedor = movimientos[k].importe;
 			movimientos[k].deudor = "";
 			movimientos[k].movAcreedor = movimientos[k].saldo+"x"+movimientos[k].dias
 			movimientos[k].movDeudor = "";
-		} else { 											//Se mantiene saldo
-			console.log(movimientos[k].id + ": Se mantiene saldo");
-		
-			movimientos[k].acreedor = "";
-			movimientos[k].deudor = "";
 		}
 		
 		if (parseInt(movimientos[k].saldo) < -40000){
@@ -166,10 +183,15 @@ function tableMovimientosList(){
 							+"<td "+colorSaldo+">"+movimientos[k].resto+"</td>"//gaineratikoa, si el saldo es negativo, por cuanto
 						+"</tr>"
 		}
-			console.log(fechaFormateada);
-		$("#tableMovCreBody").html(newRow);
+			console.log("Tipos de movimientos ", idCuentas);
+			if(cuenta == 1){
+				$("#tableMovCreBody").html(newRow);
+			} else {
+				$("#tableMovCorBody").html(newRow);
+			}
 	}).catch(error => console.error('Error status:', error));
 } 
+
 function ingreso() {
     var importe = $("#ingresoImporte").val();
 	var cuenta = $("#cmbCuentas").val();

@@ -1,5 +1,10 @@
 <?php
-include_once "connectData.php";
+if ($_SERVER['SERVER_NAME']== "bi.zerbitzaria.net") {
+    include_once ("connectDataServ.php");
+}
+else {
+    include_once ("connectData.php");
+}
 include_once "cuentaCorrienteClass.php";
 
 class cuentaCorrienteModel extends cuentaCorrienteClass{

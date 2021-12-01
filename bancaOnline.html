@@ -38,9 +38,11 @@
                         class="fa fa-sign-out"></i> </button></a>-->
     </div>
     <div class="w-75 ">
+      <button id="BotonRecargar" type="button" class="btn btn-primary btn-lg raised"> Actualizar</button>
 
       <!--Tabla movimientos cuenta corriente-->
       <table id="tableMovimientosCuentaCorriente" class="table ">
+        <button id="BotonCuentaCredito" type="button" class="btn btn-primary btn-lg raised"> Cambiar a cuenta de credito</button>
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -53,10 +55,10 @@
             <th scope="col">Egun kop</th>
             <th scope="col">Zorduna</th>
             <th scope="col">Hartzekoduna</th>
-
+            <th scope="col">Gaineratikoa</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tableMovCorBody">
           <tr class="table-danger">
             <th scope="row">1</th>
             <td>01/10</td>
@@ -68,6 +70,7 @@
             <td>41</td>
             <td>41</td>
             <td>41</td>
+            <td>41</td>
 
           </tr>
         </tbody>
@@ -75,7 +78,7 @@
 
       <!--Tabla movimientos cuenta credito-->
       <table id="tableMovimientosCuentaCredito" class="table">
-        <button id="BotonRecargar" type="button" class="btn btn-primary btn-lg raised opcion"> Actualizar</button>
+        <button id="BotonCuentaCorriente" type="button" class="btn btn-primary btn-lg raised"> Cambiar a cuenta corriente</button>
         <thead>
           <tr>
             <th scope="col">#</th>
