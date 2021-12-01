@@ -11,6 +11,10 @@
     font-family: text;
     src: url(../fonts/Champagne\ &\ Limousines.ttf);
 }
+/*Navbar*/
+.bg-light2{
+    background-color: rgba(238, 238, 238, 0.493);
+}
 
 nav {
     background-image: url(../images/bg.jpg);

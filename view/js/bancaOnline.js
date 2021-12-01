@@ -5,8 +5,12 @@ var a;
 function init() {
     option();
     hideAllTables();
-	tableMovimientosList();
+	tableMovimientosList(1);
     $("#tableMovimientosCuentaCredito").show();
+	$("#BotonRecargar").show();
+	$("#BotonRecargar").on('click', reloadPage);
+	$("#BotonCuentaCorriente").show();
+	$("#BotonCuentaCorriente").on('click', cambioCuenta)
     $(".num").keypress(function(event) {
         if(event.charCode < 48 || event.charCode > 57){
             event.preventDefault();
@@ -71,6 +75,9 @@ function hideAllTables() {
     $("#tableTransferencia").hide();
     $("#cmbCuentasCorriente").hide();
     $("#cmbCuentasCredito").hide();
+	$("#BotonRecargar").hide();
+	$("#BotonCuentaCredito").hide();
+	$("#BotonCuentaCorriente").hide();
     $("#cmbCuentasCorriente2").hide();
     $("#cmbCuentasCredito2").hide();
     $("#transOtraCuenta").hide();
@@ -82,6 +89,11 @@ function showOption(event) {
     preventClick(event);
     hideAllTables();
     $("#table"+event.currentTarget.id+"").show();
+	if(event.currentTarget.id == "MovimientosCuentaCredito"){
+		$("#BotonRecargar").show();
+		$("#BotonCuentaCorriente").show();
+	}
+
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
     $("#botonIngreso").on('click', ingreso);
@@ -93,9 +105,26 @@ function showOption(event) {
     $("#radioMiCuenta").prop("checked", false);
     $("#radioOtraCuenta").prop("checked", false);
 }
+function reloadPage(){
+	window.location.reload();
+}
+function cambioCuenta(event){
+	if(event.currentTarget.id == "BotonCuentaCorriente"){
+		$("#BotonCuentaCredito").show();
+		$("#BotonCuentaCredito").on('click', cambioCuenta)
+		$("#tableMovimientosCuentaCredito").hide();
+		$("#tableMovimientosCuentaCorriente").show();
+		tableMovimientosList(2);
+	} else {
+		$("#BotonCuentaCorriente").show();
+		$("#tableMovimientosCuentaCorriente").hide();
+		$("#tableMovimientosCuentaCredito").show();
+	}
+	$("#"+event.currentTarget.id).hide();
+}
 
-function tableMovimientosList(){
-	console.log("Llega a movList");
+function tableMovimientosList(cuenta){
+	//1 = Cuenta credito, 2 = Cuenta corriente
 	var url ="controller/cMovimientos.php";
 	fetch(url, {
 	  method: 'POST', // or 'POST'
@@ -115,9 +144,17 @@ function tableMovimientosList(){
 		const fechaValorFormateada = new Array();
 		mes = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
-		console.log(movimientos);
 		var newRow = "";
+		idCuentas=[];
+		
 		for(let k=0; k<movimientos.length; k++){
+			if(cuenta == 1){
+				idCuentas[k] = movimientos[k].idCredito;
+			}else{
+				idCuentas[k] = movimientos[k].idCorriente;
+			}
+			if(idCuentas[k] == null){continue}
+
 			//Sustituye el numero del mes por su nombre
 			fechaFormateada[k] = movimientos[k].fecha.split("-");
 			fechaFormateada[k][1] = mes[(fechaFormateada[k][1])-1];
@@ -138,53 +175,17 @@ function tableMovimientosList(){
 //			movimientos[k].deudor = "";
 //			movimientos[k].acreedor = "";
 //		}
-function transferencia() {
-    var importe = $("#tranferenciaImporte").val();
-	var corriente = $("#cmbCuentasCorriente").val();
-    var credito = $("#cmbCuentasCredito").val();
-	var concepto = $("#tranferenciaConcepto").val();
-    var corriente2 = $("#cmbCuentasCorriente2").val();
-    var credito2 = $("#cmbCuentasCredito2").val();
-
-	var url = "controller/cTransferencia.php";
-	
-	var data = {'importe': importe, 'cCorriente': corriente, 
-    'cCredito': credito, 'concepto': concepto,
-    'cCorriente2': corriente2, 'cCredito2': credito2, 
-    'desde': desde, 'a': a};
-
-	fetch(url, {
-	  method: 'POST', 
-	  body: JSON.stringify(data),
-	  headers:{'Content-Type': 'application/json'}
-	  })
-	  
-	.then(res => res.json()).then(result => {
-			console.log(result.error);
-			alert(result.error);
-	})
-	.catch(error => console.error('Error status:', error));
-}
 
 		if(movimientos[k].importe.includes("-")){ 			//Se resta saldo
-			console.log(movimientos[k].id + ": Se resta saldo");
-		
 			movimientos[k].deudor = movimientos[k].importe;
 			movimientos[k].acreedor = "";
 			movimientos[k].movDeudor = movimientos[k].saldo+"x"+movimientos[k].dias
 			movimientos[k].movAcreedor = "";
 		} else if (!movimientos[k].importe.includes("-")){	//Se suma saldo
-			console.log(movimientos[k].id + ": Se suma saldo");
-		
 			movimientos[k].acreedor = movimientos[k].importe;
 			movimientos[k].deudor = "";
 			movimientos[k].movAcreedor = movimientos[k].saldo+"x"+movimientos[k].dias
 			movimientos[k].movDeudor = "";
-		} else { 											//Se mantiene saldo
-			console.log(movimientos[k].id + ": Se mantiene saldo");
-		
-			movimientos[k].acreedor = "";
-			movimientos[k].deudor = "";
 		}
 		
 		if (parseInt(movimientos[k].saldo) < -40000){
@@ -216,10 +217,41 @@ function transferencia() {
 							+"<td "+colorSaldo+">"+movimientos[k].resto+"</td>"//gaineratikoa, si el saldo es negativo, por cuanto
 						+"</tr>"
 		}
-			console.log(fechaFormateada);
-		$("#tableMovCreBody").html(newRow);
+			console.log("Tipos de movimientos ", idCuentas);
+			if(cuenta == 1){
+				$("#tableMovCreBody").html(newRow);
+			} else {
+				$("#tableMovCorBody").html(newRow);
+			}
 	}).catch(error => console.error('Error status:', error));
 } 
+function transferencia() {
+    var importe = $("#tranferenciaImporte").val();
+	var corriente = $("#cmbCuentasCorriente").val();
+    var credito = $("#cmbCuentasCredito").val();
+	var concepto = $("#tranferenciaConcepto").val();
+    var corriente2 = $("#cmbCuentasCorriente2").val();
+    var credito2 = $("#cmbCuentasCredito2").val();
+
+	var url = "controller/cTransferencia.php";
+	
+	var data = {'importe': importe, 'cCorriente': corriente, 
+    'cCredito': credito, 'concepto': concepto,
+    'cCorriente2': corriente2, 'cCredito2': credito2, 
+    'desde': desde, 'a': a};
+
+	fetch(url, {
+	  method: 'POST', 
+	  body: JSON.stringify(data),
+	  headers:{'Content-Type': 'application/json'}
+	  })
+	  
+	.then(res => res.json()).then(result => {
+			console.log(result.error);
+			alert(result.error);
+	})
+	.catch(error => console.error('Error status:', error));
+}
 
 function ingreso() {
     var importe = $("#ingresoImporte").val();
