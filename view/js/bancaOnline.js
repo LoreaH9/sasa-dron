@@ -1,22 +1,49 @@
 $(document).ready(init);
+var desde;
+var a;
 
 function init() {
     option();
     hideAllTables();
     $("#tableMovimientosCuentaCredito").show();
-    document.getElementById("ingresoImporte").addEventListener("keypress", function(event){
+    $(".num").keypress(function(event) {
         if(event.charCode < 48 || event.charCode > 57){
-           event.preventDefault();
+            event.preventDefault();
         }
     });
 
     $('#radioCorriente').click(function() {
+        $("select").hide();
         $("#cmbCuentasCorriente").show();
-        $("#cmbCuentasCredito").hide();
+
+        desde = 1;
     });
     $('#radioCredito').click(function() {
+        $("select").hide();
         $("#cmbCuentasCredito").show();
-        $("#cmbCuentasCorriente").hide();
+
+        desde = 2;
+    });
+    $('#radioMiCuenta').click(function() {
+        if(desde == 2){
+            $("#cmbCuentasCorriente2").show();
+            $("#cmbCuentasCredito2").hide();
+            $("#transOtraCuenta").hide();
+        }
+        else{
+            $("#cmbCuentasCredito2").show();
+            $("#cmbCuentasCorriente2").hide();
+            $("#transOtraCuenta").hide();
+        }
+
+        a = 1;
+    });
+    $('#radioOtraCuenta').click(function() {
+        $("#transOtraCuenta").show();
+        $("#cmbCuentasCredito2").hide();
+        $("#cmbCuentasCorriente2").hide();
+
+        a = 2;
     });
 }
 
@@ -41,23 +68,56 @@ function hideAllTables() {
     $("#tableTransferencia").hide();
     $("#cmbCuentasCorriente").hide();
     $("#cmbCuentasCredito").hide();
+    $("#cmbCuentasCorriente2").hide();
+    $("#cmbCuentasCredito2").hide();
+    $("#transOtraCuenta").hide();
 }
 
 function showOption(event) {
+    desde = null;
+    a = null;
     preventClick(event);
     hideAllTables();
     $("#table"+event.currentTarget.id+"").show();
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
     $("#botonIngreso").on('click', ingreso);
-    $("#botonTranferencia").on('click', transferencia);
+    $("#botonTransferencia").on('click', transferencia);
     showCuentasCorrientes();
     showCuentasCredito();
     $("#radioCorriente").prop("checked", false);
     $("#radioCredito").prop("checked", false);
+    $("#radioMiCuenta").prop("checked", false);
+    $("#radioOtraCuenta").prop("checked", false);
 }
 
+function transferencia() {
+    var importe = $("#tranferenciaImporte").val();
+	var corriente = $("#cmbCuentasCorriente").val();
+    var credito = $("#cmbCuentasCredito").val();
+	var concepto = $("#tranferenciaConcepto").val();
+    var corriente2 = $("#cmbCuentasCorriente2").val();
+    var credito2 = $("#cmbCuentasCredito2").val();
 
+	var url = "controller/cTransferencia.php";
+	
+	var data = {'importe': importe, 'cCorriente': corriente, 
+    'cCredito': credito, 'concepto': concepto,
+    'cCorriente2': corriente2, 'cCredito2': credito2, 
+    'desde': desde, 'a': a};
+
+	fetch(url, {
+	  method: 'POST', 
+	  body: JSON.stringify(data),
+	  headers:{'Content-Type': 'application/json'}
+	  })
+	  
+	.then(res => res.json()).then(result => {
+			console.log(result.error);
+			alert(result.error);
+	})
+	.catch(error => console.error('Error status:', error));
+}
 
 function ingreso() {
     var importe = $("#ingresoImporte").val();
@@ -81,6 +141,7 @@ function ingreso() {
 	.catch(error => console.error('Error status:', error));
 }
 
+
 function showCuentasCredito() {
     var url = "controller/cCredito.php";
 
@@ -91,13 +152,14 @@ function showCuentasCredito() {
 		console.log(result.list);
 		
 		var cuentasCredito = result.list;
-		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+		var newRow = "";
    		
    		for(let i = 0; i < cuentasCredito.length; i++) {
-			newRow += "<option value='" + cuentasCredito[i].id + "'>" + cuentasCredito[i].id + "</option>";
+			newRow += "<option value='" + cuentasCredito[i].id + "'>Cuenta credito " + cuentasCredito[i].id + "</option>";
 		}
 		 
-		document.getElementById("cmbCuentasCredito").innerHTML = newRow;  
+		document.getElementById("cmbCuentasCredito").innerHTML = newRow;
+        document.getElementById("cmbCuentasCredito2").innerHTML = newRow; 
 	})
 	.catch(error => console.error('Error status:', error));	
 }
@@ -112,14 +174,15 @@ function showCuentasCorrientes() {
 		console.log(result.list);
 		
 		var cuentasCorrientes = result.list;
-		var newRow = "<option value='0'>Seleccione una cuenta...</option>";
+		var newRow = "";
    		
    		for(let i = 0; i < cuentasCorrientes.length; i++) {
-			newRow += "<option value='" + cuentasCorrientes[i].id + "'>" + cuentasCorrientes[i].id + "</option>";
+			newRow += "<option value='" + cuentasCorrientes[i].id + "'>Cuenta corriente " + cuentasCorrientes[i].id + "</option>";
 		}
 		 
 		document.getElementById("cmbCuentas").innerHTML = newRow;
-        document.getElementById("cmbCuentasCorriente").innerHTML = newRow;  
+        document.getElementById("cmbCuentasCorriente").innerHTML = newRow;
+        document.getElementById("cmbCuentasCorriente2").innerHTML = newRow;
 	})
 	.catch(error => console.error('Error status:', error));	
 }
