@@ -51,5 +51,35 @@ class cuentaCreditoModel extends cuentaCreditoClass{
         $this->CloseConnect();
         return $list;
     }
+
+    public function ingreso() {
+        $this->OpenConnect();
+        
+        $id = $this -> id;
+        $saldo = $this -> saldo;
+        
+        $sql ="update cuenta_credito
+             set saldo = saldo + $saldo
+             where id = $id";
+        
+        $this -> link -> query($sql);
+        
+        $this -> CloseConnect();
+    }
+
+    public function retirada() {
+        $this->OpenConnect();
+        
+        $id = $this -> id;
+        $saldo = $this -> saldo;
+        
+        $sql ="update cuenta_credito
+             set saldo = saldo - $saldo
+             where id = $id";
+        
+        $this -> link -> query($sql);
+        
+        $this -> CloseConnect();
+    }
 }
 ?>

@@ -121,7 +121,7 @@
           <form action="">
             <div class="form-group d-flex align-content-center">
               <label for="prestamoImporte"><b> Importe a financiar: </b> </label>
-              <input class="mx-2" id="prestamoImporte" placeholder="0,00" required>
+              <input class="mx-2 num" id="prestamoImporte" placeholder="0,00" required>
               <p class="m-0 p-0"> EUR</p>
             </div>
             <div class="form-group d-flex align-content-center my-2">
@@ -152,7 +152,7 @@
           <form action="">
             <div class="form-group d-flex align-content-center">
               <label for="leasingImporte"><b> Importe a financiar: </b> </label>
-              <input class="mx-2" id="leasingImporte" placeholder="0,00" required>
+              <input class="mx-2 num" id="leasingImporte" placeholder="0,00" required>
               <p class="m-0 p-0"> EUR</p>
             </div>
             <div class="form-group d-flex align-content-center my-2">
@@ -178,15 +178,17 @@
       <!--Tabla ingreso-->
       <div id="tableIngreso">
         <div class="calcularIngreso">
+          <h6 class="display-6">Ingreso</h6>
+          <hr>
           <form action="">
             <div class="form-group d-flex align-content-center">
               <label for="ingresoImporte"><b> Importe: </b> </label>
-              <input class="mx-2" id="ingresoImporte" placeholder="0,00" required>
+              <input class="mx-2 num" id="ingresoImporte" placeholder="0,00" required>
               <p class="m-0 p-0"> EUR</p>
             </div>
             <div class="form-group d-flex align-content-center my-2">
               <label for="ingresoCuenta"><b> Cuenta: </b> </label>
-              <select id='cmbCuentas'></select>
+              <select id='cmbCuentas' disabled></select>
             </div>
             <div class="form-group d-flex align-content-center">
               <label for="ingresoConcepto"><b> Concepto: </b> </label>
@@ -205,10 +207,12 @@
       <!--Movimientos que se pueden hacer por cualquiera de las cuentas-->
       <div id="tableTransferencia">
         <div class="calcularTransferencia">
+          <h6 class="display-6">Transferencia</h6>
+          <hr>
           <form action="">
             <div class="form-group d-flex align-content-center">
               <label for="tranferenciaImporte"><b> Importe: </b> </label>
-              <input class="mx-2" id="tranferenciaImporte" placeholder="0,00" required>
+              <input class="mx-2 num" id="tranferenciaImporte" placeholder="0,00" required>
               <p class="m-0 p-0"> EUR</p>
             </div>
             <div class="form-group align-content-center my-2">
@@ -220,8 +224,8 @@
               <input type="radio" id="radioCredito" name="tipo">
               <label for="radioCredito"> Credito </label>
               <br>
-              <select id='cmbCuentasCorriente'></select>
-              <select id='cmbCuentasCredito'></select>
+              <select id='cmbCuentasCorriente' disabled></select>
+              <select id='cmbCuentasCredito' disabled></select>
             </div>
             <div class="form-group d-flex align-content-center">
               <label for="tranferenciaConcepto"><b> Concepto: </b> </label>
@@ -236,11 +240,16 @@
               <input type="radio" id="radioOtraCuenta" name="tipo">
               <label for="radioOtraCuenta"> Otra cuenta internacional </label>
               <br>
-              <select id='cmbCuentasCorriente'></select>
-              <select id='cmbCuentasCredito'></select>
+              <select id='cmbCuentasCorriente2' disabled></select>
+              <select id='cmbCuentasCredito2' disabled></select>
+
+              <div id="transOtraCuenta">
+                <label for="tranOtraCuenta"> IBAN/cuenta: </label>
+                <input class="mx-2" id="tranOtraCuenta" required>
+              </div>
             </div>
             <div class="text-end">
-              <button id="botonTranferencia" type="button" class="btn btn-primary">TRANSFERIR</button>
+              <button id="botonTransferencia" type="button" class="btn btn-primary">TRANSFERIR</button>
             </div>
           </form>
         </div>
