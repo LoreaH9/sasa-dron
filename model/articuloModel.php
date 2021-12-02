@@ -62,7 +62,7 @@ class articuloModel extends articuloClass {
         $img1 = $this -> img1;
         $img2 = $this -> img2;
         $img3 = $this -> img3;
-        $descripcion = $this -> decripcion;
+        $descripcion = $this -> descripcion;
 
         $sql ="INSERT INTO articulo(nombre, precio, img1, img2, img3, descripcion) 
         VALUES ('$nombre', '$precio', '$img1', '$img2', '$img3', '$descripcion')";
@@ -88,18 +88,18 @@ class articuloModel extends articuloClass {
         $img1 = $this -> img1;
         $img2 = $this -> img2;
         $img3 = $this -> img3;
-        $descripcion = $this -> decripcion;
-                
+        $descripcion = $this -> descripcion;
+        echo $id;
         $sql ="UPDATE articulo SET nombre = '$nombre', precio = $precio, img1 = '$img1',
-            img2 = '$img2' img3 = '$img3' WHERE id = $id";
+            img2 = '$img2', img3 = '$img3', descripcion = '$descripcion' WHERE id = $id";
         
         $this -> link -> query($sql);
         
         if($this->link->affected_rows == 1) {
-            return $sql."El articulo se ha editado con EXITO.";
+            return "El articulo se ha editado con EXITO.";
         }
         else {
-            return $sql."Falla la modificacion de la pelicula";
+            return "Falla la modificacion del articulo";
         }
         
         $this -> CloseConnect();

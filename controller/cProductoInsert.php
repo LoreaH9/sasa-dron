@@ -10,7 +10,6 @@ $img2=$data['img2'];
 $img3=$data['img3'];
 $descripcion=$data['descripcion'];
 
-
 $articulo=new articuloModel();
 
 $articulo->nombre=$nombre;
@@ -21,10 +20,10 @@ $articulo->img3=$img3;
 $articulo->descripcion=$descripcion;
  
 $response=array();
-$response['error']=$articulo->insert(); //function insert en pelicula_model
+$response['error']=$articulo->insert(); 
 
 echo json_encode($response);
 
-unset ($pelicula);
+unset ($articulo);
 
 ?>
