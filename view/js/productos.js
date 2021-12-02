@@ -21,6 +21,7 @@ function getArticulos(){
 function loadData(i) {
 	$("#modalProducto .modalTitulo").html(cards[i].nombre);
 	$("#modalProducto .modalImg1").attr('src', cards[i].img1);
+
 	if (cards[i].img2 != null) {
 		$("#modalProducto .modalImg2").attr('src', cards[i].img2);
 	}
@@ -58,6 +59,7 @@ function invertirOrden() {
 }
 
 function buscar() {
+	console.log("gola")
 	var descripcion = "";
 	var found = false;
 	var respuesta = $("#input").val();
@@ -70,30 +72,34 @@ function buscar() {
 			} else {
 				descripcion = cards[i].descripcion;
 			}
-			card += '<div id="' + cards[i].id + '" class="row row-cols-2 card-productos col-lg-5 col-md-11 col-sm-11 col-8 select" onclick="loadData(' + i + ')">' +
-				'<a><img src="' + cards[i].img1 + '" class="cardImg col-3" > </a>' +
-				'<div class="card-body col-5">' +
-				'<h4 class="card-title nombreProducto">' + cards[i].nombre + '</h4>' +
-				'<p class="card-text descripcionProducto col-12">' +
+			card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
+				'<div class="card-content">'+
+				'<img src="' + cards[i].img1 + '" class="card-img">'+
+				'<div class="card-cont">' +
+				'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
+				'<p class="descripcionProducto">' +
 				descripcion +
 				'</p>' +
 				'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
 				'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
 				'Saber mas' +
 				'</button>' +
-				'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" data-bs-target="#modalEditar" onclick="modalEditar(' + cards[i] + ')">' +
+				'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" id="btnEditar" data-bs-target="#modalEditar" onclick="modalEditar(' + cards[i] + ')">' +
 				'Editar' +
 				'</button>' +
-				'<button type="button" class=" mx-1 btn btn-danger" onclick="deleteProducto(' + cards[i].id + ')">' +
+				'<button type="button" class=" mx-1 btn btn-danger" id="btnEliminar" onclick="deleteProducto(' + cards[i].id + ')">' +
 				'Borrar' +
 				'</button>' +
 				'</div>' +
+				'</div>' +
+				'</div>' +
+
 				'</div>';
 		}
 
 	}
 	if (found == false) {
-		$("#cardGroup").html("<div id='notFound'> No se han encontrado drones! ＞﹏＜ </div>");
+		$("#cardGroup").html("<div id='notFound' class='text-center d-flex display-3 p-0 my-3'> No se han encontrado drones! ＞﹏＜ </div>");
 	} else {
 		$("#cardGroup").html(card);
 	}

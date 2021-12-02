@@ -6,10 +6,12 @@ function sessionVarsView() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
-        
         $("#btnBanca").css('display', 'none');
 
         if (result.error == "no error") {
+            $("#btnProductos").css('display', 'block');
+            $("#btnEditar").css('display', 'none');
+            $("#btnInsertar").css('display', 'none');
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
@@ -21,8 +23,15 @@ function sessionVarsView() {
 
             if (result.usuario.admin == 1) {
                 $("#btnBanca").css('display', 'block');
+                $("#btnEliminar").css('display', 'block');
+                $("#btnEditar").css('display', 'block');
+                $("#btnInsertar").css('display', 'block');
+
             }
-        }
+        }else{
+            if(!window.location.href.includes("index.html")){
+                window.location.href = "index.html";
+            }        }
       
     })
 }
@@ -59,6 +68,7 @@ function login() {
 
         switch (result.error) {
             case "no error":
+                $("#btnProductos").css('display', 'block');
                 $("#errorLogin").text("");
                 $("#ddLg").css('display', 'none');
                 $("#ddReg").css('display', 'none');

@@ -30,7 +30,9 @@ nav{
   background: #515152;
   color: #ffffff;
 }
-
+.banca{
+  font-family: banca;
+}
 .btn-primary.raised {
   box-shadow: 0 3px 0 0 #515152;
 }
@@ -47,4 +49,9 @@ nav{
 .btn-primary.active {
   background: #181818;
   box-shadow: none;
+}
+
+@font-face {
+  font-family: banca;
+  src: url(../fonts/NEONLEDLight.ttf);
 }

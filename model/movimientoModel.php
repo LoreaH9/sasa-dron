@@ -1,5 +1,10 @@
 <?php
-include_once "connectData.php";
+if ($_SERVER['SERVER_NAME']== "bi.zerbitzaria.net") {
+    include_once ("connectDataServ.php");
+}
+else {
+    include_once ("connectData.php");
+}
 include_once "movimientoClass.php";
 
 class movimientoModel extends movimientoClass{
@@ -56,7 +61,6 @@ class movimientoModel extends movimientoClass{
         $idCorriente = $this -> idCorriente;
         $importe = $this -> importe;
         $concepto = $this -> concepto;
-        //$usu = $_SESSION['id'];
         $usu = 1;
         
         $sql ="INSERT INTO movimiento(fecha, fechaValor, concepto, importe, saldo, idCorriente, idUsuario)VALUES(CURDATE(), CURDATE(), '$concepto', $importe, (SELECT saldo FROM cuenta_corriente WHERE id = $idCorriente), $idCorriente, $usu)";

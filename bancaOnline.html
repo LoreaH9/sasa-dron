@@ -11,14 +11,10 @@
 </head>
 
 <body>
-  <!--NAVBAR-->
-  <div id="navbar"></div>
-  <!--FIN NAVBAR-->
-
 
   <div class="text-center">
     <div class="container-fluid">
-      <h1 class="display-2 text text-dark banca">Banca online</h1>
+      <h1 class="display-2 text text-dark banca">SasaBank</h1>
     </div>
   </div>
 
@@ -37,9 +33,47 @@
                         class="fa fa-sign-out"></i> </button></a>-->
     </div>
     <div class="w-75 ">
+      <button id="BotonRecargar" type="button" class="btn btn-primary btn-lg raised"> Actualizar</button>
+
+      <!--Tabla movimientos cuenta corriente-->
+      <table id="tableMovimientosCuentaCorriente" class="table ">
+        <button id="BotonCuentaCredito" type="button" class="btn btn-primary btn-lg raised"> Cambiar a cuenta de credito</button>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Balore data</th>
+            <th scope="col">Kontzeptua</th>
+            <th scope="col">Zorduna</th>
+            <th scope="col">Hartzekoduna</th>
+            <th scope="col">Saldo</th>
+            <th scope="col">Egun kop</th>
+            <th scope="col">Zorduna</th>
+            <th scope="col">Hartzekoduna</th>
+            <th scope="col">Gaineratikoa</th>
+          </tr>
+        </thead>
+        <tbody id="tableMovCorBody">
+          <tr class="table-danger">
+            <th scope="row">1</th>
+            <td>01/10</td>
+            <td>Sarrera</td>
+            <td>200</td>
+            <td>0</td>
+            <td>2220 H</td>
+            <td>14</td>
+            <td>41</td>
+            <td>41</td>
+            <td>41</td>
+            <td>41</td>
+
+          </tr>
+        </tbody>
+      </table>
 
       <!--Tabla movimientos cuenta credito-->
       <table id="tableMovimientosCuentaCredito" class="table">
+        <button id="BotonCuentaCorriente" type="button" class="btn btn-primary btn-lg raised"> Cambiar a cuenta corriente</button>
         <thead>
           <tr>
             <th scope="col">#</th>
