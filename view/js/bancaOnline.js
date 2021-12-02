@@ -106,6 +106,7 @@ function transferencia() {
     'cCorriente2': corriente2, 'cCredito2': credito2, 
     'desde': desde, 'a': a};
 
+    console.log(data);
 	fetch(url, {
 	  method: 'POST', 
 	  body: JSON.stringify(data),
@@ -113,7 +114,6 @@ function transferencia() {
 	  })
 	  
 	.then(res => res.json()).then(result => {
-			console.log(result.error);
 			alert(result.error);
 	})
 	.catch(error => console.error('Error status:', error));
