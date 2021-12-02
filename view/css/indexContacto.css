@@ -17,6 +17,6 @@
     background-size: cover;
 }
 
-a:hover{
+.hovBlue:hover{
     background-color: rgb(191, 191, 255);
 }
