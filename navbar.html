@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light2 p-2 ">
+<nav class="navbar fw-bold navbar-expand-lg navbar-light bg-light2 p-2 ">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOptions"
             aria-controls="navbarOptions" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <!-- Logo -->
-        <a class="navbar-brand" href="index.html">Sasa Dron</a>
+        <a class="navbar-brand " href="index.html">Sasa Dron</a>
 
         <!-- Menu opciones -->
         <div class="collapse navbar-collapse justify-content-lg-center" id="navbarOptions">
@@ -24,91 +24,155 @@
                     <a id="btnBanca" class="nav-link" href="bancaOnline.html">Banca online</a>
                 </li>
             </ul>
-
         </div>
 
-         <!-- Login/registro -->
+        <!-- Login/registro -->
         <form class="d-flex m-0 align-items-center">
             <i class="fa fa-user-circle fa-lg" role="button" data-bs-toggle="dropdown"></i>
-            <p id="nomUsu" data-bs-toggle="modal" data-bs-target="#login" class="m-1">Login</p>
+            <p id="nomUsu" data-bs-toggle="modal" data-bs-target="#login" class="m-1 text-dark">Login</p>
             <ul class="dropdown-menu dropdown-menu-end ">
-                <li><a id="ddLg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a></li>
-                <li><a id="ddReg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#register">Registrarse</a></li>
+                <li><a id="ddLg" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Iniciar sesion</a>
+                </li>
+                <li><a id="ddReg" class="dropdown-item" data-bs-toggle="modal"
+                        data-bs-target="#register">Registrarse</a></li>
                 <li><a id="ddLo" class="dropdown-item" style="display: none;" onclick="logout()">Log Out</a></li>
             </ul>
         </form>
     </div>
 </nav>
 
-    <!-- Modal Inicio sesion -->
-    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Iniciar sesion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                            <div id="email" class="form-text">Tu email esta seguro con nosotros.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contrasenia" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contrasenia">
-                        </div>
-                        <p id="errorLogin"  class="text-danger"></p>
-                    </form>
-                    <div class="modal-footer d-flex">
-                        <p>No tienes cuenta todavía? <a style="text-decoration: underline;"  type="button" data-bs-toggle="modal"
-                                data-bs-target="#register" data-bs-dismiss="modal">registrate aquí</a></p>
-                        <button onclick="login()" class="btn btn-warning float-end">Iniciar sesion</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN Modal Inicio sesion -->
+<!-- Modal Inicio sesion -->
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="view/images/signin-image.jpg" alt="sing up image"></figure>
+                    <a style="text-decoration: underline;" type="button" data-bs-toggle="modal"
+                        data-bs-target="#register" data-bs-dismiss="modal" class="signup-image-link">Create una
+                        cuenta</a>
 
-
-    <!-- Modal Registro -->
-    <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Registrarse</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nameRegister">
+                <div class="signin-form">
+                    <h2 class="form-title">Iniciar sesion</h2>
+                    <form class="register-form" id="login-form">
+                        <div class="form-group">
+                            <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="email" id="email" placeholder="Email" />
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email </label>
-                            <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp">
+                        <div class="form-group">
+                            <label for="contrasenia"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" />
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="passwordRegister1">
-                            <div id="passwordHelpBlock" class="form-text">
-                                Utiliza 8 caracteres como mínimo con una combinación de letras, números y símbolos.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Repite la contraseña</label>
-                            <input type="password" class="form-control" id="passwordRegister2">
-                        </div>
-                        <p id="errorRegister" class="text-danger"></p>
+                        <p id="errorLogin" class="text-danger"></p>
 
-                        <p>Ya tienes cuenta? <a style="text-decoration: underline;" data-bs-toggle="modal" data-bs-target="#login" data-bs-dismiss="modal">Inicia sesión.</a></p>
-                        <button type='button' onclick="register()" class="btn btn-primary">Registrarse</button>
+                        <div class="form-group form-button text-center">
+                            <input onkeyup="login()" onclick="login()" name="signin" id="signin" class="form-submit"
+                                value="Log in" />
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- FIN Modal Registro -->
+</div>
+<!-- FIN Modal Inicio sesion -->
+
+
+<!-- Modal Registro -->
+<div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Registro</h2>
+                    <form class="register-form" id="register-form">
+                        <div class="form-group">
+                            <label for="nameRegister"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="nameRegister" onkeyup="validateName(this)" id="nameRegister"
+                                placeholder="Nombre" />
+                        </div>
+                        <div class="form-group">
+                            <label for="emailRegister"><i class="zmdi zmdi-email"></i></label>
+                            <input type="email" name="emailRegister" onkeyup="validateEmail(this)" id="emailRegister"
+                                placeholder="Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="passwordRegister1" onfocus="show()" onblur="hide()"
+                                onkeyup="validatePassword(this.value)" id="passwordRegister1"
+                                placeholder="Contraseña" />
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordRegister2"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" name="passwordRegister2" id="passwordRegister2"
+                                onkeyup="validatePassword2(this.value)" placeholder="Repite la contraseña" />
+                        </div>
+                        <div id="passwordHelpBlock">
+                            <h6 class="m-0">La contraseña debe contener:</h6>
+                            <p id="letter" class="invalid m-0"> Una <b>minuscula</b></p>
+                            <p id="capital" class="invalid m-0"> Una <b>MAYUSCULA</b></p>
+                            <p id="number" class="invalid m-0"> Un <b>numero</b></p>
+                            <p id="length1" class="invalid m-0"> Minimo <b>8 caracteres</b></p>
+                        </div>
+                        <div id="errorRegister"></div>
+                        <div id="successRegister"></div>
+
+                        <div class="form-group form-button text-center">
+                            <input type='button' onkeyup="register()" onclick="register()" name="signup" id="signup"
+                                class="form-submit" value="Register" />
+                        </div>
+
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="view/images/signup-image.jpg" alt="sing up image"></figure>
+                    <a style="text-decoration: underline;" type="button" data-bs-toggle="modal" data-bs-target="#login"
+                        data-bs-dismiss="modal" class="signup-image-link">Ya soy miembro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN Modal Registro -->
+
+<!-- Modal Usuario -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Info Usuario</h2>
+                    <form class="register-form">
+                        <p id="userError"></p>
+                        <div class="form-group d-flex">
+                            <label for="nameUser"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="nameUser" id="nameUser"
+                                placeholder="Nombre"  disabled onfocusout="updateUsername()" />
+                        <p class="p-3" onclick="changeUsername()"><i class="fas fa-edit"></i></p>
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailUser"><i class="zmdi zmdi-email"></i></label>
+                            <input type="email" name="emailUser" onkeyup="validateEmail(this)" id="emailUser"
+                                placeholder="Email" disabled />
+                        </div>
+                        <div class="form-group form-button text-center">
+                            <input type='button' onclick="delUser()" name="signup"
+                                id="deleteUser" class="form-submit" value="Eliminar usuario" />
+                            <input type='button' onclick="loginModal()" name="logout" class="form-submit bg-danger"
+                                value="Log out" />
+                        </div>
+                    </form>
+
+                </div>
+                <div class="signup-image m-0 p-0">
+                    <figure><img src="view/images/signup-image.jpg" alt="sing up image"></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN Modal Usuario -->

@@ -1,3 +1,58 @@
+#btnBanca{
+    display: none;
+}
+#passwordHelpBlock{
+    display: none;
+}
+
+nav{
+    background-image: url(../images/bg.jpg);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.valid {
+    color: green;
+}
+.valid:before {
+    position: relative;
+    content: "✔";
+}
+.invalid {
+    color: red;
+}
+.parallax {
+    height: 50%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://www.oneair.es/wp-content/uploads/2019/11/nueva-ley-de-drones-usa-faa.jpg");
+}
+.parallax h1, h4{
+    font-family: text;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.599);
+}
+.parallax a:hover{
+   color: white;
+}
+.invalid:before {
+    position: relative;
+    content: "✖";
+}
+.card-img-top {
+    height: 15vw;
+    object-fit:cover;
+}
 .carousel-img{
     height:650px;
     background-position: center; 

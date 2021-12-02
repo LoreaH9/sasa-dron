@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="view/css/bancaOnline.css">
-  <link rel="stylesheet" href="view/css/style.css">
-
+  <link rel="icon" href="view/images/icon.png">
   <title>Banca Online</title>
 </head>
 
@@ -25,12 +24,10 @@
 
   <div class="container-fluid contenido d-flex">
     <div class="w-25 d-flex flex-column">
-      <button id="MovimientosCuentaCredito" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos
-        cuenta
-        credito</button>
-      <button id="MovimientosCuentaCorriente" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos
-        cuenta
-        corriente</button>
+      <button id="MovimientosCuentaCredito" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos</button>
+<!--       <button id="MovimientosCuentaCorriente" type="button" class="btn btn-primary btn-lg raised opcion">Movimientos -->
+<!--         cuenta -->
+<!--         corriente</button> -->
 
       <button id="Leasing" type="button" class="btn btn-primary btn-lg raised opcion">Leasing</button>
       <button id="Prestamos" type="button" class="btn btn-primary btn-lg raised opcion"> Prestamos</button>
@@ -59,7 +56,7 @@
 
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tableMovCreBody">
           <tr class="table-danger">
             <th scope="row">1</th>
             <td>01/10</td>

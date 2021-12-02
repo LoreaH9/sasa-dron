@@ -5,99 +5,234 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="view/css/productos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="view/css/style.css">
+    <link rel="stylesheet" href="view/css/productos.css">
 
+    <link rel="icon" href="view/images/icon.png">
     <title>Sasa dron | Productos</title>
 </head>
 
 <body>
-  <div id="navbar"></div>
+    <div id="navbar"></div>
+    <div class="row">
+        <!--BUSQUEDA-->
+        <div class="busqueda">
+            <h4 class="tituloBusqueda">Buscar Productos</h4>
+            <div class="barraBusqueda">
+                <div class="form-outline">
+                    <input type="text" id="input" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <!--FIN BUSQUEDA-->
 
+        <!--ORDEN-->
+        <div class="orden row align-content-end">
+
+            <div id="ordenField" class="dropdown col-lg-6 col-md-12 col-12">
+                <fieldset>
+                    <!-- <label for="">Ordenar por</label> -->
+                    <select id="orden" class=" ordenMenu " onchange="ordenar()" autocomplete="off">
+                        <option class="ordenItem" href="#" disabled selected>Ordenar por</option>
+                        <option class="ordenItem" value="nombre" href="#">Nombre</option>
+                        <option class="ordenItem" value="precio" href="#">Precio</option>
+                    </select>
+                </fieldset>
+            </div>
+            <a id="botonInvertir" href="#!" onclick="invertirOrden()" class="col-lg-6 col-md-12 col-12">Invertir orden
+                ▲</a>
+            <!--El ! en href sirve para que no haga scroll hacia arriba al pulsar el enlace-->
+
+        </div>
+        <!--FIN ORDEN-->
+    </div>
+    <div class="botonInsertar">
+        <button id="btnInsertar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInsert">Añadir
+            producto +</button>
+    </div>
     <!-- Cards -->
-    <div id="cardGroup" class="row row-cols-2 g-4 p-3 align-content-center"></div>
+    <div id="cardGroup" class="row align-content-center"></div>
 
     <!-- Modal productos -->
-<!--     <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true"> -->
-<!--         <div class="modal-dialog"> -->
-<!--             <div class="modal-content"> -->
-<!--                 <div class="modal-header"> -->
-<!--                     <h5 class="modal-title" id="modalTitulo">Nombre dron</h5> -->
-<!--                 </div> -->
-<!--                 <div class="modal-body"> -->
-<!--                     <img src="https://picsum.photos/1920/1080" class="col-12"> -->
+    <div class="modal fade" id="modalProducto" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        aria-labelledby="modalProductoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modalTitulo">Nombre dron</h5>
+                </div>
+                <div class="modal-body">
+                    <!--Carrusel -->
+                    <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100 carrouselImg modalImg1">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100 carrouselImg modalImg2">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100 carrouselImg modalImg3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- Fin carrusel -->
+                    <h5>Precio</h5>
+                    <div class="text-danger modalPrecio"></div>
+                    <br>
+                    <h5>Descripción</h5>
+                    <div class="modalDescripcion"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button>
 
-<!--                     Carrusel -->
-<!--                     <div id="carouselControls" class="carousel slide" data-bs-ride="carousel"> -->
-<!--                         <div class="carousel-inner"> -->
-<!--                             <div class="carousel-item active"> -->
-<!--                                 <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="..."> -->
-<!--                             </div> -->
-<!--                             <div class="carousel-item"> -->
-<!--                                 <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="..."> -->
-<!--                             </div> -->
-<!--                             <div class="carousel-item"> -->
-<!--                                 <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="..."> -->
-<!--                             </div> -->
-<!--                         </div> -->
-<!--                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" -->
-<!--                             data-bs-slide="prev"> -->
-<!--                             <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-<!--                             <span class="visually-hidden">Previous</span> -->
-<!--                         </button> -->
-<!--                         <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" -->
-<!--                             data-bs-slide="next"> -->
-<!--                             <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-<!--                             <span class="visually-hidden">Next</span> -->
-<!--                         </button> -->
-<!--                     </div> -->
-<!--                     Fin carrusel -->
-
-<!--                     <div id="modalDescripcion"> -->
-<!--                         <h5>Descripción</h5> -->
-<!--                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius asperiores quae blanditiis vel -->
-<!--                         nihil natus obcaecati illo aliquid nostrum quas? -->
-<!--                     </div> -->
-
-<!--                     <div id="modalCaracteristicas"> -->
-<!--                         <h5>Caracteristicas tecnicas</h5> -->
-<!--                         <ul id="listaCaracteristicas"> -->
-<!--                             -->
-<!--                             <li> -->
-<!--                                 <h6>Caracteristica 1: </h6> Super buena -->
-<!--                             </li> -->
-<!--                             <li> -->
-<!--                                 <h6>Caracteristica 2: </h6> Mas o menos -->
-<!--                             </li> -->
-<!--                             <li> -->
-<!--                                 <h6>Caracteristica 3: </h6> -->
-<!--                                 <ul> -->
-<!--                                     <li>Pedazo de autonomia</li> -->
-<!--                                     <li>Alcance que flipas</li> -->
-<!--                                     <li>Certificaciones de expertos</li> -->
-<!--                                 </ul> -->
-<!--                             </li> -->
-<!--                             -->
-<!--                         </ul> -->
-<!--                     </div> -->
-
-<!--                     <div id="modalNotasAdicionales"> -->
-<!--                         Solo los clientes pueden ver los precios. Si tiene interes en nuestros productos ponganse en -->
-<!--                         contacto con nosotros -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="modal-footer"> -->
-<!--                     <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button> -->
-<!--                     <div id="modalContacto"> -->
-<!--                         <img src="images/telephone-fill.svg" class="filter-blue"> 600-63-21-04 -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Fin modal productos -->
+    <!-- Modal insertar -->
+    <div class="modal fade" id="modalInsert" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        aria-labelledby="modalInsertLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Insertar articulo</h5>
+                </div>
+                <div class="modal-body">
+                    <!--Formulario-->
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3 justify-content-center">
+                            <div>
+                                <label class="form-label">Nombre del articulo*</label>
+                                <input type="text" class="form-control insertNombre" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    El nombre es obligatorio.
+                                </div>
+                            </div>
 
+                            <div>
+                                <label class="form-label">Precio del articulo*</label>
+                                <input type="number" class="form-control insertPrecio" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    El precio es obligatorio.
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Imagen 1 (URL)*</label>
+                                <input type="text" class="form-control insertImg1" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    La primera imagen es obligatoria.
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Imagen 2 (URL)</label>
+                                <input type="text" class="form-control insertImg2" placeholder="" value="">
+                            </div>
+
+                            <div>
+                                <label class="form-label">Imagen 3 (URL)</label>
+                                <input type="text" class="form-control insertImg3" placeholder="" value="">
+
+                            </div>
+
+                            <div>
+                                <label class="form-label">Descripcion</label>
+                                <input type="text" class="form-control insertDescripcion" placeholder="" value="">
+                            </div>
+                        </div>
+                        <!--Fin del formulario-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal"
+                                id="modalBotonCerrar">Cerrar</button>
+                            <button id="botonInsertar" class="col-3 btn btn-primary" type="submit">Enviar</button>
+                        </div>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Insertar -->
+    <!--Modal Editar-->
+    <div class="modal fade" id="modalEdit" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Insertar articulo</h5>
+            </div>
+            <div class="modal-body">
+                <!--Formulario-->
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3 justify-content-center">
+                        <div>
+                            <label class="form-label">Nombre del articulo*</label>
+                            <input type="text" class="form-control editNombre" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                El nombre es obligatorio.
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label">Precio del articulo*</label>
+                            <input type="number" class="form-control editPrecio" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                El precio es obligatorio.
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label">Imagen 1 (URL)*</label>
+                            <input type="text" class="form-control editImg1" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                La primera imagen es obligatoria.
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label">Imagen 2 (URL)</label>
+                            <input type="text" class="form-control editImg2" placeholder="" value="">
+                        </div>
+
+                        <div>
+                            <label class="form-label">Imagen 3 (URL)</label>
+                            <input type="text" class="form-control editImg3" placeholder="" value="">
+
+                        </div>
+
+                        <div>
+                            <label class="form-label">Descripcion</label>
+                            <input type="text" class="form-control editDescripcion" placeholder="" value="">
+                        </div>
+                    </div>
+                    <!--Fin del formulario-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal"
+                            id="modalBotonCerrar">Cerrar</button>
+                        <button id="botonEditar" class="col-3 btn btn-primary" type="submit">Enviar</button>
+                    </div>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+    <!--Fin Modal Editar-->
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -106,6 +241,7 @@
     <script src="view/js/productos.js"></script>
     <script src="view/js/insert.js"></script>
     <script src="view/js/jsFunctions.js"></script>
+    <script src="view/js/form-validation.js"></script>
 
 </body>
 

@@ -9,20 +9,20 @@
     font-family: text;
     src: url(../fonts/Champagne\ &\ Limousines.ttf);
 }
+nav{
+    background-image: url(../images/bg.jpg);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 /*Cards*/
 #cardGroup{
     justify-content: center;
-    padding-right: unset !important; 
-    padding-left: unset !important;
-    margin-right: unset !important;
-    margin-left: unset !important;
 }
 .card-productos{
     background-image: unset;
     margin: 30px;
-    padding-left: unset !important;
-    padding-right: unset !important;
     border-radius: 5px;
     border-style: solid;
     border-width: 1px;
@@ -37,9 +37,6 @@
     color: rgb(0, 0, 0);
     text-align: right;
     transition-duration: 200ms;
-}
-.cardTop{
-    position: relative;
 }
 .cardButton:hover{
     color: white;
@@ -94,9 +91,6 @@
 #modalCaracteristicas {
     color: #4e4e4e;
 }
-    #listaCaracteristicas{
-        padding-left: inherit !important;
-    }
     #modalCaracteristicas h5{
         color: #4a4c76;
     }
@@ -124,4 +118,87 @@
 
 .filter-blue{
     filter: invert(31%) sepia(10%) saturate(1835%) hue-rotate(199deg) brightness(93%) contrast(93%);
+}
+
+.select{
+    transition: 0.5s;
+}
+
+.select:hover{
+    transform:scale(1.08);
+    -ms-transform:scale(1.08);
+}
+
+/*Dentro del carrousel*/
+.carrouselImg{
+    height: 300px;
+    width: auto;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+   
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.modal-dialog{
+    max-width: 50%;
+}
+
+/*Barra de busqueda*/
+.busqueda{
+    width: 60%;
+    margin-left: 3%;
+    margin-top: 1%;
+}
+.barraBusqueda{
+    display: flex;
+}
+.tituloBusqueda{
+    color: #4a4c76;
+    font-weight: 700;
+}
+#input{
+    max-width: 400px;
+    min-width: 200px;
+}
+
+/*Orden y filtros*/
+.orden{
+    right: 5%;
+    /* margin-top: 40px; */
+    top: 300px;
+    width: 30%;
+    min-width: 130px;
+}
+    #ordenField{
+       margin-bottom: 10px;
+       text-align: center;
+    }
+    .orden a{
+        text-decoration: none;
+        color: #4a4c76;
+        padding-left: 5px;
+        padding-right: 5px;
+        transition-duration: 100ms;
+    }
+    .orden a:hover{
+        color: white;
+        background-color: #4a4c76;
+        border-radius: 5px;
+        /* font-weight: 600; */
+    }
+    #botonInvertir{
+        text-align: center;
+    }
+
+.botonInsertar{
+    right: 5%;
+    margin-top: 40px;
+    top: 300px;
+    width: 30%;
+    min-width: 130px;
+    margin-left: 50px;
 }
