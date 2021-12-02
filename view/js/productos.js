@@ -14,7 +14,6 @@ function getArticulos(){
 	})
 		.then(res => res.json()).then(result => {
 			cards = result.list;
-			console.log(cards)
 			buscar();
 		})
 }
@@ -25,7 +24,6 @@ function sessionVarsView() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
-		console.log("Session " + result.usuario.admin)
 		admin = result.usuario.admin 
 		getArticulos()
 	})
@@ -53,12 +51,10 @@ function loadData(i) {
 	$('#modalProducto .modalPrecio').html(Math.round(cards[i].precio * 100) / 100 + "€");
 	
 	for(var j = 0; j < img.length; j++){
-		console.log(img[j])
 		carrousel += '<div class="carousel-item active">' +
 		'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
 		'</div>'
 	}
-	console.log(carrousel)
 	$("#modalProducto .carousel-inner").html(carrousel)
 }
 
@@ -84,7 +80,6 @@ function invertirOrden() {
 }
 
 function buscar() {
-	console.log("gola")
 	var descripcion = "";
 	var found = false;
 	var respuesta = $("#input").val();
@@ -110,7 +105,7 @@ function buscar() {
 				'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
 				'Saber mas' +
 				'</button>' +
-				'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" id="btnEditar" data-bs-target="#modalEditar" onclick="modalEditar(' + cards[i] + ')">' +
+				'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" id="btnEditar" data-bs-target="#modalEdit" onclick="modalEditar(' + i + ')">' +
 				'Editar' +
 				'</button>' +
 				'<button type="button" class=" mx-1 btn btn-danger" id="btnEliminar" onclick="deleteProducto(' + cards[i].id + ')">' +
@@ -177,8 +172,6 @@ function deleteProducto(id) {
 		headers: { 'Content-Type': 'application/json' }
 	})
 		.then(res => res.json()).then(result => {
-			console.log("Delete done")
-			console.log(result.error);
 			alert(result.error);
 
 			getArticulos()
@@ -186,8 +179,14 @@ function deleteProducto(id) {
 		.catch(error => console.error('Error status:', error));
 }
 
-function modalEditar(card) {
-
+function modalEditar(i) {
+	$('#modalEdit .modal-title').val(cards[i].id);
+	$('#modalEdit .editNombre').val(cards[i].nombre);
+	$('#modalEdit .editPrecio').val(cards[i].precio);
+	$('#modalEdit .editImg1').val(cards[i].img1);
+	$('#modalEdit .editImg2').val(cards[i].img2);
+	$('#modalEdit .editImg3').val(cards[i].img3);
+	$('#modalEdit .editDescripcion').val(cards[i].descripcion);
 }
 
 $("#botonInsertar").on("click", function () {
@@ -203,15 +202,12 @@ $("#botonInsertar").on("click", function () {
 			"nombre": nombre, "precio": precio, "img1": img1,
 			"img2": img2, "img3": img3, "descripcion": descripcion
 		}
-
 		fetch("controller/cProductoInsert.php", {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: { 'Content-Type': 'application/json' }
 		})
 			.then(res => res.json()).then(result => {
-				console.log("Insert done")
-				console.log(result.error);
 				alert(result.error);
 				getArticulos()
 			})
@@ -220,6 +216,7 @@ $("#botonInsertar").on("click", function () {
 })
 
 $("#botonEditar").on("click", function () {
+	let id = $('#modalEdit .modal-title').val();
 	let nombre = $("#modalEdit .editNombre").val();
 	let precio = $("#modalEdit .editPrecio").val();
 	let img1 = $("#modalEdit .editImg1").val();
@@ -230,18 +227,16 @@ $("#botonEditar").on("click", function () {
 	if (nombre != "" && precio != "" && img1 != "") {
 	let data = {
 			"nombre": nombre, "precio": precio, "img1": img1,
-			"img2": img2, "img3": img3, "descripcion": descripcion
+			"img2": img2, "img3": img3, "descripcion": descripcion, "id": id
 		}
 
-		fetch("controller/cProductoInsert.php", {
+		fetch("controller/cProductoUpdate.php", {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: { 'Content-Type': 'application/json' }
 		})
 			.then(res => res.json()).then(result => {
-				console.log("Insert done")
-				console.log(result.error);
-				alert(result.error);
+				console.log(result.error)
 				getArticulos()
 			})
 			.catch(error => console.error('Error status:', error));
