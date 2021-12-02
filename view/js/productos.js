@@ -54,9 +54,15 @@ function loadData(i) {
 	
 	for(var j = 0; j < img.length; j++){
 		console.log(img[j])
-		carrousel += '<div class="carousel-item active">' +
-		'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
-		'</div>'
+		if (j==0){
+			carrousel += '<div class="carousel-item active">' +
+			'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
+			'</div>'
+		} else {
+			carrousel += '<div class="carousel-item">' +
+			'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
+			'</div>'
+		}
 	}
 	console.log(carrousel)
 	$("#modalProducto .carousel-inner").html(carrousel)
