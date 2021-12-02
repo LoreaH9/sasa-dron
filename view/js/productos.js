@@ -1,8 +1,8 @@
 //global variables
-var cards, card = "";
+var cards, card, admin = "";
 
 //DOMContentLoaded
-$(document).ready(getArticulos)
+$(document).ready(sessionVarsView)
 
 //functions
 
@@ -18,15 +18,31 @@ function getArticulos(){
 			buscar();
 		})
 }
+
+function sessionVarsView() {
+    var url = "controller/cSessionVarsView.php";
+    fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json()).then(result => {
+		console.log("Session " + result.usuario.admin)
+		admin = result.usuario.admin 
+		getArticulos()
+	})
+}
+
 function loadData(i) {
+	let img= [];
+	let carrousel = "";
 	$("#modalProducto .modalTitulo").html(cards[i].nombre);
-	$("#modalProducto .modalImg1").attr('src', cards[i].img1);
+
+	img.push(cards[i].img1);
 
 	if (cards[i].img2 != null) {
-		$("#modalProducto .modalImg2").attr('src', cards[i].img2);
+		img.push(cards[i].img2)
 	}
 	if (cards[i].img3 != null) {
-		$("#modalProducto .modalImg3").attr('src', cards[i].img3);
+		img.push(cards[i].img3)
 	}
 	if (cards[i].descripcion.length > 300) {
 		var descripcion = cards[i].descripcion.substring(0, 200) + "<a onclick='loadMore(" + i + ")'><b> Saber mas...</b></a>";
@@ -35,6 +51,15 @@ function loadData(i) {
 		$("#modalProducto .modalDescripcion").html(cards[i].descripcion);
 	}
 	$('#modalProducto .modalPrecio').html(Math.round(cards[i].precio * 100) / 100 + "€");
+	
+	for(var j = 0; j < img.length; j++){
+		console.log(img[j])
+		carrousel += '<div class="carousel-item active">' +
+		'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
+		'</div>'
+	}
+	console.log(carrousel)
+	$("#modalProducto .carousel-inner").html(carrousel)
 }
 
 function loadMore(i) {
@@ -72,7 +97,8 @@ function buscar() {
 			} else {
 				descripcion = cards[i].descripcion;
 			}
-			card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
+			if(admin == 1){
+				card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
 				'<div class="card-content">'+
 				'<img src="' + cards[i].img1 + '" class="card-img">'+
 				'<div class="card-cont">' +
@@ -93,8 +119,25 @@ function buscar() {
 				'</div>' +
 				'</div>' +
 				'</div>' +
-
 				'</div>';
+			}else{
+				card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
+				'<div class="card-content">'+
+				'<img src="' + cards[i].img1 + '" class="card-img">'+
+				'<div class="card-cont">' +
+				'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
+				'<p class="descripcionProducto">' +
+				descripcion +
+				'</p>' +
+				'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
+				'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
+				'Saber mas' +
+				'</button>' +
+				'</div>' +
+				'</div>' +
+				'</div>' +
+				'</div>';
+			}
 		}
 
 	}
