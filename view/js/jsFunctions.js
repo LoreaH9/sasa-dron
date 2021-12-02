@@ -29,7 +29,7 @@ function sessionVarsView() {
 
             }
         }else{
-            if(!window.location.href.includes("index.html")){
+            if(!window.location.href.includes("index")){
                 window.location.href = "index.html";
             }        }
       
