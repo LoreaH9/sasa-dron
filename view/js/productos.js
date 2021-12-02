@@ -38,11 +38,20 @@ function loadData(i) {
 
 	img.push(cards[i].img1);
 
-	if (cards[i].img2 != null) {
+	if (cards[i].img2 != "") {
 		img.push(cards[i].img2)
+		$(".carousel-control-next").show();
+		$(".carousel-control-prev").show();
 	}
-	if (cards[i].img3 != null) {
+	if (cards[i].img3 != "") {
 		img.push(cards[i].img3)
+		$(".carousel-control-next").show();
+		$(".carousel-control-prev").show();
+	}
+	if (cards[i].img2 == "" && cards[i].img3 == ""){
+		console.log("Solo una imagen")
+		$(".carousel-control-next").hide();
+		$(".carousel-control-prev").hide();
 	}
 	if (cards[i].descripcion.length > 300) {
 		var descripcion = cards[i].descripcion.substring(0, 200) + "<a onclick='loadMore(" + i + ")'><b> Saber mas...</b></a>";
