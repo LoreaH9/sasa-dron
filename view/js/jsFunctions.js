@@ -15,9 +15,13 @@ function sessionVarsView() {
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
-            $('#nomUsu').attr('data-bs-target', '#userModal');
+            if(window.location.href.includes("index.html")){
+                $('#nomUsu').attr('data-bs-target', '#userModal');
+            }  else{
+                $('#nomUsu').removeAttr('data-bs-target');
+
+            }     
             $("#nomUsu").text(result.usuario.nombre);
-            
             $('#nameUser').val(result.usuario.nombre);
             $('#emailUser').val(result.usuario.email)
 
@@ -31,7 +35,8 @@ function sessionVarsView() {
         }else{
             if(!window.location.href.includes("index")){
                 window.location.href = "index.html";
-            }        }
+            }        
+        }
       
     })
 }
@@ -74,7 +79,12 @@ function login() {
                 $("#ddReg").css('display', 'none');
                 $("#ddLo").css('display', 'block');
                 $('#login').modal('toggle');
-                $('#nomUsu').attr('data-bs-target', '#userModal');
+                if(!window.location.href.includes("index.html")){
+                    $('#nomUsu').attr('data-bs-target', '#userModal');
+                }else{
+                    $('#nomUsu').removeAttr('data-bs-target');
+
+                }
                 $("#nomUsu").text(result.usuario.nombre);
 
                 $('#nameUser').val(result.usuario.nombre);

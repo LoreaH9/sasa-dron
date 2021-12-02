@@ -48,6 +48,8 @@
         </div>
     </div>
 
+
+
     <!-- Cards -->
     <div id="cardGroup" class="row"></div>
 
@@ -55,44 +57,46 @@
     <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title modalTitulo">Nombre dron</h5>
-                </div>
-                <div class="modal-body">
-                    <!--Carrusel -->
-                    <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block  carrousel-img modalImg1">
-                            </div>
-                            <div class="carousel-item ">
-                                <img class="d-block carrousel-img  modalImg2">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block carrousel-img  modalImg3">
-                            </div>
+                <div class="modal-body" style="min-height: 600px;">
+                    <div class="d-flex justify-content-center">
+                        <div class="card">
+                        
+                            <div class="modalTitulo new  mt-4"> </div>
+                                <!--Carrusel -->
+                                <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active text-center">
+                                            <img class=" carrouselImg modalImg1">
+                                        </div>
+                                        <div class="carousel-item text-center ">
+                                            <img class="carrouselImg  modalImg2">
+                                        </div>
+                                        <div class="carousel-item text-center">
+                                            <img class="carrouselImg  modalImg3">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                                <!-- Fin carrusel -->
+                                <div class="modalPrecio price mt-5 text-center "> <span></span> </div>
+                                <div class="modalDescripcion about "> <span></span> </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
-                    <!-- Fin carrusel -->
-                    <h5>Precio</h5>
-                    <div class="text-danger modalPrecio"></div>
-                    <br>
-                    <h5>Descripción</h5>
-                    <div class="modalDescripcion"></div>
                 </div>
                 <div class="modal-footer">
+                    <div class="icons"> <span><i class="fa fa-shopping-cart"></i></span> <span><i
+                        class="fa fa-search-plus"></i></span> <span><i class="fa fa-heart-o"></i></span>
+                <span><i class="fa fa-refresh"></i></span> </div>
                     <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonCerrar">Cerrar</button>
-
                 </div>
             </div>
         </div>
