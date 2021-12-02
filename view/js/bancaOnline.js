@@ -93,7 +93,7 @@ function showOption(event) {
 		$("#BotonRecargar").show();
 		$("#BotonCuentaCorriente").show();
 	}
-
+	$("#cmbCuentas").show();
     $("#botonLeasing").on('click', calcularLeasing);
     $("#botonPrestamo").on('click', calcularPrestamo);
     $("#botonIngreso").on('click', ingreso);
