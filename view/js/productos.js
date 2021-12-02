@@ -1,12 +1,12 @@
 //global variables
-var cards, card, admin = "";
+var cards, card, admin, deleteId = "";
 
 //DOMContentLoaded
 $(document).ready(sessionVarsView)
 
 //functions
 
-function getArticulos(){
+function getArticulos() {
 	ordenInvertido = false;
 
 	fetch("controller/cProductos.php", {
@@ -19,18 +19,18 @@ function getArticulos(){
 }
 
 function sessionVarsView() {
-    var url = "controller/cSessionVarsView.php";
-    fetch(url, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    }).then(res => res.json()).then(result => {
-		admin = result.usuario.admin 
+	var url = "controller/cSessionVarsView.php";
+	fetch(url, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' }
+	}).then(res => res.json()).then(result => {
+		admin = result.usuario.admin
 		getArticulos()
 	})
 }
 
 function loadData(i) {
-	let img= [];
+	let img = [];
 	let carrousel = "";
 	$("#modalProducto .modalTitulo").html(cards[i].nombre);
 
@@ -49,11 +49,11 @@ function loadData(i) {
 		$("#modalProducto .modalDescripcion").html(cards[i].descripcion);
 	}
 	$('#modalProducto .modalPrecio').html(Math.round(cards[i].precio * 100) / 100 + "€");
-	
-	for(var j = 0; j < img.length; j++){
+
+	for (var j = 0; j < img.length; j++) {
 		carrousel += '<div class="carousel-item active">' +
-		'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
-		'</div>'
+			'<img src="' + img[j] + '" class="d-block  carrousel-img">' +
+			'</div>'
 	}
 	$("#modalProducto .carousel-inner").html(carrousel)
 }
@@ -92,46 +92,46 @@ function buscar() {
 			} else {
 				descripcion = cards[i].descripcion;
 			}
-			if(admin == 1){
+			if (admin == 1) {
 				card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
-				'<div class="card-content">'+
-				'<img src="' + cards[i].img1 + '" class="card-img">'+
-				'<div class="card-cont">' +
-				'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
-				'<p class="descripcionProducto">' +
-				descripcion +
-				'</p>' +
-				'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
-				'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
-				'Saber mas' +
-				'</button>' +
-				'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" id="btnEditar" data-bs-target="#modalEdit" onclick="modalEditar(' + i + ')">' +
-				'Editar' +
-				'</button>' +
-				'<button type="button" class=" mx-1 btn btn-danger" id="btnEliminar" onclick="deleteProducto(' + cards[i].id + ')">' +
-				'Borrar' +
-				'</button>' +
-				'</div>' +
-				'</div>' +
-				'</div>' +
-				'</div>';
-			}else{
+					'<div class="card-content">' +
+					'<img src="' + cards[i].img1 + '" class="card-img">' +
+					'<div class="card-cont">' +
+					'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
+					'<p class="descripcionProducto">' +
+					descripcion +
+					'</p>' +
+					'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
+					'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
+					'Saber mas' +
+					'</button>' +
+					'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" id="btnEditar" data-bs-target="#modalEdit" onclick="modalEditar(' + i + ')">' +
+					'Editar' +
+					'</button>' +
+					'<button type="button" class=" mx-1 btn btn-danger" id="btnEliminar" data-bs-toggle="modal" data-bs-target="#modalDelete" onclick="deleteModal(' + cards[i].id + ')">' +
+					'Borrar' +
+					'</button>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>';
+			} else {
 				card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
-				'<div class="card-content">'+
-				'<img src="' + cards[i].img1 + '" class="card-img">'+
-				'<div class="card-cont">' +
-				'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
-				'<p class="descripcionProducto">' +
-				descripcion +
-				'</p>' +
-				'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
-				'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
-				'Saber mas' +
-				'</button>' +
-				'</div>' +
-				'</div>' +
-				'</div>' +
-				'</div>';
+					'<div class="card-content">' +
+					'<img src="' + cards[i].img1 + '" class="card-img">' +
+					'<div class="card-cont">' +
+					'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
+					'<p class="descripcionProducto">' +
+					descripcion +
+					'</p>' +
+					'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
+					'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
+					'Saber mas' +
+					'</button>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>';
 			}
 		}
 
@@ -162,9 +162,13 @@ function ordenar() {
 		}
 	}
 }
+function deleteModal(id) {
+	deleteId = id;
+}
 
-function deleteProducto(id) {
-	data = { 'id': id }
+$('#modalBotonDelete').on("click", function(){
+	console.log(deleteId)
+	data = { 'id': deleteId }
 
 	fetch("controller/cProductoDelete.php", {
 		method: 'POST',
@@ -172,12 +176,11 @@ function deleteProducto(id) {
 		headers: { 'Content-Type': 'application/json' }
 	})
 		.then(res => res.json()).then(result => {
-			alert(result.error);
-
+			console.log(result.error)
 			getArticulos()
 		})
 		.catch(error => console.error('Error status:', error));
-}
+})
 
 function modalEditar(i) {
 	$('#modalEdit .modal-title').val(cards[i].id);
@@ -198,7 +201,7 @@ $("#botonInsertar").on("click", function () {
 	let descripcion = $("#modalInsert .insertDescripcion").val();
 
 	if (nombre != "" && precio != "" && img1 != "") {
-	let data = {
+		let data = {
 			"nombre": nombre, "precio": precio, "img1": img1,
 			"img2": img2, "img3": img3, "descripcion": descripcion
 		}
@@ -225,7 +228,7 @@ $("#botonEditar").on("click", function () {
 	let descripcion = $("#modalEdit .editDescripcion").val();
 
 	if (nombre != "" && precio != "" && img1 != "") {
-	let data = {
+		let data = {
 			"nombre": nombre, "precio": precio, "img1": img1,
 			"img2": img2, "img3": img3, "descripcion": descripcion, "id": id
 		}
@@ -242,4 +245,5 @@ $("#botonEditar").on("click", function () {
 			.catch(error => console.error('Error status:', error));
 	}
 })
-  
+
+
