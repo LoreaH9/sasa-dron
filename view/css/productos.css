@@ -340,7 +340,8 @@ nav {
     color: #868a8e;
     font-size: 13px;
     font-weight: 500;
-    margin-left: 20px
+    margin-left: 20px;
+    text-align: justify;
 }
 
 .price {
