@@ -36,11 +36,20 @@ function loadData(i) {
 
 	img.push(cards[i].img1);
 
-	if (cards[i].img2 != null) {
+	if (cards[i].img2 != "") {
 		img.push(cards[i].img2)
+		$(".carousel-control-next").show();
+		$(".carousel-control-prev").show();
 	}
-	if (cards[i].img3 != null) {
+	if (cards[i].img3 != "") {
 		img.push(cards[i].img3)
+		$(".carousel-control-next").show();
+		$(".carousel-control-prev").show();
+	}
+	if (cards[i].img2 == "" && cards[i].img3 == ""){
+		console.log("Solo una imagen")
+		$(".carousel-control-next").hide();
+		$(".carousel-control-prev").hide();
 	}
 	if (cards[i].descripcion.length > 300) {
 		var descripcion = cards[i].descripcion.substring(0, 200) + "<a onclick='loadMore(" + i + ")'><b> Saber mas...</b></a>";
@@ -49,11 +58,18 @@ function loadData(i) {
 		$("#modalProducto .modalDescripcion").html(cards[i].descripcion);
 	}
 	$('#modalProducto .modalPrecio').html(Math.round(cards[i].precio * 100) / 100 + "€");
-
-	for (var j = 0; j < img.length; j++) {
-		carrousel += '<div class="carousel-item active">' +
-			'<img src="' + img[j] + '" class="d-block  carrousel-img">' +
+	
+	for(var j = 0; j < img.length; j++){
+		console.log(img[j])
+		if (j==0){
+			carrousel += '<div class="carousel-item active">' +
+			'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
 			'</div>'
+		} else {
+			carrousel += '<div class="carousel-item">' +
+			'<img src="'+ img[j] +'" class="d-block  carrousel-img">' +
+			'</div>'
+		}
 	}
 	$("#modalProducto .carousel-inner").html(carrousel)
 }
