@@ -84,8 +84,8 @@ function hideAllTables() {
 }
 
 function showOption(event) {
-    desde = null;
-    a = null;
+    desde = "";
+    a = "";
     preventClick(event);
     hideAllTables();
     $("#table"+event.currentTarget.id+"").show();
@@ -128,7 +128,9 @@ function transferencia() {
 	  })
 	  
 	.then(res => res.json()).then(result => {
+		console.log("asd");
 		alert(result.error);
+		reloadPage();
 	})
 	.catch(error => console.error('Error status:', error));
 }
