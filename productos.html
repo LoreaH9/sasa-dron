@@ -57,14 +57,6 @@
     <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <!-- <div class="modal-header">
-                    <h5 class="modal-title modalTitulo">Nombre dron</h5>
-                </div>
-                <div class="modal-body">
-                    <!--Carrusel -->
-                    <!--<div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner"> -->
-
                 <div class="modal-body" style="min-height: 600px;">
                     <div class="d-flex justify-content-center">
                         <div class="card">
@@ -73,15 +65,6 @@
                                 <!--Carrusel -->
                                 <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active text-center">
-                                            <img class=" carrouselImg modalImg1">
-                                        </div>
-                                        <div class="carousel-item text-center ">
-                                            <img class="carrouselImg  modalImg2">
-                                        </div>
-                                        <div class="carousel-item text-center">
-                                            <img class="carrouselImg  modalImg3">
-                                        </div>
                                     </div>
                                     <button class="carousel-control-prev" type="button"
                                         data-bs-target="#carouselControls" data-bs-slide="prev">
@@ -159,7 +142,8 @@
 
                             <div>
                                 <label class="form-label">Descripcion</label>
-                                <input type="text" class="form-control insertDescripcion" placeholder="" value="">
+                                <textarea type="text" class="form-control insertDescripcion" placeholder=""
+                                    value=""></textarea>
                             </div>
                         </div>
                         <!--Fin del formulario-->
@@ -181,7 +165,7 @@
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Insertar articulo</h5>
+                    <h5 class="modal-title">Editar articulo</h5>
                 </div>
                 <div class="modal-body">
                     <!--Formulario-->
@@ -224,14 +208,15 @@
 
                             <div>
                                 <label class="form-label">Descripcion</label>
-                                <input type="text" class="form-control editDescripcion" placeholder="" value="">
+                                <textarea type="text" class="form-control editDescripcion" placeholder=""
+                                    value=""></textarea>
                             </div>
                         </div>
                         <!--Fin del formulario-->
                         <div class="modal-footer">
                             <button type="button" class="btn" data-bs-dismiss="modal"
-                                id="modalBotonCerrar">Cerrar</button>
-                            <button id="botonEditar" class="col-3 btn btn-primary" type="submit">Enviar</button>
+                                id="modalEditCerrar">Cerrar</button>
+                            <button id="botonEditar" class="col-3 btn btn-primary">Enviar</button>
                         </div>
                 </div>
                 </form>
@@ -241,6 +226,24 @@
     </div>
     <!--Fin Modal Editar-->
 
+    <!-- Modal confirmar delete-->
+    <div class="modal fade" id="modalDelete" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        aria-labelledby="modalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    ¿Estas seguro de que quieres borrar este articulo?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="modalDeleteCerrar">No</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="modalBotonDelete">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Modal confirmar delete-->
 
 
     <!-- Scripts -->

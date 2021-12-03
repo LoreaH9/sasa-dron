@@ -1,0 +1,22 @@
+.map-container{
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+.map-container iframe{
+    left: 0;
+    top: 0;
+    height: 70%;
+    width: 100%;
+    position: absolute;
+}
+.bg{
+    background-image: url("https://volandocondrones.com/wp-content/uploads/2020/05/foto-de-dron-en-ciudad-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hovBlue:hover{
+    background-color: rgb(191, 191, 255);
+}

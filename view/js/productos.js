@@ -1,12 +1,12 @@
 //global variables
-var cards, card, admin = "";
+var cards, card, admin, deleteId = "";
 
 //DOMContentLoaded
 $(document).ready(sessionVarsView)
 
 //functions
 
-function getArticulos(){
+function getArticulos() {
 	ordenInvertido = false;
 
 	fetch("controller/cProductos.php", {
@@ -14,25 +14,23 @@ function getArticulos(){
 	})
 		.then(res => res.json()).then(result => {
 			cards = result.list;
-			console.log(cards)
 			buscar();
 		})
 }
 
 function sessionVarsView() {
-    var url = "controller/cSessionVarsView.php";
-    fetch(url, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    }).then(res => res.json()).then(result => {
-		console.log("Session " + result.usuario.admin)
-		admin = result.usuario.admin 
+	var url = "controller/cSessionVarsView.php";
+	fetch(url, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' }
+	}).then(res => res.json()).then(result => {
+		admin = result.usuario.admin
 		getArticulos()
 	})
 }
 
 function loadData(i) {
-	let img= [];
+	let img = [];
 	let carrousel = "";
 	$("#modalProducto .modalTitulo").html(cards[i].nombre);
 
@@ -73,7 +71,6 @@ function loadData(i) {
 			'</div>'
 		}
 	}
-	console.log(carrousel)
 	$("#modalProducto .carousel-inner").html(carrousel)
 }
 
@@ -99,7 +96,6 @@ function invertirOrden() {
 }
 
 function buscar() {
-	console.log("gola")
 	var descripcion = "";
 	var found = false;
 	var respuesta = $("#input").val();
@@ -112,46 +108,46 @@ function buscar() {
 			} else {
 				descripcion = cards[i].descripcion;
 			}
-			if(admin == 1){
+			if (admin == 1) {
 				card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
-				'<div class="card-content">'+
-				'<img src="' + cards[i].img1 + '" class="card-img">'+
-				'<div class="card-cont">' +
-				'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
-				'<p class="descripcionProducto">' +
-				descripcion +
-				'</p>' +
-				'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
-				'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
-				'Saber mas' +
-				'</button>' +
-				'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" id="btnEditar" data-bs-target="#modalEditar" onclick="modalEditar(' + cards[i] + ')">' +
-				'Editar' +
-				'</button>' +
-				'<button type="button" class=" mx-1 btn btn-danger" id="btnEliminar" onclick="deleteProducto(' + cards[i].id + ')">' +
-				'Borrar' +
-				'</button>' +
-				'</div>' +
-				'</div>' +
-				'</div>' +
-				'</div>';
-			}else{
+					'<div class="card-content">' +
+					'<img src="' + cards[i].img1 + '" class="card-img">' +
+					'<div class="card-cont">' +
+					'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
+					'<p class="descripcionProducto">' +
+					descripcion +
+					'</p>' +
+					'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
+					'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
+					'Saber mas' +
+					'</button>' +
+					'<button type="button" class=" mx-1 btn btn-success" data-bs-toggle="modal" id="btnEditar" data-bs-target="#modalEdit" onclick="modalEditar(' + i + ')">' +
+					'Editar' +
+					'</button>' +
+					'<button type="button" class=" mx-1 btn btn-danger" id="btnEliminar" data-bs-toggle="modal" data-bs-target="#modalDelete" onclick="deleteModal(' + cards[i].id + ')">' +
+					'Borrar' +
+					'</button>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>';
+			} else {
 				card += '<div id="' + cards[i].id + '" class="my-5 card-productos select" onclick="loadData(' + i + ')">' +
-				'<div class="card-content">'+
-				'<img src="' + cards[i].img1 + '" class="card-img">'+
-				'<div class="card-cont">' +
-				'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
-				'<p class="descripcionProducto">' +
-				descripcion +
-				'</p>' +
-				'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
-				'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
-				'Saber mas' +
-				'</button>' +
-				'</div>' +
-				'</div>' +
-				'</div>' +
-				'</div>';
+					'<div class="card-content">' +
+					'<img src="' + cards[i].img1 + '" class="card-img">' +
+					'<div class="card-cont">' +
+					'<h4 class="nombreProducto">' + cards[i].nombre + '</h4>' +
+					'<p class="descripcionProducto">' +
+					descripcion +
+					'</p>' +
+					'<div class="precioProducto col-5">' + Math.round(cards[i].precio * 100) / 100 + ' €</div>' +
+					'<button type="button" class=" mx-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">' +
+					'Saber mas' +
+					'</button>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>';
 			}
 		}
 
@@ -182,9 +178,13 @@ function ordenar() {
 		}
 	}
 }
+function deleteModal(id) {
+	deleteId = id;
+}
 
-function deleteProducto(id) {
-	data = { 'id': id }
+$('#modalBotonDelete').on("click", function(){
+	console.log(deleteId)
+	data = { 'id': deleteId }
 
 	fetch("controller/cProductoDelete.php", {
 		method: 'POST',
@@ -192,17 +192,20 @@ function deleteProducto(id) {
 		headers: { 'Content-Type': 'application/json' }
 	})
 		.then(res => res.json()).then(result => {
-			console.log("Delete done")
-			console.log(result.error);
-			alert(result.error);
-
+			console.log(result.error)
 			getArticulos()
 		})
 		.catch(error => console.error('Error status:', error));
-}
+})
 
-function modalEditar(card) {
-
+function modalEditar(i) {
+	$('#modalEdit .modal-title').val(cards[i].id);
+	$('#modalEdit .editNombre').val(cards[i].nombre);
+	$('#modalEdit .editPrecio').val(cards[i].precio);
+	$('#modalEdit .editImg1').val(cards[i].img1);
+	$('#modalEdit .editImg2').val(cards[i].img2);
+	$('#modalEdit .editImg3').val(cards[i].img3);
+	$('#modalEdit .editDescripcion').val(cards[i].descripcion);
 }
 
 $("#botonInsertar").on("click", function () {
@@ -214,19 +217,16 @@ $("#botonInsertar").on("click", function () {
 	let descripcion = $("#modalInsert .insertDescripcion").val();
 
 	if (nombre != "" && precio != "" && img1 != "") {
-	let data = {
+		let data = {
 			"nombre": nombre, "precio": precio, "img1": img1,
 			"img2": img2, "img3": img3, "descripcion": descripcion
 		}
-
 		fetch("controller/cProductoInsert.php", {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: { 'Content-Type': 'application/json' }
 		})
 			.then(res => res.json()).then(result => {
-				console.log("Insert done")
-				console.log(result.error);
 				alert(result.error);
 				getArticulos()
 			})
@@ -235,6 +235,7 @@ $("#botonInsertar").on("click", function () {
 })
 
 $("#botonEditar").on("click", function () {
+	let id = $('#modalEdit .modal-title').val();
 	let nombre = $("#modalEdit .editNombre").val();
 	let precio = $("#modalEdit .editPrecio").val();
 	let img1 = $("#modalEdit .editImg1").val();
@@ -243,23 +244,22 @@ $("#botonEditar").on("click", function () {
 	let descripcion = $("#modalEdit .editDescripcion").val();
 
 	if (nombre != "" && precio != "" && img1 != "") {
-	let data = {
+		let data = {
 			"nombre": nombre, "precio": precio, "img1": img1,
-			"img2": img2, "img3": img3, "descripcion": descripcion
+			"img2": img2, "img3": img3, "descripcion": descripcion, "id": id
 		}
 
-		fetch("controller/cProductoInsert.php", {
+		fetch("controller/cProductoUpdate.php", {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: { 'Content-Type': 'application/json' }
 		})
 			.then(res => res.json()).then(result => {
-				console.log("Insert done")
-				console.log(result.error);
-				alert(result.error);
+				console.log(result.error)
 				getArticulos()
 			})
 			.catch(error => console.error('Error status:', error));
 	}
 })
-  
+
+
