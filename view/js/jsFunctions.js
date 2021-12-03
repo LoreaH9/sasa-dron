@@ -15,7 +15,7 @@ function sessionVarsView() {
             $("#ddLg").css('display', 'none');
             $("#ddReg").css('display', 'none');
             $("#ddLo").css('display', 'block');
-            if(window.location.href.includes("index.html")){
+            if(window.location.href.includes("index")){
                 $('#nomUsu').attr('data-bs-target', '#userModal');
             }  else{
                 $('#nomUsu').removeAttr('data-bs-target');
@@ -79,7 +79,7 @@ function login() {
                 $("#ddReg").css('display', 'none');
                 $("#ddLo").css('display', 'block');
                 $('#login').modal('toggle');
-                if(!window.location.href.includes("index.html")){
+                if(!window.location.href.includes("index")){
                     $('#nomUsu').attr('data-bs-target', '#userModal');
                 }else{
                     $('#nomUsu').removeAttr('data-bs-target');
