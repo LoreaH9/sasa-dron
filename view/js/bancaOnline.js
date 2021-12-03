@@ -121,7 +121,6 @@ function transferencia() {
     'cCorriente2': corriente2, 'cCredito2': credito2, 
     'desde': desde, 'a': a};
 
-    console.log(data);
 	fetch(url, {
 	  method: 'POST', 
 	  body: JSON.stringify(data),
@@ -129,16 +128,19 @@ function transferencia() {
 	  })
 	  
 	.then(res => res.json()).then(result => {
-			alert(result.error);
+		alert(result.error);
 	})
 	.catch(error => console.error('Error status:', error));
 }
+
 function tableMovimientosList(){
 	console.log("Llega a movList");
 }
+
 function reloadPage(){
 	window.location.reload();
 }
+
 function cambioCuenta(event){
 	if(event.currentTarget.id == "BotonCuentaCorriente"){
 		$("#BotonCuentaCredito").show();
@@ -255,33 +257,6 @@ function tableMovimientosList(cuenta){
 				$("#tableMovCorBody").html(newRow);
 			}
 	}).catch(error => console.error('Error status:', error));
-} 
-function transferencia() {
-    var importe = $("#tranferenciaImporte").val();
-	var corriente = $("#cmbCuentasCorriente").val();
-    var credito = $("#cmbCuentasCredito").val();
-	var concepto = $("#tranferenciaConcepto").val();
-    var corriente2 = $("#cmbCuentasCorriente2").val();
-    var credito2 = $("#cmbCuentasCredito2").val();
-
-	var url = "controller/cTransferencia.php";
-	
-	var data = {'importe': importe, 'cCorriente': corriente, 
-    'cCredito': credito, 'concepto': concepto,
-    'cCorriente2': corriente2, 'cCredito2': credito2, 
-    'desde': desde, 'a': a};
-
-	fetch(url, {
-	  method: 'POST', 
-	  body: JSON.stringify(data),
-	  headers:{'Content-Type': 'application/json'}
-	  })
-	  
-	.then(res => res.json()).then(result => {
-			console.log(result.error);
-			alert(result.error);
-	})
-	.catch(error => console.error('Error status:', error));
 }
 
 function ingreso() {
@@ -300,12 +275,10 @@ function ingreso() {
 	  })
 	  
 	.then(res => res.json()).then(result => {
-			console.log(result.error);
 			alert(result.error);
 	})
 	.catch(error => console.error('Error status:', error));
 }
-
 
 function showCuentasCredito() {
     var url = "controller/cCredito.php";

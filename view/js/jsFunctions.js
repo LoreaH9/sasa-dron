@@ -134,7 +134,6 @@ function register() {
     }
 }
 
-
 function delUser() {
     var url = "controller/cUsuarioDelete.php";
     if(confirm("¿Estás seguro de que quieres eliminar esta cuenta?")) {
@@ -253,6 +252,7 @@ function logout() {
         if (result.error == "no error") {
             $("#errorLogin").text("");
             $("#btnBanca").css('display', 'none');
+            $("#btnProductos").css('display', 'none');
             $("#ddLg").css('display', 'block');
             $("#ddReg").css('display', 'block');
             $("#ddLo").css('display', 'none');
