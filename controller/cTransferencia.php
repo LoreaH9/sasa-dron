@@ -20,7 +20,7 @@ $cuentaCorriente = new cuentaCorrienteModel();
 $cuentaCredito = new cuentaCreditoModel();
 $movimiento = new movimientoModel();
  
-if(isset($importe) && isset($desde) && isset($a)) {
+if($importe != "" && $concepto != "" && $desde != "" && $a != "") {
     $response['error'] = "Transferencia realizada";
     if($desde == 1) {
         $cuentaCorriente->id = $cCorriente;
@@ -53,6 +53,7 @@ if(isset($importe) && isset($desde) && isset($a)) {
         $movimiento->importe = $importe;
         $movimiento->concepto = $concepto;
         $movimiento -> insertCredito();
+        $response['error'] = "Transferencia de corriente a credito realizada";
     }
     else if($a == 1 && $desde == 2){
         $cuentaCorriente->id = $cCorriente2;
@@ -63,10 +64,12 @@ if(isset($importe) && isset($desde) && isset($a)) {
         $movimiento->importe = $importe;
         $movimiento->concepto = $concepto;
         $movimiento -> insert();
+        $response['error'] = "Transferencia de credito a corriente realizada";
     }
 }
 else {
     $response['error'] = "No se realizo la transferencia, compruebe los datos";
 }
+
 echo json_encode($response);
 ?>
