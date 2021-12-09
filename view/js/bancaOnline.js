@@ -339,11 +339,11 @@ function calcularPrestamo() {
     var table = "<thead>" +
     "<tr>" +
     "<th scope='col'>#</th>" +
-    "<th scope='col'>Urtekoa</th>" +
-    "<th scope='col'>Interes Kuota</th>" +
-    "<th scope='col'>Amortizazio kuota</th>" +
-    "<th scope='col'>Amortizazio kapitala</th>" +
-    "<th scope='col'>Zorra</th>" +
+    "<th scope='col'>Anual</th>" +
+    "<th scope='col'>Cuota de Interes</th>" +
+    "<th scope='col'>Cuota de amortizacion</th>" +
+    "<th scope='col'>Amortizacion Capital</th>" +
+    "<th scope='col'>Deuda</th>" +
     "</tr>" +
     "</thead>";
 
@@ -384,12 +384,12 @@ function calcularLeasing() {
     var table = "<thead>" +
     "<tr>" +
     "<th scope='col'>#</th>" +
-    "<th scope='col'>Kuota</th>" +
-    "<th scope='col'>BEZ-a</th>" +
-    "<th scope='col'>Kuota garbia</th>" +
-    "<th scope='col'>Interesak</th>" +
-    "<th scope='col'>Amortizazioa</th>" +
-    "<th scope='col'>Zorra</th>" +
+    "<th scope='col'>Cuota</th>" +
+    "<th scope='col'>IVA</th>" +
+    "<th scope='col'>Cuota limpia</th>" +
+    "<th scope='col'>Intereses</th>" +
+    "<th scope='col'>Amortizacion</th>" +
+    "<th scope='col'>Deuda</th>" +
     "</tr>" +
     "</thead>";
 
