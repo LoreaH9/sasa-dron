@@ -59,6 +59,10 @@ function init() {
 }
 
 function option() {
+	$("#botonLeasing").on('click', calcularLeasing);
+    $("#botonPrestamo").on('click', calcularPrestamo);
+    $("#botonIngreso").on('click', ingreso);
+    $("#botonTransferencia").on('click', transferencia);
     $('.opcion')
     .off('click')
     .on('click', showOption);
@@ -100,10 +104,7 @@ function showOption(event) {
 		$("#BotonCuentaCorriente").show();
 	}
 	$("#cmbCuentas").show();
-    $("#botonLeasing").on('click', calcularLeasing);
-    $("#botonPrestamo").on('click', calcularPrestamo);
-    $("#botonIngreso").on('click', ingreso);
-    $("#botonTransferencia").on('click', transferencia);
+    
     showCuentasCorrientes();
     showCuentasCredito();
     $("#radioCorriente").prop("checked", false);
@@ -284,6 +285,7 @@ function ingreso() {
 	  
 	.then(res => res.json()).then(result => {
 			alert(result.error);
+			reloadPage();
 	})
 	.catch(error => console.error('Error status:', error));
 }
