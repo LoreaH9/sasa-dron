@@ -18,13 +18,19 @@ function init() {
     });
 
     $('#radioCorriente').click(function() {
-        $("select").hide();
+        $("#cmbCuentasCredito").hide();
+		$("#cmbCuentasCredito2").hide();
+        $("#cmbCuentasCorriente2").hide();
+        $("#transOtraCuenta").hide();
         $("#cmbCuentasCorriente").show();
 
         desde = 1;
     });
     $('#radioCredito').click(function() {
-        $("select").hide();
+        $("#cmbCuentasCorriente").hide();
+		$("#cmbCuentasCredito2").hide();
+        $("#cmbCuentasCorriente2").hide();
+        $("#transOtraCuenta").hide();
         $("#cmbCuentasCredito").show();
 
         desde = 2;
@@ -53,6 +59,10 @@ function init() {
 }
 
 function option() {
+	$("#botonLeasing").on('click', calcularLeasing);
+    $("#botonPrestamo").on('click', calcularPrestamo);
+    $("#botonIngreso").on('click', ingreso);
+    $("#botonTransferencia").on('click', transferencia);
     $('.opcion')
     .off('click')
     .on('click', showOption);
@@ -84,8 +94,8 @@ function hideAllTables() {
 }
 
 function showOption(event) {
-    desde = null;
-    a = null;
+    desde = "";
+    a = "";
     preventClick(event);
     hideAllTables();
     $("#table"+event.currentTarget.id+"").show();
@@ -94,10 +104,7 @@ function showOption(event) {
 		$("#BotonCuentaCorriente").show();
 	}
 	$("#cmbCuentas").show();
-    $("#botonLeasing").on('click', calcularLeasing);
-    $("#botonPrestamo").on('click', calcularPrestamo);
-    $("#botonIngreso").on('click', ingreso);
-    $("#botonTransferencia").on('click', transferencia);
+    
     showCuentasCorrientes();
     showCuentasCredito();
     $("#radioCorriente").prop("checked", false);
@@ -108,11 +115,11 @@ function showOption(event) {
 
 function transferencia() {
     var importe = $("#tranferenciaImporte").val();
-	var corriente = $("#cmbCuentasCorriente").val();
-    var credito = $("#cmbCuentasCredito").val();
+	var corriente = $("#cmbCuentasCorriente").attr('num');
+    var credito = $("#cmbCuentasCredito").attr('num');
 	var concepto = $("#tranferenciaConcepto").val();
-    var corriente2 = $("#cmbCuentasCorriente2").val();
-    var credito2 = $("#cmbCuentasCredito2").val();
+    var corriente2 = $("#cmbCuentasCorriente2").attr('num');
+    var credito2 = $("#cmbCuentasCredito2").attr('num');
 
 	var url = "controller/cTransferencia.php";
 	
@@ -128,7 +135,9 @@ function transferencia() {
 	  })
 	  
 	.then(res => res.json()).then(result => {
+		console.log("asd");
 		alert(result.error);
+		reloadPage();
 	})
 	.catch(error => console.error('Error status:', error));
 }
@@ -261,7 +270,7 @@ function tableMovimientosList(cuenta){
 
 function ingreso() {
     var importe = $("#ingresoImporte").val();
-	var cuenta = $("#cmbCuentas").val();
+	var cuenta = $("#cmbCuentas").attr('num');
 	var concepto = $("#ingresoConcepto").val();
 
 	var url = "controller/cIngreso.php";
@@ -276,6 +285,7 @@ function ingreso() {
 	  
 	.then(res => res.json()).then(result => {
 			alert(result.error);
+			reloadPage();
 	})
 	.catch(error => console.error('Error status:', error));
 }
@@ -294,10 +304,11 @@ function showCuentasCredito() {
    		
    		for(let i = 0; i < cuentasCredito.length; i++) {
 			newRow += "<option value='" + cuentasCredito[i].id + "'>Cuenta credito " + cuentasCredito[i].id + "</option>";
+			$("#cmbCuentasCredito").val("Cuenta credito " + cuentasCredito[i].id);
+			$("#cmbCuentasCredito").attr('num', cuentasCredito[i].id);
+			$("#cmbCuentasCredito2").val("Cuenta credito " + cuentasCredito[i].id);
+			$("#cmbCuentasCredito2").attr('num', cuentasCredito[i].id);
 		}
-		 
-		document.getElementById("cmbCuentasCredito").innerHTML = newRow;
-        document.getElementById("cmbCuentasCredito2").innerHTML = newRow; 
 	})
 	.catch(error => console.error('Error status:', error));	
 }
@@ -309,18 +320,19 @@ function showCuentasCorrientes() {
 	  method: 'GET', 
 	})
 	.then(res => res.json()).then(result => {
-		console.log(result.list);
 		
 		var cuentasCorrientes = result.list;
 		var newRow = "";
    		
    		for(let i = 0; i < cuentasCorrientes.length; i++) {
 			newRow += "<option value='" + cuentasCorrientes[i].id + "'>Cuenta corriente " + cuentasCorrientes[i].id + "</option>";
+			$("#cmbCuentas").val("Cuenta corriente " + cuentasCorrientes[i].id);
+			$("#cmbCuentas").attr('num', cuentasCorrientes[i].id);
+			$("#cmbCuentasCorriente").val("Cuenta corriente " + cuentasCorrientes[i].id);
+			$("#cmbCuentasCorriente").attr('num', cuentasCorrientes[i].id);
+			$("#cmbCuentasCorriente2").val("Cuenta corriente " + cuentasCorrientes[i].id);
+			$("#cmbCuentasCorriente2").attr('num', cuentasCorrientes[i].id);
 		}
-		 
-		document.getElementById("cmbCuentas").innerHTML = newRow;
-        document.getElementById("cmbCuentasCorriente").innerHTML = newRow;
-        document.getElementById("cmbCuentasCorriente2").innerHTML = newRow;
 	})
 	.catch(error => console.error('Error status:', error));	
 }
@@ -329,11 +341,11 @@ function calcularPrestamo() {
     var table = "<thead>" +
     "<tr>" +
     "<th scope='col'>#</th>" +
-    "<th scope='col'>Urtekoa</th>" +
-    "<th scope='col'>Interes Kuota</th>" +
-    "<th scope='col'>Amortizazio kuota</th>" +
-    "<th scope='col'>Amortizazio kapitala</th>" +
-    "<th scope='col'>Zorra</th>" +
+    "<th scope='col'>Anual</th>" +
+    "<th scope='col'>Cuota de Interes</th>" +
+    "<th scope='col'>Cuota de amortizacion</th>" +
+    "<th scope='col'>Amortizacion Capital</th>" +
+    "<th scope='col'>Deuda</th>" +
     "</tr>" +
     "</thead>";
 
@@ -374,12 +386,12 @@ function calcularLeasing() {
     var table = "<thead>" +
     "<tr>" +
     "<th scope='col'>#</th>" +
-    "<th scope='col'>Kuota</th>" +
-    "<th scope='col'>BEZ-a</th>" +
-    "<th scope='col'>Kuota garbia</th>" +
-    "<th scope='col'>Interesak</th>" +
-    "<th scope='col'>Amortizazioa</th>" +
-    "<th scope='col'>Zorra</th>" +
+    "<th scope='col'>Cuota</th>" +
+    "<th scope='col'>IVA</th>" +
+    "<th scope='col'>Cuota limpia</th>" +
+    "<th scope='col'>Intereses</th>" +
+    "<th scope='col'>Amortizacion</th>" +
+    "<th scope='col'>Deuda</th>" +
     "</tr>" +
     "</thead>";
 

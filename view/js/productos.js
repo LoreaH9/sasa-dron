@@ -84,6 +84,12 @@ window.onload = function () {
 
 $("#input").on("keyup", function () { buscar() })
 
+function seleccionarOrden(){
+	ordenInvertido = false;
+	$("#botonInvertir").html("Invertir orden ▲")
+	ordenar()
+}
+
 function invertirOrden() {
 	if ($("#botonInvertir").html() == "Invertir orden ▲") {
 		ordenInvertido = true;
@@ -92,6 +98,26 @@ function invertirOrden() {
 	} else {
 		$("#botonInvertir").html("Invertir orden ▲");
 		ordenar();
+	}
+}
+
+function ordenar() {
+	if ($("#orden").val() == "nombre") {
+		if (ordenInvertido == false) {
+			cards.sort((a, b) => (a.nombre > b.nombre ? 1 : -1));
+			buscar();
+		} else {
+			cards.sort().reverse();
+			buscar();
+		}
+	} else if ($("#orden").val() == "precio") {
+		if (ordenInvertido == false) {
+			cards.sort((a, b) => (a.precio < b.precio ? 1 : -1));
+			buscar();
+		} else {
+			cards.sort().reverse();
+			buscar();
+		}
 	}
 }
 
@@ -159,25 +185,7 @@ function buscar() {
 	}
 }
 
-function ordenar() {
-	if ($("#orden").val() == "nombre") {
-		if (ordenInvertido == false) {
-			cards.sort();
-			buscar();
-		} else {
-			cards.sort().reverse();
-			buscar();
-		}
-	} else if ($("#orden").val() == "precio") {
-		if (ordenInvertido == false) {
-			cards.sort((a, b) => (a.precio < b.precio ? 1 : -1));
-			buscar();
-		} else {
-			cards.sort().reverse();
-			buscar();
-		}
-	}
-}
+
 function deleteModal(id) {
 	deleteId = id;
 }
