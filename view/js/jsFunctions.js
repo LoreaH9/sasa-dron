@@ -7,7 +7,6 @@ function sessionVarsView() {
         headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json()).then(result => {
         $("#btnBanca").css('display', 'none');
-
         if (result.error == "no error") {
             $("#btnProductos").css('display', 'block');
             $("#btnEditar").css('display', 'none');
@@ -19,8 +18,7 @@ function sessionVarsView() {
                 $('#nomUsu').attr('data-bs-target', '#userModal');
             }  else{
                 $('#nomUsu').removeAttr('data-bs-target');
-
-            }     
+            }
             $("#nomUsu").text(result.usuario.nombre);
             $('#nameUser').val(result.usuario.nombre);
             $('#emailUser').val(result.usuario.email)
@@ -30,14 +28,12 @@ function sessionVarsView() {
                 $("#btnEliminar").css('display', 'block');
                 $("#btnEditar").css('display', 'block');
                 $("#btnInsertar").css('display', 'block');
-
             }
         }else{
             if(!window.location.href.includes("index")){
                 window.location.href = "index.html";
             }        
         }
-      
     })
 }
 
